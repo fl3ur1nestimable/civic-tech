@@ -1,0 +1,40 @@
+<!--
+    Author : Thibault Cheneviere
+    Mail : thibault.cheneviere@telecomnancy.eu
+    Date : 28/09/2021
+-->
+
+{% extends 'layout.html' %}
+
+{% block container %}
+    <!-- CSS dependancies -->
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/login.css') }}">
+    
+    
+    <!-- Script dependancies -->
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+
+    <form action="{{ url_for('login.login_validation') }}" method="POST">
+        <div class="container mt-5 mb-5">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-md-6">
+                    <div class="card px-5 py-5">
+                        <div class="form-input">
+                            <i class="fa fa-user"></i> 
+                            <input type="text" class="form-control" placeholder="Identifiant de connexion" name="identifier" id="identifierInput">
+                        </div>
+                        <div class="form-input">
+                            <i class="fa fa-lock"></i>
+                            <input type="password" class="form-control" placeholder="Mot de passe" name="password" id="pwdInput">
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="remember" checked>
+                            <label class="form-check-label" for="flexCheckChecked">Se souvenir de moi</label>
+                        </div>
+                        <button class="btn btn-primary mt-4 signup">Connexion</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock container %}
