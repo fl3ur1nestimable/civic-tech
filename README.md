@@ -17,14 +17,12 @@ Gérald Oster <<gerald.oster@telecomnancy.eu>>
 **Guide d'intallation rapide** :  
 
 ``` bash
-
 $git clone https://gitlab.telecomnancy.univ-lorraine.fr/ppii2k22/project1-grp_e8.git
 $cd projet1-grp_e8
 $python3 -m venv /path/to/new/virtual/environment
 $pip install -r requirements.txt
 $python3 initBD.py
 $python3 main.py
-
 ```
 
 ## Description du projet
