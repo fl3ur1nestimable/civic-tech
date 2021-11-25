@@ -14,24 +14,26 @@ Gérald Oster <<gerald.oster@telecomnancy.eu>>
 * HASHANI Elion <<elion.hashani@telecomnancy.eu>>  
 * YEBOUET Antoine <<antoine.yebouet@telecomnancy.eu>>  
 
+**Guide d'intallation rapide** :  
+
+``` bash
+
+$git clone https://gitlab.telecomnancy.univ-lorraine.fr/ppii2k22/project1-grp_e8.git
+$cd projet1-grp_e8
+$python3 -m venv /path/to/new/virtual/environment
+$pip install -r requirements.txt
+$python3 initBD.py
+$python3 main.py
+
+```
+
 ## Description du projet
 
-### Fonctions principales
+L’objectif de l’application est de faciliter le vote en donnant un accès facile au programme de chaque candidat et en proposant une première analyse du programme qui pourra être affinée par les citoyens les plus investis. Ensuite la localisation des différents bureaux de vote facilite la démarche de vote pour les personnes les plus récalcitrantes.
 
-* Page de News de la ville (en page d'accueil) avec les news des clubs de la ville (sportif, artistique, culturel, …), nouvelle décision des élus (projets qui ont été acceptés).  
-* Système d’aide à la prise de décision : avant de voter un projet, permettre au citoyen de choisir le budget alloué à ce projet, impliquer les citoyens sur les plans urbains de la ville à travers des sondages (les mineurs ne pourront pas voter et il y a un vote unique par personne) et des discussions.  
-* Système lors d'élection : présenter les programmes des différents candidats à travers un hémicycle (représentation graphique) qui répertorie tous les candidats. Les candidats écriront directement leur programme pour éviter les informations biaisées.  
-* Système d’entraide entre les riverains : faire une plateforme pour poster ses annonces pour demander de l’aide ou proposer son aide (par exemple aide pour faire du bricolage, de la mécanique, aide sur un problème avec du matériel informatique, …).  
-* Système de création de projet par les citoyens : système de budget participatif (possibilité de financer des projets de riverains) et possibilité de promouvoir un projet avec des pétitions pour les faire connaître et financer par les élues.
-Système de signalisation des problèmes : chaque citoyen peut signaler des incivilités ou des problèmes liés à la gestion de la ville (problème de circulation sur certains axes, problème de ramassage des poubelles dans certains quartiers, …)  
+### Fonctions de l'application
 
-### Première description du fonctionnement de l’application
-
-Site web avec une base de login/signup :  
-
-* Pour le signup, vérification de l’identité via :  
-  * Vérification de la carte d’identité  
-  * Vérification des informations personnelles (Prénom, nom, adresse, âge, sexe, adresse IP, eMail)  
-* Chaque personne peut créer un compte librement (but de toucher un maximum de personne)  
-* Possibilité de supprimer ses informations personnelles en se désinscrivant mais les messages et discussion postés/créés resteront sur le site (pour des raisons de logique du débat). Néanmoins, le nom de l’auteur sera retiré de toutes les publications et remplacé par « Anonyme » ou « Désinscrit ».  
-* Envoi d’un mail de confirmation pour valider l’adresse mail.
+* Chaque candidat aura des identifiants pour pouvoir se connecter et rentré leur programme en ligne.
+* Ensuite après le référencement d’un programme, une analyse automatique permet de « noter » suivant plusieurs critères le candidats (critère écologique, sociale, économique et juridique). Cette notation permet ensuite d’afficher 4 barres sur le site internet plus ou moins remplie (pourcentage de remplissage).
+* Chaque citoyen peut ensuite influer sur ces notations (dans la limite d’une variation de +- 5%) après avoir lu le programme d’un candidat (permet d’avoir un avis plus large sur la perception du candidat).
+* Système de localisation des différents bureaux de vote pour faciliter le vote de chacun.
