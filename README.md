@@ -21,15 +21,14 @@ $git clone https://gitlab.telecomnancy.univ-lorraine.fr/ppii2k22/project1-grp_e8
 $cd projet1-grp_e8
 $python3 -m venv /path/to/new/virtual/environment
 $pip install -r requirements.txt
-$python3 initBD.py
 $python3 main.py
 ```
 
-## Description du projet
+## **Description du projet**
 
 L’objectif de l’application est de faciliter le vote en donnant un accès facile au programme de chaque candidat et en proposant une première analyse du programme qui pourra être affinée par les citoyens les plus investis. Ensuite la localisation des différents bureaux de vote facilite la démarche de vote pour les personnes les plus récalcitrantes.
 
-### Fonctions de l'application
+### **Fonctions de l'application**
 
 * Chaque candidat aura des identifiants pour pouvoir se connecter et rentré leur programme en ligne.
 * Ensuite après le référencement d’un programme, une analyse automatique permet de « noter » suivant plusieurs critères le candidats (critère écologique, sociale, économique et juridique). Cette notation permet ensuite d’afficher 4 barres sur le site internet plus ou moins remplie (pourcentage de remplissage).

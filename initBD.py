@@ -5,8 +5,18 @@
 """
 
 # Import personal modules
-from main import db, create_app
-from py.database.models import *
+from py.database.connectDatabase import connectDatabase
+
 
 if __name__ == "__main__":
-    db.create_all(app=create_app())
+    db, cursor = connectDatabase()
+    
+    query = '''
+    DROP TABLE IF EXISTS user;
+
+    CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, role INTEGER, password TEXT);
+    '''
+
+    cursor.executescript(query)
+    db.commit()
+    db.close()

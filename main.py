@@ -6,12 +6,11 @@
 
 # Import neded packages
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 
 
+# Import personal modules
 
-# Initialize database
-db = SQLAlchemy()
+
 
 # Definition of the app
 def create_app():
@@ -19,8 +18,6 @@ def create_app():
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
     app.config['SECRET_KEY'] = '29FTh4Swfr3DuMlNRcQcZxCk7IFBMooP'
-
-    db.init_app(app)
 
     # Import blueprints
     ## Import main blueprint
