@@ -14,7 +14,8 @@ if __name__ == "__main__":
     query = '''
     DROP TABLE IF EXISTS user;
 
-    CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, role INTEGER, password TEXT);
+    CREATE TABLE users 
+    (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, email TEXT, role INTEGER, identifier TEXT UNIQUE, password TEXT);
     '''
 
     cursor.executescript(query)

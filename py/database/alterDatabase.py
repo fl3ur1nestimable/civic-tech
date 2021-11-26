@@ -6,36 +6,62 @@
 
 # Import neded packages
 from werkzeug.security import generate_password_hash
+from sqlite3 import IntegrityError
 
 # Import personal modules
 from ..database.connectDatabase import connectDatabase
-from ..core.getRole import *
+from ..core.getRole import getRole
+from ..core.generateConectionLogs import generatePassword, generateIdentifier
 
 
 # Starts the script with : python3 -i -m py.database.alterDatabase
-def addCandidate(firstName: str, lastName: str, role: int, password: str) -> None:
+def addUser(firstName: str, lastName: str, role: int, email: str) -> None:
+    """
+        Function to add a User in the users table of the database.db file.
+
+        Parameters :
+            - firstName (string) : first name of the candidate
+            - lastName (string) : last name of the candidate
+            - role (integer) : integer value of the user's role. Refet to the getRole.py file to see the roles
+            - email (string) : email of the user
+
+        Returns :
+            None
+        
+        Prints :
+            - firstName (string) : first name of the candidate
+            - lastName (string) : last name of the candidate
+            - email (string) : email of the user
+            - identifier (string) : 6-digits identifier for the user
+            - password (string) : 20-characters password of the user
+            - role (integer) : integer value of the user's role. Refet to the getRole.py file to see the roles
+            
+    """
     db, cursor = connectDatabase()
 
-    researchQuery = '''SELECT * FROM user WHERE firstName=? and lastName=?;'''
+    researchQuery = '''SELECT * FROM users WHERE firstName = ? and lastName = ?;'''
     researchArgs = (firstName, lastName)
     cursor.execute(researchQuery, researchArgs)
 
     if len(cursor.fetchall()) == 0:
-        researchQuery = '''SELECT * FROM user;'''
-        cursor.execute(researchQuery)
-        if len(cursor.fetchall()) == 0:
-            addQuery = '''INSERT INTO user values (1, ?, ?, ?, ?);'''
-            addArgs = (firstName, lastName, role, generate_password_hash(password, "sha256"))
-        else:
-            addQuery = '''INSERT INTO user values (?, ?, ?, ?);'''
-            addArgs = (firstName, lastName, role, generate_password_hash(password, "sha256"))
+        identifier = generateIdentifier(6)
+        password = generatePassword(20)
 
-        cursor.execute(addQuery, addArgs)
-        db.commit()
+        addQuery = '''INSERT INTO users(firstName, lastName, email, role, identifier, password) values (?, ?, ?, ?, ?, ?);'''
+        addArgs = (firstName, lastName, email, role, identifier, generate_password_hash(password, "sha256"))
+
+        try:
+            cursor.execute(addQuery, addArgs)
+            db.commit()
+        except IntegrityError:
+            return addUser(firstName, lastName, role, email)
 
         print(f"A new candidate has been added to the table with the informations :\n\
 First Name : {firstName}\n\
 Last Name : {lastName}\n\
+Email : {email}\n\
+Identifier : {identifier}\n\
+Password : {password}\n\
 Role : {getRole(role)}")
 
     else:
