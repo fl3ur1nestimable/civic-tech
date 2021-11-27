@@ -12,12 +12,15 @@ from sqlite3 import IntegrityError
 from ..database.connectDatabase import connectDatabase
 from ..core.getRole import getRole
 from ..core.generateConectionLogs import generatePassword, generateIdentifier
+from ..core.coreJson import read_json, write_json
+
 
 
 # Starts the script with : python3 -i -m py.database.alterDatabase
 def addUser(firstName: str, lastName: str, role: int, email: str) -> None:
     """
-        Function to add a User in the users table of the database.db file.
+        Function to add a User in the users table of the database.db file. It also saves the loggins (identifier 
+        and password in a json file : savedLoggin.json)
 
         Parameters :
             - firstName (string) : first name of the candidate
@@ -56,6 +59,13 @@ def addUser(firstName: str, lastName: str, role: int, email: str) -> None:
         except IntegrityError:
             return addUser(firstName, lastName, role, email)
 
+        # Save the loggin data in the json file savedLoggin.json
+        data = read_json('savedLoggin')
+        data[firstName+" "+lastName] = {}
+        data[firstName+" "+lastName]['identifier'] = identifier
+        data[firstName+" "+lastName]['password'] = password
+        write_json(data, 'savedLoggin')
+        
         print(f"A new candidate has been added to the table with the informations :\n\
 First Name : {firstName}\n\
 Last Name : {lastName}\n\

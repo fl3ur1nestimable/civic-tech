@@ -13,7 +13,7 @@ from flask.templating import render_template
 main = Blueprint('main', __name__)
 
 
-# Definition of the route
+# Definition of the main route
 @main.route('/')
 @main.route('/home')
 def home():
