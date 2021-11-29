@@ -21,12 +21,16 @@ def create_app():
 
     # Import blueprints
     ## Import main blueprint
-    from py.blueprints.mainBP import main as mainBP
+    from py.blueprints.mainBP import mainBP
     app.register_blueprint(mainBP)
 
     ## Import login blueprint
-    from py.blueprints.loginBP import login as loginBP
+    from py.blueprints.loginBP import loginBP
     app.register_blueprint(loginBP)
+
+    ## Import programm blueprint
+    from py.blueprints.programBP import programBP
+    app.register_blueprint(programBP)
 
     return app
 

@@ -20,13 +20,12 @@ if __name__ == "__main__":
     query = '''
     DROP TABLE IF EXISTS users;
     DROP TABLE IF EXISTS programs;
-    DROP TABLE IF EXISTS sqlite_sequence;
 
     CREATE TABLE users 
     (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, email TEXT, role INTEGER, identifier TEXT UNIQUE, password TEXT);
 
     CREATE TABLE programs
-    (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, content TEXT, FOREIGN KEY (user_id) REFERENCES users(id));
+    (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER UNIQUE, content TEXT, FOREIGN KEY (user_id) REFERENCES users(id));
     '''
 
     cursor.executescript(query)

@@ -17,19 +17,19 @@ from py.database.connectDatabase import connectDatabase
 
 
 # Definition of the blueprint
-login = Blueprint('login', __name__)
+loginBP = Blueprint('loginBP', __name__)
 
 
 # Definition of the login route
-@login.route('/login', methods=['GET', 'POST'])
-def login_route():
+@loginBP.route('/login', methods=['GET', 'POST'])
+def login():
     if request.method == 'POST':
         identifier = request.form['identifier']
         password = request.form['password']
-        remember = request.form['remember']
+
         userFound = False
 
-        query = '''SELECT id, role, password FROM users WHERE identifier=?;'''
+        query = '''SELECT id, password FROM users WHERE identifier=?;'''
         arg = (identifier, )
 
         db, cursor = connectDatabase()
@@ -37,14 +37,11 @@ def login_route():
         for userTuple in cursor.fetchall():
             userFound = True
             userId = userTuple[0]
-            userRole = userTuple[1]
-            userPassword = userTuple[2]
+            userPassword = userTuple[1]
         db.close()
 
         if userFound and check_password_hash(userPassword, password):
-            if remember:
-                session['id'] = userId
-                session['role'] = userRole
+            session['id'] = userId
 
             flash("You have succesfully logged in.", "Green_flash")
             return render_template('home.html')
@@ -61,7 +58,7 @@ def login_route():
 
 
 # Definition of the logout route
-@login.route('/logout')
+@loginBP.route('/logout')
 def logout():
     session['id'] = None
     session['role'] = None

@@ -1,0 +1,65 @@
+/*
+    Author : Thibault Cheneviere
+    Date : 28/09/2021
+*/
+/* Start CSS for message.html */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+body {
+    background-color: #535fe6;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300
+}
+
+h2 {
+    color: #fff;
+    text-align: center;
+    margin-top: 3%;
+    margin-bottom: 50px;
+}
+
+.card {
+    border: none;
+    padding: 20px;
+    background-color: #1c1e21;
+    color: #fff;
+    height: 37rem;
+}
+
+.form-input {
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+textarea {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    height: 100%;
+    background-color: #1c1e21;
+    text-indent: 24px;
+    font-size: 15px;
+    color: #fff
+}
+
+.form-control:focus {
+    background-color: #25272a;
+    box-shadow: none;
+    color: #fff;
+    border-color: #4f63e7
+}
+
+.btn {
+    width: 30%;
+    margin-left: 35%;
+}
+
+.form-group {
+    height: 100%;
+}
+
+/* End CSS for message.html */

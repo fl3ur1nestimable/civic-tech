@@ -1,0 +1,33 @@
+<!--
+    Author : Thibault Cheneviere
+    Mail : thibault.cheneviere@telecomnancy.eu
+    Date : 27/11/2021
+-->
+
+{% extends 'layout.html' %}
+
+{% block container %}
+    <!-- CSS dependencies -->
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/referenceProgram.css') }}">
+    
+    <div class='home-banner'>
+        <h2>Bienvenue {{ userData['name'] }}</h2>
+    </div>
+    <form action="{{ url_for('programBP.define_program') }}" name="surveyInput" method="POST">
+        {% if userData['program'] == "" %}
+            <div class="card px-5 py-5">
+                <div class="form-group">
+                    <textarea class="form-control" name="programmArea" id="programmArea" rows="5" placeholder="Entrer votre programme ici." required></textarea>
+                </div>
+                <button class="btn btn-primary mt-4">Publier</button>
+            </div>
+        {% else %}
+            <div class="card px-5 py-5">
+                <div class="form-group">
+                    <textarea class="form-control" name="programmArea" id="programmArea" rows="5" required>{{ userData['program'] }}</textarea>
+                </div>
+                <button class="btn btn-primary mt-4">Publier</button>
+            </div>
+        {% endif %}
+    </form>
+{% endblock container %}

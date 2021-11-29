@@ -10,11 +10,11 @@ from flask.templating import render_template
 
 
 # Definition of the blueprint
-main = Blueprint('main', __name__)
+mainBP = Blueprint('mainBP', __name__)
 
 
 # Definition of the main route
-@main.route('/')
-@main.route('/home')
+@mainBP.route('/')
+@mainBP.route('/home')
 def home():
     return render_template('home.html')
