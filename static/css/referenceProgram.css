@@ -1,8 +1,9 @@
 /*
     Author : Thibault Cheneviere
-    Date : 28/09/2021
+    Mail : thibault.cheneviere@telecomnancy.eu
+    Date : 27/11/2021
 */
-/* Start CSS for message.html */
+/* Start CSS for referenceProgram.html */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 
@@ -11,6 +12,7 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 300
 }
+
 
 h2 {
     color: #fff;
@@ -62,4 +64,4 @@ textarea {
     height: 100%;
 }
 
-/* End CSS for message.html */
+/* End CSS for referenceProgram.html */

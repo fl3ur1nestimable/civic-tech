@@ -13,6 +13,7 @@ from flask.templating import render_template
 # Import personal modules
 from py.database.connectDatabase import connectDatabase
 from py.database.databaseFunctions import checkValue
+from py.core.truncatePrograms import truncatePrograms
 
 
 # Definition of the blueprint
@@ -21,7 +22,7 @@ programBP = Blueprint('programBP', __name__)
 
 # Definition the program route
 @programBP.route('/defineProgram', methods=['GET', 'POST'])
-def define_program():
+def define_program() -> str:
     if request.method == 'GET':
         userData = programBPUserData(session['id'])
 
@@ -58,8 +59,24 @@ def define_program():
 
 
 
-# Definition of usefull functions for this BluePrint only
+@programBP.route('/programs')
+def programsList() -> str:
+    query = '''SELECT firstName, lastName, content FROM programs AS p JOIN users AS u ON p.user_id = u.id'''
+    db, cursor = connectDatabase()
 
+    cursor.execute(query)
+    data = cursor.fetchall()
+    db.close()
+
+    for i in range(len(data)):
+        temp = [data[i][0], data[i][1], truncatePrograms(data[i][2])]
+        data[i] = temp
+    
+    return render_template('programsList.html', programsData=data)
+
+
+
+# Definition of usefull functions for this BluePrint only
 
 def programBPUserData(session_id: str) -> dict:
     """

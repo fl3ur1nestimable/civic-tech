@@ -5,12 +5,11 @@
 """
 
 # Import needed packages
-from random import randint, choice, shuffle
+from random import randint, choice
 from string import ascii_letters, digits, punctuation
 
 
 # Import personal packages
-from py.database.connectDatabase import connectDatabase
 
 
 def generateIdentifier(nbChr: int) -> str:

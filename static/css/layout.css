@@ -18,4 +18,9 @@
     width: 65%;
 }
 
+.navbar-custom {
+    background-color: rgb(39, 35, 35);
+    color: #fff;
+}
+
 /* End CSS for layout.html */

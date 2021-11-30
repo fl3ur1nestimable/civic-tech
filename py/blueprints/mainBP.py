@@ -16,5 +16,5 @@ mainBP = Blueprint('mainBP', __name__)
 # Definition of the main route
 @mainBP.route('/')
 @mainBP.route('/home')
-def home():
+def home() -> str:
     return render_template('home.html')

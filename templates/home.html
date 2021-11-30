@@ -6,6 +6,10 @@
 
 {% extends 'layout.html' %}
 
+{% block header %}
+    <title>Page d'accueil</title>
+{% endblock header %}
+
 {% block container %}
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/home.css') }}">
 

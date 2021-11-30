@@ -6,19 +6,23 @@
 
 {% extends 'layout.html' %}
 
+{% block header %}
+    <title>Se connecter</title>
+{% endblock header %}
+
 {% block container %}
     <!-- CSS dependancies -->
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/login.css') }}">
     
-    
-    <!-- Script dependancies -->
-    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
 
     <form action="{{ url_for('loginBP.login') }}" method="POST">
         <div class="container mt-5 mb-5">
             <div class="row d-flex align-items-center justify-content-center">
                 <div class="col-md-6">
                     <div class="card px-5 py-5">
+                        <div class="title">
+                            <h1>Connexion</h1>
+                        </div>
                         <div class="form-input">
                             <i class="fa fa-user"></i> 
                             <input type="text" class="form-control" placeholder="Identifiant de connexion" name="identifier" id="identifierInput">

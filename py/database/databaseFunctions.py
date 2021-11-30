@@ -6,6 +6,7 @@
 
 
 # Import personal modules
+from typing import List, Tuple
 from .connectDatabase import connectDatabase
 
 

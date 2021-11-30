@@ -1,0 +1,44 @@
+/*
+    Author : Thibault Cheneviere
+    Mail : thibault.cheneviere@telecomnancy.eu
+    Date : 29/11/2021
+*/
+/* Start CSS for programsList.html */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+body {
+    background-color: #535fe6;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300
+}
+
+
+.program {
+    color: rgb(199, 199, 199);
+    text-align: center;
+    margin-top: 3%;
+    margin-bottom: 50px;
+}
+
+.program h2 {
+    color: #fff;
+}
+
+.program-content p{
+    height: 290px;
+    width: auto;
+}
+
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+/* End CSS for programsList.html */

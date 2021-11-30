@@ -22,7 +22,7 @@ loginBP = Blueprint('loginBP', __name__)
 
 # Definition of the login route
 @loginBP.route('/login', methods=['GET', 'POST'])
-def login():
+def login() -> str:
     if request.method == 'POST':
         identifier = request.form['identifier']
         password = request.form['password']
@@ -59,7 +59,7 @@ def login():
 
 # Definition of the logout route
 @loginBP.route('/logout')
-def logout():
+def logout() -> str:
     session['id'] = None
     session['role'] = None
     return render_template('home.html')
