@@ -20,7 +20,7 @@ Gérald Oster <<gerald.oster@telecomnancy.eu>>
 $git clone https://gitlab.telecomnancy.univ-lorraine.fr/ppii2k22/project1-grp_e8.git
 $cd projet1-grp_e8
 $python3 -m venv venv
-$source venv venv/bin/activate
+$source venv/bin/activate
 $pip install -r requirements.txt
 $python3 main.py
 ```
@@ -38,5 +38,9 @@ L’objectif de l’application est de faciliter le vote en donnant un accès fa
 
 ### To do List  
 
-* Faire la fonction de notations des programmes  
-* Faire le système de localisation du plus proche bureau de vote
+* Faire le système de notation des programmes par mots-clés (utilisation d’un dictionnaire pondéré par critère pour noter le programme)  
+* Faire l’interface utilisateur pour modifier la note d’un programme sur le site (vérifier que l’utilisateur a lu le programme, et modification unique de la note du programme)  
+* Faire l’interface d’affichage des programme (liste de tous les programmes en grid) et affichage du programme détaillé avec les membres de la liste et les différentes notation du programme  
+* Faire la page home avec une explication du fonctionnement du site et un exemple pour se familiariser avec le système de notation  
+* Faire la page avec l'hémicycle : hémicycle statique avec en dessous en colonne en dessous de la tendance politique la liste des candidats cliquable pour arriver sur leur programme (faire des sortes de carte pour les candidats avec leur photo, nom, notations dans les différents domaines, parti politique)  
+* Système de localisation du bureau de vote le plus proche (par form en demandant l’adresse de la personne ou en utilisant l’adresse IP)
