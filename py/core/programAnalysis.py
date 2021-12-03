@@ -6,11 +6,17 @@
 
 # Import needed packages
 from typing import List, Tuple
-import re
+from string import punctuation
+from unidecode import unidecode
+
+
+# Import personal modules
+from py.core.coreJson import read_json
+from py.core.coreTxt import open_txt
 
 
 
-def countWordFrequency(program: str) -> List[Tuple[int, str]]:
+def countWordFrequency(program: str) -> Tuple[dict, int]:
     """
         Function to count the frequency of words in a given text
 
@@ -18,67 +24,73 @@ def countWordFrequency(program: str) -> List[Tuple[int, str]]:
             - program (string) : A given program text
         
         Returns :
-            - dataWords (List[Tuple[integer, string]) : the sorted frequency of words in the text
+            - dataWords (dict) : the sorted frequency of words in the text
     """
-    
+    # Change program's word to lowered words
+    program = program.lower()
+
+
+
+    # Remove accent and punctuation from the program
+    for item in punctuation+"\n":
+        program = program.replace(item, " ")
+
+    # Change program's word to remove potential empty words
     wordsList = program.split(" ")
-    wordsList = formatinWordsList(wordsList, [' ', '\n', ''])
+    wordsList = removeAllOccurence(wordsList, [''])
+
+    nbWords = len(wordsList)
     
-    dataWords = []
-    passedWords = []
+    dataWords = {}
+
     for words in wordsList:
-        if words not in passedWords:
+        if words not in dataWords:
             cpt = wordsList.count(words)
-            dataWords.append((cpt, words))
-            passedWords.append(words)
+            words = unidecode(words)
+            dataWords[words] = cpt
 
-    dataWords.sort(reverse=True)
-
-    return dataWords
+    return dataWords, nbWords
 
 
-def formatinWordsList(wordsList: List[str], pattern: List[str]) -> List[str]:
+def removeAllOccurence(argList: List, pattern: List[str]) -> str:
     """
-        Function to formate the words in a list and remove words in the pattern List
+        Function to remove all occurences of string in a pattern list from a given list
 
         Parameters :
-            - wordsList (List[string]) : the given words list to formate
-            - pattern (List[string]) : words you want to delete from the words list
-        
-        Returns :
-            - returnList (List[string]) : the formated words list
-    """
-
-    returnList = []
-
-    for i in range(len(wordsList)):
-        if wordsList[i] not in pattern and re.search("[, \. \n :]+", wordsList[i]) is None:
-            returnList.append((wordsList[i]).lower())
-        elif wordsList[i] not in pattern and re.search("[, \. \n :]+", wordsList[i]) is not None:
-            returnList.append(removeAllOccurence(wordsList[i], [".", ":", ",", "\n"]).lower())
-    
-    return returnList
-
-
-def removeAllOccurence(word: str, pattern: List[str]) -> str:
-    """
-        Function to remove all occurences of caracters in a pattern list from a given word
-
-        Parameters :
-            - word (string) : word you want to formate
+            - argList (List) : list you want to formate
             - pattern (List[string]) : caracters you want to delete from the words list
         
         Returns :
-            - returnStr (string) : the formated word
+            - returnList (List) : the formated list
     """
     
-    returnStr = ""
-    for letters in word:
-        if not letters in pattern:
-            returnStr += letters
-    return returnStr
+    returnList = []
+    for item in argList:
+        if not item in pattern:
+            returnList.append(item)
+    return returnList
 
 
+def rateDataWords(dataWords: dict, nbWords: int) -> float:
+    keyWords = read_json('keyWords')
+
+    topics = ["environments", "social", "economic"]
+    globalGrade = 0
+
+    for topic in topics:
+        tempGrade = 0
+
+        for word in keyWords[topic]:
+            if word in dataWords:
+                tempGrade += (keyWords[topic][word] / 5) * dataWords[word]
+        
+        globalGrade += tempGrade / nbWords
+    
+    return globalGrade
+
+
+
+# Starts the script with : python3 -m py.core.programAnalysis
 if __name__ == "__main__":
     text = '''Auxerunt haec vulgi sordidioris audaciam, quod cum ingravesceret penuria 
     commeatuum, famis et furoris inpulsu Eubuli cuiusdam inter suos clari domum ambitiosam ignibus subditis 
@@ -95,6 +107,8 @@ if __name__ == "__main__":
     suspicionum quantitati proximorum cruentae blanditiae exaggerantium incidentia et dolere inpendio simulantium, 
     si principis periclitetur vita, a cuius salute velut filo pendere statum orbis terrarum fictis vocibus exclamabant.'''
 
-    dataWords = countWordFrequency(text)
+    fileData = open_txt('exempleProgram')
+    dataWords, nbWords = countWordFrequency(fileData)
 
-    print(dataWords)
+    print(dataWords, nbWords)
+    print(rateDataWords(dataWords, nbWords))

@@ -1,0 +1,25 @@
+{
+    "environments": {
+        "arbre": 3,
+        "ecologie": 5,
+        "pollution": 3,
+        "biodiversite": 5,
+        "ecocitoyen": 5,
+        "ecosysteme": 5,
+        "environnement": 5,
+        "geothermie": 5,
+        "solaire": 5,
+        "eolienne": 5,
+        "barrage": 2,
+        "tri": 4,
+        "energie": 3,
+        "econome": 3,
+        "economie": 3
+    },
+    "social": {
+
+    },
+    "economic": {
+
+    }
+}
