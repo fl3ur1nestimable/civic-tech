@@ -1,0 +1,37 @@
+<!--
+    Author : Antoine Yebouet
+    Mail : antoine.yebouet@telecomnancy.eu
+    Date : 06/12/2021
+-->
+
+{% extends 'layout.html'%}
+
+{% block header %}
+    <title>{{nomCandidat}} {{prenomCandidat}} - Programme</title>
+{% endblock header %}
+
+{% block container %}
+    <!-- CSS dependencies -->
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/program.css') }}">
+
+    <div class='leprog'>
+
+        <div class='premier'>
+            <div class="photo">
+            <img class="laphoto" src="static/photos/remi.jpg">
+            </div>
+
+            <div class = 'titre_et_mot'>
+                <h1 class='titre'>{{nomCandidat}} {{prenomCandidat}}</h1>
+                <p class='mot'>"Si le MOC tu réussis, l'attestation tu recevras"</p>
+            </div>
+        </div>
+        
+        <div class='second'>
+            <p>
+                <div class='stats'><img src="static/photos/pika.png"></div><div class='sonprog'>{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}</div>
+            </p>
+        </div>
+    </div>
+    
+{% endblock container %}

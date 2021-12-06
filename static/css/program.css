@@ -1,0 +1,63 @@
+body {
+    background-color: #535fe6;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300
+}
+
+.leprog{
+    color:#fff;
+    margin: 10px;
+}
+
+.titre{
+    text-align: left;
+    font-size: 3cm;
+}
+
+.titre_et_mot{
+    margin: 10px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.sonprog{
+    font-size: 0.75cm;
+    text-align: justify;
+    margin-top: 10px;
+    
+}
+
+.photo{
+    height: 400px;
+    width: 400px;
+    margin: 10px;
+    float: left;
+}
+
+.mot{
+    font-style: italic;
+    font-size: 0.80cm;
+    margin: 10px;
+}
+
+.stats{
+    height: 500px;
+    width: 400px;
+    margin-top: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 0px;
+    float: left;
+}
+
+.second{
+    clear: both;
+}
+
+.laphoto{
+    border-radius: 2%;
+}
+
+
+
