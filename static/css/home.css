@@ -1,19 +1,12 @@
 /*
-    Author : Thibault Cheneviere
+    Authors : Thibault Cheneviere, Thom Guillot
     Mail : thibault.cheneviere@telecomnancy.eu
     Date : 28/09/2021
 */
 /* Start CSS for home.html */
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-
-}
-
 body {
-    background-color: #535fe6;
+    background-color: #fff;
     font-family: "Poppins", sans-serif;
     font-weight: 300
 }
@@ -22,8 +15,16 @@ body {
 .home-banner h2 {
     color: #fff;
     text-align: center;
-    margin-top: 3%;
-    font-size: 10rem;
+    font-size: 7rem;
+}
+
+.border * {
+    margin: 2%;
+}
+
+#card {
+    width: 100%;
+    height: auto;
 }
 
 /* End CSS for home.html */
