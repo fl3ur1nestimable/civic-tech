@@ -3,13 +3,43 @@
     Mail : thibault.cheneviere@telecomnancy.eu
     Date : 28/09/2021
 */
+
 /* Start CSS for home.html */
+
+/* beacons () */
 
 body {
     background-color: #fff;
     font-family: "Poppins", sans-serif;
     font-weight: 300;
 }
+
+/* classes (.) */
+
+.description {
+    margin: 1%;
+    text-align: justify;
+}
+
+.buttons {
+    text-align: center;
+    margin: 1%;
+}
+
+/* ids (#) */
+
+#card {
+    width: 80%;
+    height: auto;
+    margin-left: 9%;
+    margin-right: auto;
+}
+
+#help {
+    display: block;
+}
+
+/* others */
 
 .home-banner h2 {
     color: #fff;
@@ -19,20 +49,6 @@ body {
 
 .border * {
     margin: 1%;
-}
-
-#card {
-    width: 100%;
-    height: auto;
-}
-
-.description {
-    margin: 1%;
-    text-align: justify;
-}
-
-#help {
-    display: block;
 }
 
 /* End CSS for home.html */
