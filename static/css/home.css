@@ -18,12 +18,21 @@ body {
 }
 
 .border * {
-    margin: 2%;
+    margin: 1%;
 }
 
 #card {
     width: 100%;
     height: auto;
+}
+
+.description {
+    margin: 1%;
+    text-align: justify;
+}
+
+#help {
+    display: block;
 }
 
 /* End CSS for home.html */

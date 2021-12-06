@@ -16,31 +16,50 @@
     <div class='home-banner bg-danger bg-gradient'>
         <h2>Bienvenue</h2>
     </div>
-    <div class="d-flex justify-content-between align-items-center">
-        <div class="p-2 bd-highlight col-lg-4 col-md-4 col-sm-4 col-xs-4">
-            <div class="border border-start-0 border-2 border-danger">
-                <h3 class="text-center">Comment ça marche ?</h3>
-                <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae iure neque eaque autem perspiciatis magnam atque nobis vero numquam, assumenda, aliquam, deserunt ipsa quia debitis necessitatibus molestias. Eveniet, nisi tempore?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error eveniet sapiente doloribus quia animi. Illum, sint, facere odio, modi in vel totam voluptates commodi praesentium ratione explicabo provident placeat consequuntur.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis quis temporibus provident officiis perferendis magnam qui quaerat vero, repellat molestias dicta non. Ducimus, dignissimos delectus! Quae necessitatibus perferendis reprehenderit facere.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui vitae quas eius exercitationem quo iure quaerat aliquam harum perferendis vel possimus officia fuga quia eum dolorum, minus magnam distinctio! Fugit.
-                </p>
+    <div>
+        <h1>Hémicycle</h1>
+    </div>
+    <button type="button" id="helpbut">Aide</button>
+    <button type="button" id="candbut">Candidats</button>
+    <div class="row" id="help">
+        <div class="border border-2 border-danger">
+            <h2 class="text-center">Comment ça marche ?</h2>
+        </div>
+        <div class="d-flex align-items-stretch">
+            <div class="p-2 bd-highlight col-9">
+                <div>
+                    <p>
+                        <h3>Les Cartes</h3>
+                        <div class="description">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur, voluptatum quod accusantium quibusdam sapiente beatae inventore possimus harum corrupti corporis iure eos libero nam commodi pariatur illum. Voluptate, recusandae facere!
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere voluptates fugiat voluptatum asperiores! Enim iste nisi quas dolorum! Adipisci nostrum pariatur rerum dignissimos possimus quibusdam sunt maxime non consequatur rem?
+                        </div>
+                        <h3>Les Statistiques</h3>
+                        <div class="description">
+
+                        </div>
+                        <h3>Évaluer les candidats</h3>
+                        <div class="description">
+
+                        </div>
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="p-2 bd-highlight text-center col-lg-4 col-md-4 col-sm-4 col-xs-4">
-            <img src="static/images/test.png" id="card">
-        </div>
-        <div class="p-2 bd-highlight col-lg-4 col-md-4 col-sm-4 col-xs-4">
-            <div class="border border-end-0 border-2 border-danger">
-                <h3 class="text-center">Comment ça marche ?</h3>
-                <p class="text-end">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae iure neque eaque autem perspiciatis magnam atque nobis vero numquam, assumenda, aliquam, deserunt ipsa quia debitis necessitatibus molestias. Eveniet, nisi tempore?
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam perferendis eius deserunt dolor corrupti placeat at, pariatur dignissimos praesentium omnis enim quidem nobis voluptas autem cumque consequatur, facilis, quisquam earum?
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio exercitationem perspiciatis vitae eaque tempora corrupti. Incidunt delectus temporibus numquam, culpa maiores ratione explicabo laboriosam odit ut dicta, dolore atque perferendis.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat vel quas quam blanditiis! Ipsa magnam voluptatibus perferendis nobis iure, commodi tempora suscipit necessitatibus recusandae mollitia nemo neque accusamus libero omnis?
-                </p>
+            <div class="p-2 bd-highlight col-3">
+                <img src="static/images/test.png" id="card">
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        document.getElementById("helpbut").onclick = function() {
+      
+            document.getElementById("help").style.display = "block";
+      
+        }
+        document.getElementById("candbut").onclick = function() {
+      
+            document.getElementById("help").style.display = "none";
+
+        }
+    </script>
 {% endblock container %}
