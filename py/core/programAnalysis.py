@@ -7,7 +7,7 @@
 # Import needed packages
 from typing import List, Tuple
 from string import punctuation
-from unidecode import unidecode
+import unidecode
 
 
 # Import personal modules
@@ -16,7 +16,7 @@ from py.core.coreTxt import open_txt
 
 
 
-def countWordFrequency(program: str) -> Tuple[dict, int]:
+def countWordFrequency(program: str) -> Tuple[dict, List[str]]:
     """
         Function to count the frequency of words in a given text
 
@@ -28,6 +28,7 @@ def countWordFrequency(program: str) -> Tuple[dict, int]:
     """
     # Change program's word to lowered words
     program = program.lower()
+    program = unidecode.unidecode(program)
 
 
 
@@ -38,18 +39,15 @@ def countWordFrequency(program: str) -> Tuple[dict, int]:
     # Change program's word to remove potential empty words
     wordsList = program.split(" ")
     wordsList = removeAllOccurence(wordsList, [''])
-
-    nbWords = len(wordsList)
     
     dataWords = {}
 
     for words in wordsList:
         if words not in dataWords:
             cpt = wordsList.count(words)
-            words = unidecode(words)
             dataWords[words] = cpt
 
-    return dataWords, nbWords
+    return dataWords, wordsList
 
 
 def removeAllOccurence(argList: List, pattern: List[str]) -> str:
@@ -71,44 +69,51 @@ def removeAllOccurence(argList: List, pattern: List[str]) -> str:
     return returnList
 
 
-def rateDataWords(dataWords: dict, nbWords: int) -> float:
+def rateDataWords(dataWords: dict, wordsList: List[str]) -> List[float]:
     keyWords = read_json('keyWords')
 
     topics = ["environments", "social", "economic"]
-    globalGrade = 0
+    topicGrades = [0, 0, 0]
+    topicIndex = 0
 
     for topic in topics:
         tempGrade = 0
 
         for word in keyWords[topic]:
             if word in dataWords:
-                tempGrade += (keyWords[topic][word] / 5) * dataWords[word]
+                tempGrade += keyWords[topic][word] * dataWords[word]
         
-        globalGrade += tempGrade / nbWords
+        topicGrades[topicIndex] = tempGrade
+        
+        topicIndex += 1
     
-    return globalGrade
+    totalGrade = topicGrades[0] + topicGrades[1] + topicGrades[2]
+    topicGrades[0], topicGrades[1], topicGrades[2] = round((topicGrades[0] / totalGrade) * 100, 2), round((topicGrades[1] / totalGrade) * 100, 2), round((topicGrades[2] / totalGrade) * 100, 2)
+
+    return topicGrades
 
 
+def lastOccurencyIndex(reversedList: List[str], word: str) -> int:
+    """
+        Function to return the index of the last occurency of a word in a list
 
-# Starts the script with : python3 -m py.core.programAnalysis
+        Parameters :
+            - reversedList (List[string]) : reversed list you want to get the index from
+            - word (string) : word you want to search in the list
+        
+        Returns :
+            - _ (integer) : the needed index
+    """
+
+    listLen = len(reversedList)
+    return (listLen - reversedList.index(word) + 1)
+
+
+# Starts the script with : python3 -m py.core.programAnalysis / python3 -i -m py.core.programAnalysis
 if __name__ == "__main__":
-    text = '''Auxerunt haec vulgi sordidioris audaciam, quod cum ingravesceret penuria 
-    commeatuum, famis et furoris inpulsu Eubuli cuiusdam inter suos clari domum ambitiosam ignibus subditis 
-    inflammavit rectoremque ut sibi iudicio imperiali addictum calcibus incessens et pugnis conculcans seminecem 
-    laniatu miserando discerpsit. post cuius lacrimosum interitum in unius exitio quisque imaginem periculi 
-    sui considerans documento recenti similia formidabat.
-
-    Ultima Syriarum est Palaestina per intervalla magna protenta, cultis abundans terris et nitidis et civitates 
-    habens quasdam egregias, nullam nulli cedentem sed sibi vicissim velut ad perpendiculum aemulas: Caesaream, 
-    quam ad honorem Octaviani principis exaedificavit Herodes, et Eleutheropolim et Neapolim itidemque Ascalonem 
-    Gazam aevo superiore exstructas.
-
-    Accedebant enim eius asperitati, ubi inminuta vel laesa amplitudo imperii dicebatur, et iracundae 
-    suspicionum quantitati proximorum cruentae blanditiae exaggerantium incidentia et dolere inpendio simulantium, 
-    si principis periclitetur vita, a cuius salute velut filo pendere statum orbis terrarum fictis vocibus exclamabant.'''
-
     fileData = open_txt('exempleProgram')
-    dataWords, nbWords = countWordFrequency(fileData)
+    dataWords, wordsList = countWordFrequency(fileData)
 
-    print(dataWords, nbWords)
-    print(rateDataWords(dataWords, nbWords))
+    # print(dataWords)
+    topicGrades = rateDataWords(dataWords, wordsList)
+    print(topicGrades)

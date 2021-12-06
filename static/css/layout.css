@@ -23,4 +23,20 @@
     color: #fff;
 }
 
+.flex-container {
+    display: flex;
+    background-color: rgb(39, 35, 35);
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    height: 56px;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-container > div {
+    font-size: 20px;
+    margin: 10px;
+}
+
 /* End CSS for layout.html */
