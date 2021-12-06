@@ -110,15 +110,10 @@
         {% endif %}
         {% endwith %}
     </div>
-    <div class="container">
-        {% block container %}
-        {% endblock container%}
-    </div>
 
-    <div class="flex-container fixed-bottom">
-        <div>@PPII</div>
-        <div>@Thib</div>
-    </div>
+    {% block container %}
+    {% endblock container%}
+
     
     </body>
 </html>

@@ -1,5 +1,5 @@
 <!--
-    Author : Thibault Cheneviere
+    Authors : Thibault Cheneviere, Thom Guillot
     Mail : thibault.cheneviere@telecomnancy.eu
     Date : 28/09/2021
 -->
@@ -13,7 +13,42 @@
 {% block container %}
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/home.css') }}">
 
-    <div class='home-banner'>
+    <div class='home-banner bg-danger bg-gradient'>
         <h2>Bienvenue</h2>
     </div>
+    <div>
+        <h1>Hémicycle</h1>
+    </div>
+    <button type="button" id="helpbut">Aide</button>
+    <button type="button" id="candbut">Candidats</button>
+    <div class="row" id="help">
+        <div class="border border-2 border-danger">
+            <h2 class="text-center">Comment ça marche ?</h2>
+        </div>
+        <div class="d-flex align-items-stretch">
+            <div class="p-2 bd-highlight col-9">
+                <div>
+                    <p>
+                        <h3>Les Cartes</h3>
+                        <div class="description">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur, voluptatum quod accusantium quibusdam sapiente beatae inventore possimus harum corrupti corporis iure eos libero nam commodi pariatur illum. Voluptate, recusandae facere!
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere voluptates fugiat voluptatum asperiores! Enim iste nisi quas dolorum! Adipisci nostrum pariatur rerum dignissimos possimus quibusdam sunt maxime non consequatur rem?
+                        </div>
+                        <h3>Les Statistiques</h3>
+                        <div class="description">
+
+                        </div>
+                        <h3>Évaluer les candidats</h3>
+                        <div class="description">
+
+                        </div>
+                    </p>
+                </div>
+            </div>
+            <div class="p-2 bd-highlight col-3">
+                <img src="static/images/test.png" id="card">
+            </div>
+        </div>
+    </div>
+    <script src="static/js/home.js"></script>
 {% endblock container %}
