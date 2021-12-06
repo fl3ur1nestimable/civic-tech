@@ -17,7 +17,7 @@
     <div class="wrapper">
         {% for programs in programsData %}
             <div class="program">
-                <h2>{{ programs[0] + " " + programs[1] }}</h1>
+                <h2><a class ='lienPg' href="/program?nomCandidat={{programs[1]}}&prenomCandidat={{programs[0]}}&prog={{programs[2]}}">{{ programs[0] + " " + programs[1] }}</a></h2>
                 <div class="program-content">
                     <p>{{ programs[2] }}</p>
                 </div>

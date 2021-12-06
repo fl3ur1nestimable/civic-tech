@@ -32,6 +32,10 @@ def create_app() -> Flask:
     from py.blueprints.programBP import programBP
     app.register_blueprint(programBP)
 
+    # Import one program blueprint
+    from py.blueprints.progFull import progFull
+    app.register_blueprint(progFull)
+
     return app
 
 
