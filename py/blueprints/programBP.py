@@ -39,6 +39,7 @@ def define_program() -> str:
 
         userData = programBPUserData(session['id'])
 
+        flash("You have succesfully modified your program.", "Green_flash")
         return render_template('referenceProgram.html', userData=userData)
     
     else:

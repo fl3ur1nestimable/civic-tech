@@ -53,7 +53,6 @@ def addUser(firstName: str, lastName: str, email: str) -> None:
         listArg = ("", )
 
         listId = getLastListId()[0]
-        print(listId)
 
         if listId is None:
             listId = 1
