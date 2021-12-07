@@ -29,7 +29,7 @@ def login() -> str:
 
         userFound = False
 
-        query = '''SELECT id, password FROM users WHERE identifier=?;'''
+        query = '''SELECT id, password FROM Candidate WHERE identifier=?;'''
         arg = (identifier, )
 
         db, cursor = connectDatabase()
@@ -61,5 +61,5 @@ def login() -> str:
 @loginBP.route('/logout')
 def logout() -> str:
     session['id'] = None
-    session['role'] = None
+
     return render_template('home.html')

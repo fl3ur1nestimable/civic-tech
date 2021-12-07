@@ -26,7 +26,7 @@ def define_program() -> str:
     if request.method == 'GET':
         userData = programBPUserData(session['id'])
 
-        if checkValue('users', 'id', session['id']):
+        if checkValue('Candidate', 'id', session['id']):
             return render_template('referenceProgram.html', userData=userData)
         else:
             flash("Une erreur est survenue. Merci de réessayer.", "Red_flash")
@@ -35,20 +35,7 @@ def define_program() -> str:
     elif request.method == 'POST':
         programContent = request.form['programmArea']
 
-        if not checkValue('programs', 'user_id', session['id']):
-            addQuery = '''INSERT INTO programs (user_id, content) VALUES (?, ?);'''
-            args = (session['id'], programContent)
-
-        else:
-            addQuery = '''UPDATE programs SET content=? WHERE user_id=?;'''
-            args = (programContent, session['id'])
-        
-        db, cursor = connectDatabase()
-
-        cursor.execute(addQuery, args)
-        db.commit()
-        cursor.close()
-        db.close()
+        insertProgram(session['id'], programContent)
 
         userData = programBPUserData(session['id'])
 
@@ -61,7 +48,7 @@ def define_program() -> str:
 
 @programBP.route('/programs')
 def programsList() -> str:
-    query = '''SELECT firstName, lastName, content FROM programs AS p JOIN users AS u ON p.user_id = u.id'''
+    query = '''SELECT c.firstName, c.lastName, l.program FROM List AS l JOIN Candidate AS c ON l.id = c.listId'''
     db, cursor = connectDatabase()
 
     cursor.execute(query)
@@ -91,7 +78,7 @@ def programBPUserData(session_id: str) -> dict:
     db, cursor = connectDatabase()
     programContent = ""
 
-    query = '''SELECT firstName, lastName FROM users WHERE id=?;'''
+    query = '''SELECT firstName, lastName FROM Candidate WHERE id=?;'''
     arg = (session_id, )
 
     cursor.execute(query, arg)
@@ -99,7 +86,7 @@ def programBPUserData(session_id: str) -> dict:
         userFirstName = userTuple[0]
         userLastName = userTuple[1]
         
-    query = '''SELECT content FROM programs WHERE user_id=?;'''
+    query = '''SELECT l.program FROM List AS l JOIN Candidate AS c ON l.id = c.listId WHERE c.id=?;'''
     arg = (session_id, )
 
     cursor.execute(query, arg)
@@ -114,3 +101,25 @@ def programBPUserData(session_id: str) -> dict:
     }
 
     return userData
+
+
+def insertProgram(session_id: int, program: str) -> None:
+
+    requestQuery = '''SELECT listId FROM Candidate WHERE id=?;'''
+    arg = (session_id, )
+    
+    db, cursor = connectDatabase()
+
+    cursor.execute(requestQuery, arg)
+    listId = cursor.fetchall()[0][0]
+
+    print(listId)
+
+    insertQuery = '''UPDATE List SET program=? WHERE id=?;'''
+    insertArg = (program, listId)
+
+    cursor.execute(insertQuery, insertArg)
+
+    db.commit()
+    cursor.close()
+    db.close()

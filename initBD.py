@@ -21,11 +21,48 @@ if __name__ == "__main__":
     DROP TABLE IF EXISTS users;
     DROP TABLE IF EXISTS programs;
 
-    CREATE TABLE users 
-    (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, email TEXT, role INTEGER, identifier TEXT UNIQUE, password TEXT);
+    CREATE TABLE Candidate
+    (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        firstName TEXT,
+        lastName TEXT,
+        picture TEXT,
+        catchphrase TEXT,
+        listId INTEGER,
+        email TEXT UNIQUE,
+        job TEXT,
+        identifier TEXT UNIQUE,
+        password TEXT,
+        FOREIGN KEY (listId) REFERENCES List(id)
+    );
 
-    CREATE TABLE programs
-    (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER UNIQUE, content TEXT, FOREIGN KEY (user_id) REFERENCES users(id));
+    CREATE TABLE List
+    (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        program TEXT,
+        politicalEdge TEXT
+    );
+
+    CREATE TABLE ProgramGrade
+    (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        listId INTEGER,
+        environment FLOAT,
+        social FLOAT,
+        economy FLOAT,
+        FOREIGN KEY (listId) REFERENCES List(id)
+    );
+
+    CREATE TABLE Member
+    (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        firstName TEXT,
+        lastName TEXT,
+        listId INTEGER,
+        job TEXT,
+        FOREIGN KEY (listId) REFERENCES List(id)
+    )
     '''
 
     cursor.executescript(query)
