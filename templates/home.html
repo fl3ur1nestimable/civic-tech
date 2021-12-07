@@ -1,7 +1,7 @@
 <!--
     Authors : Thibault Cheneviere, Thom Guillot
-    Mail : thibault.cheneviere@telecomnancy.eu
-    Date : 28/09/2021
+    Mail : thibault.cheneviere@telecomnancy.eu, thom.guillot@telecomnancy.eu
+    Date : 7/12/2021
 -->
 
 {% extends 'layout.html' %}
@@ -17,11 +17,11 @@
         <h2>Bienvenue</h2>
     </div>
     <div>
-        <h1>Hémicycle</h1>
+        <h1 class="text-center">Hémicycle</h1>
     </div>
     <div class="buttons">
-        <button type="button" id="helpbut">Aide</button>
-        <button type="button" id="candbut">Candidats</button>
+        <button type="button" id="helpbut" class="btn btn-outline-danger btn-lg" disabled aria-disabled="true">Comment ça marche ?</button>
+        <button type="button" id="candbut" class="btn btn-outline-danger btn-lg" aria-disabled="true">Candidats</button>
     </div>
     <div id="help">
         <div class="border border-4 border-danger">
@@ -31,9 +31,31 @@
             <div class="p-2 bd-highlight col-8">
                 <div>
                     <p>
+                        <div class="description">
+                            <p>
+                                Avant de naviguer sur le site, il est important de comprendre le fonctionnement de celui-ci.
+                                Les candidats des élections procédent à leur inscription sur le site par le biais d'un modérateur.
+                                Les informations renseignées sont ensuite affichées sous forme de <strong>carte</strong> dont vous pouvez voir un exemple
+                                en côté de page. Chaque carte correspond donc à un candidat et sa liste électorale. 
+                            </p>
+                            <p>
+                                Les parties suivantes vous permettront d'avoir une compréhension plus étendue sur l'intérêt des cartes.
+                            </p>
+                        </div>
                         <h3>Les Cartes</h3>
                         <div class="description">
-                            Description
+                            <p>
+                                Les cartes sont organisées de la façon suivante :
+                                <ul>
+                                    <li>Description générale du candidat</li>
+                                    <li>Statistiques du candidat</li>
+                                    <li>Sommaire du programme du candidat</li>
+                                </ul>
+                            </p>
+                            <p>
+                                La description générale du candidat rapporte son identité, son parti politique, les membres importants de sa liste électorale
+                                et une citation personnelle courte.
+                            </p>
                         </div>
                         <h3>Les Statistiques</h3>
                         <div class="description">
