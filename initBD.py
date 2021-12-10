@@ -18,8 +18,10 @@ if __name__ == "__main__":
     
     # Script for the database
     query = '''
-    DROP TABLE IF EXISTS users;
-    DROP TABLE IF EXISTS programs;
+    DROP TABLE IF EXISTS Candidate;
+    DROP TABLE IF EXISTS List;
+    DROP TABLE IF EXISTS ProgramGrade;
+    DROP TABLE IF EXISTS Member;
 
     CREATE TABLE Candidate
     (

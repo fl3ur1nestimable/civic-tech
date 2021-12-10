@@ -59,14 +59,17 @@ def addUser(firstName: str, lastName: str, email: str) -> None:
         else:
             listId += 1
 
-        addQuery = '''INSERT INTO Candidate (firstName, lastName, email, listId, identifier, password) values (?, ?, ?, ?, ?, ?);'''
+        addQuery = '''INSERT INTO Candidate (firstName, lastName, email, listId, identifier, password) VALUES (?, ?, ?, ?, ?, ?);'''
         addArgs = (firstName, lastName, email, listId, identifier, generate_password_hash(password, "sha256"))
+
+        programQuery = '''INSERT INTO ProgramGrade (listId, environment, social, economy) VALUES (?, ?, ?, ?);'''
+        programArgs = (listId, 0, 0, 0)
 
         try:
             cursor.execute(addQuery, addArgs)
-            db.commit()
-
             cursor.execute(listQuery, listArg)
+            cursor.execute(programQuery, programArgs)
+
             db.commit()
         except IntegrityError:
             return addUser(firstName, lastName, email)

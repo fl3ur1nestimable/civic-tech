@@ -14,6 +14,7 @@ from flask.templating import render_template
 from py.database.connectDatabase import connectDatabase
 from py.database.databaseFunctions import checkValue
 from py.core.truncatePrograms import truncatePrograms
+from py.core.programAnalysis import rateDataWords
 
 
 # Definition of the blueprint
@@ -105,6 +106,7 @@ def programBPUserData(session_id: str) -> dict:
 
 
 def insertProgram(session_id: int, program: str) -> None:
+    topicsRate = rateDataWords(program)
 
     requestQuery = '''SELECT listId FROM Candidate WHERE id=?;'''
     arg = (session_id, )
@@ -116,10 +118,14 @@ def insertProgram(session_id: int, program: str) -> None:
 
     print(listId)
 
+    topicQuery = '''UPDATE ProgramGrade SET environment=?, social=?, economy=? WHERE listId=?;'''
+    topicArgs = (topicsRate[0], topicsRate[1], topicsRate[2], listId)
+
     insertQuery = '''UPDATE List SET program=? WHERE id=?;'''
     insertArg = (program, listId)
 
     cursor.execute(insertQuery, insertArg)
+    cursor.execute(topicQuery, topicArgs)
 
     db.commit()
     cursor.close()

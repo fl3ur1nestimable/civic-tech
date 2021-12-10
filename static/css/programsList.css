@@ -60,4 +60,8 @@ body {
     color:#fff;
 }
 
+footer > .container {
+    display: none;
+}
+
 /* End CSS for programsList.html */

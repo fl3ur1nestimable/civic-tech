@@ -64,4 +64,8 @@ textarea {
     height: 100%;
 }
 
+footer > .container {
+    display: none;
+}
+
 /* End CSS for referenceProgram.html */
