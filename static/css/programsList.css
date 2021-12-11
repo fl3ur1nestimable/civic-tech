@@ -33,11 +33,12 @@ body {
 
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     grid-auto-rows: minmax(100px, auto);
     margin-top: 50px;
     margin-bottom: 50px;
+    min-height: 74.5vh;
 }
 
 .lienPg:link{

@@ -43,4 +43,17 @@
     background-color: #fff;
 }
 
+footer {
+    position: inherit;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    margin-top: 50px;
+}
+
+.footer-custom {
+    background-color: #fff;
+}
+
 /* End CSS for layout.html */

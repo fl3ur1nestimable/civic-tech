@@ -39,6 +39,10 @@ body {
     display: block;
 }
 
+#cand {
+    min-height: 36.5vh;
+}
+
 /* others */
 
 .home-banner h2 {
