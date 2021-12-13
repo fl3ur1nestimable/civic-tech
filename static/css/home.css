@@ -41,6 +41,7 @@ body {
 
 #cand {
     min-height: 36.5vh;
+    display: none;
 }
 
 /* others */
