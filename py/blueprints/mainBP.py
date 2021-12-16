@@ -18,3 +18,7 @@ mainBP = Blueprint('mainBP', __name__)
 @mainBP.route('/home')
 def home() -> str:
     return render_template('home.html')
+
+@mainBP.route('/card')
+def card():
+    return render_template('card.html', value=75)

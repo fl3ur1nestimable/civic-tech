@@ -1,0 +1,19 @@
+.picture {
+    float: left;
+    margin-right: 10px;
+}
+
+.picture > img {
+    border-radius: 15px;
+}
+
+.custom-card {
+    margin-top: 25px;
+    margin-left: 25px;
+}
+
+.custom-progress {
+    height: 20px;
+    width: 20vw;
+    margin-bottom: 2.5vh;
+}
