@@ -7,12 +7,14 @@
 {% extends 'layout.html' %}
 
 {% block header %}
+    <!-- CSS dependencies -->
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/home.css') }}">
+
+    <!-- Page title -->
     <title>Page d'accueil</title>
 {% endblock header %}
 
 {% block container %}
-    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/home.css') }}">
-
     <div class='home-banner bg-danger bg-gradient'>
         <h2>Bienvenue</h2>
     </div>

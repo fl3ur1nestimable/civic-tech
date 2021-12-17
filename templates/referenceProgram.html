@@ -7,13 +7,14 @@
 {% extends 'layout.html' %}
 
 {% block header %}
+    <!-- CSS dependencies -->
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/referenceProgram.css') }}">
+
+    <!-- Page title -->
     <title>Referencer son programme</title>
 {% endblock header %}
 
 {% block container %}
-    <!-- CSS dependencies -->
-    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/referenceProgram.css') }}">
-    
     <div class='home-banner'>
         <h2>Bienvenue {{ userData['name'] }}</h2>
     </div>

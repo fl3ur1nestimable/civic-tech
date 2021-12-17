@@ -33,8 +33,8 @@ def create_app() -> Flask:
     app.register_blueprint(programBP)
 
     # Import one program blueprint
-    from py.blueprints.progFull import progFull
-    app.register_blueprint(progFull)
+    from py.blueprints.progFullBP import progFullBP
+    app.register_blueprint(progFullBP)
 
     return app
 
@@ -42,4 +42,4 @@ def create_app() -> Flask:
 # Start app if file is not imported
 if __name__ == "__main__":
     app = create_app()
-    app.run(debug=1)
+    app.run(debug=1, host='0.0.0.0', port=5454)
