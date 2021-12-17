@@ -7,13 +7,12 @@
     border-radius: 15px;
 }
 
-.custom-card {
-    margin-top: 25px;
-    margin-left: 25px;
+.progress {
+    height: 2vh;
+    width: 20vw;
+    margin-top: 1.5vh;
 }
 
-.custom-progress {
-    height: 20px;
-    width: 20vw;
-    margin-bottom: 2.5vh;
+.custom-bar {
+    margin-bottom: 2vh;
 }
