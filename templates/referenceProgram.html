@@ -34,4 +34,28 @@
             </div>
         {% endif %}
     </form>
+    <div class='home-banner'>
+        <h3>Liste des membres</h3>
+    </div>
+    <form action="{{ url_for('programBP.define_program') }}" name="memberInput" method="POST">
+        <div class="card-1 px-5 py-1">
+            <div class="form-group-12">
+                <h4>Ajouter les membres de votre liste</h4>
+                <input autocomplete="off" autofocus name="memberArea" id="memberArea" placeholder="Nom" type="text">
+                <input autocomplete="off" autofocus name="memberArea" id="memberArea" placeholder="Prénom" type="text">
+                <select name="memberArea">
+                    <option disabled selected value="">Catégorie socio-professionelle</option>
+                    <option value="Agriculteur exploitant">Agriculteur exploitant</option>
+                    <option value="Artisan, Commerçant, Chef d'entreprise">Artisan, Commerçant, Chef d'entreprise</option>
+                    <option value="Cadre, Profession intellectuelle supérieure">Cadre, Profession intellectuelle supérieure</option>
+                    <option value="Profession intermédiaire">Profession intermédiaire</option>
+                    <option value="Employé">Employé</option>
+                    <option value="Ouvrier">Ouvrier</option>
+                    <option value="Retraité">Retraité</option>
+                    <option value="Sans activité professionnelle">Sans activité professionnelle</option>
+                </select>
+                <button class="btn btn-primary mt-4">Publier</button>
+            </div>
+        </div>
+    </form>
 {% endblock container %}
