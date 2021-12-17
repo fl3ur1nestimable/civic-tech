@@ -1,7 +1,7 @@
 <!--
     Authors : Thibault Cheneviere, Thom Guillot
     Mail : thibault.cheneviere@telecomnancy.eu, thom.guillot@telecomnancy.eu
-    Date : 7/12/2021
+    Date : 17/12/2021
 -->
 
 {% extends 'layout.html' %}
@@ -82,8 +82,19 @@
         <div class="border border-4 border-danger">
             <h2 class="text-center">Liste des candidats</h2>
         </div>
-        <div class="d-flex align-items-stretch">
-
+        <div>
+            {% for edge in edges %}
+                <p>
+                    <h3>{{ edge.0 }}</h3>
+                    {% if edge|length == 1 %}
+                        Pas de candidats.
+                    {% else %}
+                        {% for candidate in edge[1:] %}
+                            {{ candidate.1 }} {{ candidate.2 }}
+                        {% endfor %}
+                    {% endif %}
+                </p>
+            {% endfor %}
         </div>
     </div>
     <script src="static/js/home.js"></script>
