@@ -26,6 +26,10 @@ body {
     margin: 1%;
 }
 
+.edges {
+    margin-bottom: 2%;
+}
+
 /* ids (#) */
 
 #card {

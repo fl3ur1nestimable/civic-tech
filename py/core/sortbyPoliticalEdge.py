@@ -17,11 +17,11 @@ def sortbyPoliticalEdge(L: list) -> List[list]:
         Returns :
             - Edges (List[list]) : A list of each list of candidates for every edges that exist
     """
-    EG = ["Extreme-Gauche"]
+    EG = ["Extrême-Gauche"]
     G = ["Gauche"]
     C = ["Centre"]
     D = ["Droite"]
-    ED = ["Extreme-Droite"]
+    ED = ["Extrême-Droite"]
 
     for k in range(len(L)):
         if L[k][13] == "Extreme-Gauche":

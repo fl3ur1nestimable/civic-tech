@@ -82,15 +82,17 @@
         <div class="border border-4 border-danger">
             <h2 class="text-center">Liste des candidats</h2>
         </div>
-        <div>
+        <div class="text-center">
             {% for edge in edges %}
-                <p>
+                <p class="edges">
                     <h3>{{ edge.0 }}</h3>
                     {% if edge|length == 1 %}
                         Pas de candidats.
                     {% else %}
                         {% for candidate in edge[1:] %}
-                            {{ candidate.1 }} {{ candidate.2 }}
+                            <div class="wrapper">
+                                {{ candidate.1 }} {{ candidate.2 }}'s Card
+                            </div>
                         {% endfor %}
                     {% endif %}
                 </p>
