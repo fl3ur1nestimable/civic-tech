@@ -20,18 +20,22 @@
     </div>
     <form action="{{ url_for('programBP.define_program') }}" name="surveyInput" method="POST">
         {% if userData['program'] == "" %}
-            <div class="card px-5 py-5">
-                <div class="form-group">
-                    <textarea class="form-control" name="programmArea" id="programmArea" rows="5" placeholder="Entrer votre programme ici." required></textarea>
+            <div class="height">
+                <div class="card px-5 py-5">
+                    <div class="form-group">
+                        <textarea class="form-control" name="programmArea" id="programmArea" rows="5" placeholder="Entrer votre programme ici." required></textarea>
+                    </div>
+                    <button class="btn btn-primary mt-4">Publier</button>
                 </div>
-                <button class="btn btn-primary mt-4">Publier</button>
             </div>
         {% else %}
-            <div class="card px-5 py-5">
-                <div class="form-group">
-                    <textarea class="form-control" name="programmArea" id="programmArea" rows="5" required>{{ userData['program'] }}</textarea>
+            <div class="height">
+                <div class="card px-5 py-5">
+                    <div class="form-group">
+                        <textarea class="form-control" name="programmArea" id="programmArea" rows="5" required>{{ userData['program'] }}</textarea>
+                    </div>
+                    <button class="btn btn-primary mt-4">Publier</button>
                 </div>
-                <button class="btn btn-primary mt-4">Publier</button>
             </div>
         {% endif %}
     </form>

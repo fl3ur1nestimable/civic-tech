@@ -31,8 +31,8 @@ h2 {
 
 .form-input {
     position: relative;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
 }
 
 textarea {
@@ -66,6 +66,20 @@ textarea {
 
 footer > .container {
     display: none;
+}
+
+.height {
+    min-height: 72.2vh;
+}
+
+.home-banner {
+    min-height: 2.5vh;
+    margin-top: 3vh;
+}
+
+.card {
+    width: 70vw;
+    margin-left: 15vw;
 }
 
 /* End CSS for referenceProgram.html */

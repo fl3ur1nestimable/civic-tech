@@ -7,6 +7,7 @@
 # Import personal modules
 from py.database.connectDatabase import connectDatabase
 from py.core.coreJson import write_json
+from py.database.alterDatabase import addUser
 
 
 if __name__ == "__main__":
@@ -70,3 +71,6 @@ if __name__ == "__main__":
     cursor.executescript(query)
     db.commit()
     db.close()
+
+    addUser('Thibault', 'Cheneviere', 'thibault.cheneviere@telecomnancy.eu')
+    addUser('Elion', 'Hashani', 'elion.hashani@telecomnancy.eu')
