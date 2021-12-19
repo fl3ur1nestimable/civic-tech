@@ -1,54 +1,76 @@
 <!--
-    Author : Thibault Cheneviere
-    Mail : thibault.cheneviere@telecomnancy.eu
-    Date : 27/11/2021
+    Author : Thibault Cheneviere & Elion Hashani
+    Mail : thibault.cheneviere@telecomnancy.eu & elion.hashani@telecomnancy.eu
+    Date : 27/11/2021 & 19/12/2021
 -->
 
 {% extends 'layout.html' %}
 
 {% block header %}
-    <!-- CSS dependencies -->
-    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/referenceProgram.css') }}">
-
-    <!-- Page title -->
     <title>Referencer son programme</title>
 {% endblock header %}
 
 {% block container %}
+    <!-- CSS dependencies -->
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/referenceProgram.css') }}">
+    
     <div class='home-banner'>
         <h2>Bienvenue {{ userData['name'] }}</h2>
     </div>
     <form action="{{ url_for('programBP.define_program') }}" name="surveyInput" method="POST">
         {% if userData['program'] == "" %}
-            <div class="height">
-                <div class="card px-5 py-5">
-                    <div class="form-group">
-                        <textarea class="form-control" name="programmArea" id="programmArea" rows="5" placeholder="Entrer votre programme ici." required></textarea>
-                    </div>
-                    <button class="btn btn-primary mt-4">Publier</button>
+            <div class="card px-5 py-5">
+                <div class="form-group">
+                    <textarea class="form-control" name="programmArea" id="programmArea" rows="5" placeholder="Entrer votre programme ici." required></textarea>
                 </div>
+                <button class="btn btn-primary mt-4" name="Publier" value="Publier">Publier</button>
             </div>
         {% else %}
-            <div class="height">
-                <div class="card px-5 py-5">
-                    <div class="form-group">
-                        <textarea class="form-control" name="programmArea" id="programmArea" rows="5" required>{{ userData['program'] }}</textarea>
-                    </div>
-                    <button class="btn btn-primary mt-4">Publier</button>
+            <div class="card px-5 py-5">
+                <div class="form-group">
+                    <textarea class="form-control" name="programmArea" id="programmArea" rows="5" required>{{ userData['program'] }}</textarea>
                 </div>
+                <button class="btn btn-primary mt-4" name="Publier" value="Publier">Publier</button>
             </div>
         {% endif %}
     </form>
+
+    <br />
+
     <div class='home-banner'>
         <h3>Liste des membres</h3>
     </div>
     <form action="{{ url_for('programBP.define_program') }}" name="memberInput" method="POST">
         <div class="card-1 px-5 py-1">
             <div class="form-group-12">
+        <table class="table table-dark table-bordered">
+            <thead class="table-head">
+                <tr>
+                    <div class="div-tr table">
+                        <td>Nom</td>
+                        <td>Prénom</td>
+                        <td>Catégorie socio-professionelle</td>
+                        <td></td>
+                    </div>
+                </tr>
+            </thead>
+            <tbody>
+            {% for items in data %}
+                <tr>
+                    <div class="tr">
+                        <td><a>{{ items[0] }}</a></td>
+                        <td><a>{{ items[1] }}</a></td>
+                        <td>{{ items[2] }}</td>
+                        <td><button class="btn btn-danger">Delete</button></td>
+                    </div>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
                 <h4>Ajouter les membres de votre liste</h4>
-                <input autocomplete="off" autofocus name="memberArea" id="memberArea" placeholder="Nom" type="text">
-                <input autocomplete="off" autofocus name="memberArea" id="memberArea" placeholder="Prénom" type="text">
-                <select name="memberArea">
+                <input autocomplete="off" autofocus name="lastnameMember" id="memberArea" placeholder="Nom" type="text">
+                <input autocomplete="off" autofocus name="firstnameMember" id="memberArea" placeholder="Prénom" type="text">
+                <select name="jobMember">
                     <option disabled selected value="">Catégorie socio-professionelle</option>
                     <option value="Agriculteur exploitant">Agriculteur exploitant</option>
                     <option value="Artisan, Commerçant, Chef d'entreprise">Artisan, Commerçant, Chef d'entreprise</option>
@@ -59,7 +81,7 @@
                     <option value="Retraité">Retraité</option>
                     <option value="Sans activité professionnelle">Sans activité professionnelle</option>
                 </select>
-                <button class="btn btn-primary mt-4">Publier</button>
+                <button class="btn btn-primary mt-4" name="Ajouter" value="Ajouter">Ajouter</button>
             </div>
         </div>
     </form>
