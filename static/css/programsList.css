@@ -36,8 +36,8 @@ body {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     grid-auto-rows: minmax(100px, auto);
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 6.4vh;
+    margin-bottom: 6.4vh;
     min-height: 74.5vh;
 }
 

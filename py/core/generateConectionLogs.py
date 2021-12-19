@@ -6,7 +6,7 @@
 
 # Import needed packages
 from random import randint, choice
-from string import ascii_letters, digits, punctuation
+from string import ascii_letters, digits
 
 
 # Import personal packages
@@ -42,7 +42,7 @@ def generatePassword(nbChr: int) -> str:
             - password (string) : randomly generated password
     """
     password = ""
-    stringsAvailable = [ascii_letters, digits, punctuation]
+    stringsAvailable = [ascii_letters, digits]
     for i in range(nbChr):
         password += choice(choice(stringsAvailable))
     

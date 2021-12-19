@@ -7,6 +7,10 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 
+body {
+    min-height: 100vh;
+}
+
 
 .navbar {
     font-family: "Poppins", sans-serif;
@@ -44,12 +48,12 @@
 }
 
 footer {
-    position: inherit;
+    position: relative;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 1030;
-    margin-top: 50px;
+    margin-top: 2.5vh;
 }
 
 .footer-custom {

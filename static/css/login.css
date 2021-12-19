@@ -82,4 +82,8 @@ body {
     text-align: center;
 }
 
+.height {
+    height: 67vh;
+}
+
 /* Start CSS for login.html */

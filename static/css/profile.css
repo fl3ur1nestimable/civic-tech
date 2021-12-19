@@ -1,0 +1,49 @@
+/*
+    Author : Thibault Cheneviere
+    Mail : thibault.cheneviere@telecomnancy.eu
+    Date : 16/12/2021
+*/
+/* Start CSS for profile.html */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+
+body {
+    background-color: #535fe6;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300
+}
+
+.card {
+    border: none;
+    padding: 20px;
+    background-color: #1c1e21;
+    color: #fff;
+    margin-top: 10vh;
+    width: 70vw;
+    margin-left: 15vw;
+}
+
+.title {
+    text-align: center;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.profile-container > img {
+    width: 25vw;
+    height: 25vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    float: left;
+}
+
+.profile-container {
+    width: 50vw;
+}
+
+.title-container > *{
+    margin-bottom: 2vh;
+}
+
+/* Start CSS for profile.html */

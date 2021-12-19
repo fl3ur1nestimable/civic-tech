@@ -7,14 +7,14 @@
 {% extends 'layout.html' %}
 
 {% block header %}
+    <!-- CSS dependencies -->
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/login.css') }}">
+    
+    <!-- Page title -->
     <title>Se connecter</title>
 {% endblock header %}
 
 {% block container %}
-    <!-- CSS dependancies -->
-    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/login.css') }}">
-    
-
     <form action="{{ url_for('loginBP.login') }}" method="POST">
         <div class="container mt-5 mb-5 height">
             <div class="row d-flex align-items-center justify-content-center">
