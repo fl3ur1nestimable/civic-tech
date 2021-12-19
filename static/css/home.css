@@ -26,17 +26,31 @@ body {
     margin: 1%;
 }
 
+.excard {
+    width: 80%;
+    height: auto;
+    margin-left: 10%;
+    margin-right: auto;
+}
+
 .edges {
+    margin-bottom: 2%;
+}
+
+.card-img-top {
+    width: 80%;
+    height: auto;
+}
+
+.progress {
     margin-bottom: 2%;
 }
 
 /* ids (#) */
 
-#card {
-    width: 80%;
-    height: auto;
-    margin-left: 9%;
-    margin-right: auto;
+#entete {
+    text-align: justify;
+    margin: 1%;
 }
 
 #help {
@@ -46,6 +60,11 @@ body {
 #cand {
     min-height: 36.5vh;
     display: none;
+}
+
+#cardtop {
+    margin-top: 2%;
+    margin-right: 3%;
 }
 
 /* others */
