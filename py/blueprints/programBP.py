@@ -35,8 +35,10 @@ def define_program() -> str:
     
     elif request.method == 'POST':
         programContent = request.form['programmArea']
+        memberContent= request.form['memberArea']
 
         insertProgram(session['id'], programContent)
+        insertMembers(session['id'], memberContent)
 
         userData = programBPUserData(session['id'])
 
@@ -103,6 +105,23 @@ def programBPUserData(session_id: str) -> dict:
     }
 
     return userData
+
+def insertMembers(session_id:str, member: str)->None:
+    requestQuery='''SELECT listId FROM Candidate WHERE id=?;'''
+    arg = (session_id, )
+    
+    db, cursor = connectDatabase()
+
+    cursor.execute(requestQuery, arg)
+    listId = cursor.fetchall()[0][0]
+
+    insertQuery = ''''UPDATE Member SET firstName=?, lastName=?, job=? WHERE listId=?;'''
+    insertArg = (member, listId)
+
+    cursor.execute(insertQuery,insertArg)
+    db.commit()
+    cursor.close()
+    db.close()
 
 
 def insertProgram(session_id: int, program: str) -> None:
