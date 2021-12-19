@@ -171,24 +171,13 @@
         <div class="border border-4 border-danger">
             <h2 class="text-center">Liste des candidats</h2>
         </div>
-<<<<<<< HEAD
         <div>
             {% for edge in edges %}
                 <p>
-=======
-        <div class="text-center">
-            {% for edge in edges %}
-                <p class="edges">
->>>>>>> 461a90d73428c613a130e0df8027cb120b989f5a
                     <h3>{{ edge.0 }}</h3>
                     {% if edge|length == 1 %}
                         Pas de candidats.
                     {% else %}
-<<<<<<< HEAD
-                        {% for candidate in edge[1:] %}
-                            {{ candidate.1 }} {{ candidate.2 }}
-                        {% endfor %}
-=======
                         <div class="row row-cols-1 row-cols-md-3 g-4">
                             {% for candidate in edge[1:] %}
                                 <div class="col">
@@ -230,7 +219,6 @@
                                 </div>
                             {% endfor %}
                         </div>
->>>>>>> 461a90d73428c613a130e0df8027cb120b989f5a
                     {% endif %}
                 </p>
             {% endfor %}
