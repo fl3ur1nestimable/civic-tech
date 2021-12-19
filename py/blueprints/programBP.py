@@ -1,7 +1,7 @@
 """
-    Author : Cheneviere Thibault
-    Mail : thibault.cheneviere@telecomnancy.eu
-    Date : 27/11/2021
+    Author : Cheneviere Thibault & Hashani Elion
+    Mail : thibault.cheneviere@telecomnancy.eu & elion.hashani@telecomnancy.eu
+    Date : 27/11/2021 & 17/12/2021
 """
 
 # Import neded packages
@@ -26,25 +26,65 @@ programBP = Blueprint('programBP', __name__)
 def define_program() -> str:
     if request.method == 'GET':
         userData = programBPUserData(session['id'])
+        query='''SELECT lastName, firstName, job FROM Member;'''
+        db,cursor=connectDatabase()
+        cursor.execute(query)
+        data=cursor.fetchall()
+        db.close()
 
         if checkValue('Candidate', 'id', session['id']):
-            return render_template('referenceProgram.html', userData=userData)
+            return render_template('referenceProgram.html', userData=userData,data=data)
         else:
             flash("Une erreur est survenue. Merci de réessayer.", "Red_flash")
             return render_template('home.html')
     
     elif request.method == 'POST':
-        programContent = request.form['programmArea']
-        memberContent= request.form['memberArea']
-
-        insertProgram(session['id'], programContent)
-        insertMembers(session['id'], memberContent)
-
         userData = programBPUserData(session['id'])
+        query='''SELECT lastName, firstName, job FROM Member;'''
+        db,cursor=connectDatabase()
+        cursor.execute(query)
+        data=cursor.fetchall()
+        db.close()
+        if request.form.get('Publier') == "Publier" :
+            programContent = request.form['programmArea']
+        
+            insertProgram(session['id'], programContent)
+        
+            userData = programBPUserData(session['id'])
 
-        flash("You have succesfully modified your program.", "Green_flash")
-        return render_template('referenceProgram.html', userData=userData)
-    
+            flash("You have succesfully modified your program.", "Green_flash")
+            return render_template('referenceProgram.html', userData=userData,data=data)
+        else:
+            lastnameMember = request.form.get('lastnameMember')
+            firstnameMember = request.form.get('firstnameMember')
+            jobMember = request.form.get("jobMember")
+            userData = programBPUserData(session['id'])
+
+            if lastnameMember == "" or firstnameMember == "" or not jobMember:
+                
+                flash("Information(s) manquante(s)", "Red_flash")
+                return render_template('referenceProgram.html',userData=userData,data=data)
+
+
+            else:
+                requestQuery='''SELECT listId FROM Candidate WHERE id=?;'''
+                arg = (session['id'], )
+                
+                db, cursor = connectDatabase()
+
+                cursor.execute(requestQuery, arg)
+                listId = cursor.fetchall()[0][0]
+
+                insertQuery = '''INSERT INTO Member (firstName, lastName, listId, job) VALUES (?, ?, ?, ?);'''
+                insertArg = (firstnameMember,lastnameMember,listId,jobMember)
+
+                cursor.execute(insertQuery,insertArg)
+                db.commit()
+                cursor.close()
+                db.close()
+
+                flash("You have succesfully added a new member.", "Green_flash")
+                return render_template('referenceProgram.html',userData=userData,data=data)
     else:
         return render_template('home.html')
 
@@ -52,7 +92,7 @@ def define_program() -> str:
 
 @programBP.route('/programs')
 def programsList() -> str:
-    query = '''SELECT c.id, c.firstName, c.lastName, l.program FROM List AS l JOIN Candidate AS c ON l.id = c.listId'''
+    query = '''SELECT c.firstName, c.lastName, l.program FROM List AS l JOIN Candidate AS c ON l.id = c.listId'''
     db, cursor = connectDatabase()
 
     cursor.execute(query)
@@ -60,7 +100,7 @@ def programsList() -> str:
     db.close()
 
     for i in range(len(data)):
-        temp = [str(data[i][0]), data[i][1], data[i][2], truncatePrograms(data[i][3])]
+        temp = [data[i][0], data[i][1], truncatePrograms(data[i][2])]
         data[i] = temp
     
     return render_template('programsList.html', programsData=data)
@@ -106,22 +146,6 @@ def programBPUserData(session_id: str) -> dict:
 
     return userData
 
-def insertMembers(session_id:str, member: str)->None:
-    requestQuery='''SELECT listId FROM Candidate WHERE id=?;'''
-    arg = (session_id, )
-    
-    db, cursor = connectDatabase()
-
-    cursor.execute(requestQuery, arg)
-    listId = cursor.fetchall()[0][0]
-
-    insertQuery = ''''UPDATE Member SET firstName=?, lastName=?, job=? WHERE listId=?;'''
-    insertArg = (member, listId)
-
-    cursor.execute(insertQuery,insertArg)
-    db.commit()
-    cursor.close()
-    db.close()
 
 
 def insertProgram(session_id: int, program: str) -> None:
