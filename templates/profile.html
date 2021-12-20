@@ -1,0 +1,48 @@
+<!--
+    Author : Thibault Cheneviere
+    Mail : thibault.cheneviere@telecomnancy.eu
+    Date : 17/12/2021
+-->
+
+{% extends 'layout.html' %}
+
+{% block header %}
+    <!-- CSS dependencies -->
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/profile.css') }}">
+    
+    <!-- Page title -->
+    <title>Se connecter</title>
+{% endblock header %}
+
+{% block container %}
+    <form action="{{ url_for('loginBP.profile', firstName=data['firstName'], lastName=data['lastName'], id=data['id']) }}" method="POST">
+        <div class="card">
+            <div class="profile-container">
+                {% if data['picture'] != None %}
+                    <img class="picture" src="{{ data['picture'] }}" alt="Your profile picture">
+                {% else %}
+                    <img class="picture" src="/static/images/defaultProfilePicture.png">
+                {% endif %}
+                <div class="title-container">
+                    <div class="title">
+                        Profile de {{ data['firstName'] + ' ' + data['lastName']}}
+                    </div>
+                    <div class="catchphrase">
+                        <label for="catchphraseID">Catchphrase : </label>
+                        {% if data['catchphrase'] != None %}
+                            <input class="form-input" id="catchphraseID" type="text" value="{{ data['catchphrase'] }}">
+                        {% else %}
+                            <input class="form-input" id="catchphraseID" type="text" placeholder="catchphrase">
+                        {% endif %}
+                    </div>
+                    <div class="input-picture">
+                        <input class="form-input" type="file" accept="image/*" placeholder="Choisissez votre photo de profile">
+                    </div>
+                    <div class="submit-button">
+                        <button class="btn btn-primary">Enregister les modifications</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock container %}

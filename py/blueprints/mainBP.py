@@ -1,13 +1,16 @@
 """
-    Author : Cheneviere Thibault
-    Mail : thibault.cheneviere@telecomnancy.eu
-    Date : 24/11/2021
+    Author : Cheneviere Thibault, Guillot Thom
+    Mail : thibault.cheneviere@telecomnancy.eu, thom.guillot@telecomnancy.eu
+    Date : 17/12/2021
 """
 
 # Import neded packages
 from flask import Blueprint
 from flask.templating import render_template
 
+#Import personal modules
+from py.database.connectDatabase import connectDatabase
+from py.core.sortbyPoliticalEdge import sortbyPoliticalEdge
 
 # Definition of the blueprint
 mainBP = Blueprint('mainBP', __name__)
@@ -17,4 +20,21 @@ mainBP = Blueprint('mainBP', __name__)
 @mainBP.route('/')
 @mainBP.route('/home')
 def home() -> str:
-    return render_template('home.html')
+    db, cursor = connectDatabase()
+
+    query = '''
+    SELECT * FROM Candidate AS c 
+    JOIN List AS l ON l.id = c.listId 
+    JOIN ProgramGrade AS pg ON pg.listID = l.id
+    '''
+    cursor.execute(query)
+    data = cursor.fetchall()
+
+    db.close()
+
+    edges = sortbyPoliticalEdge(data)
+    return render_template('home.html', edges=edges)
+
+@mainBP.route('/card')
+def card():
+    return render_template('card.html', value=75)

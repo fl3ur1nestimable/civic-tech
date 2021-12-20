@@ -7,18 +7,23 @@
 {% extends 'layout.html'%}
 
 {% block header %}
+<<<<<<< HEAD
     <title>{{prenomCandidat}} {{nomCandidat}} - Programme</title>
+=======
+    <!-- CSS dependencies -->
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/program.css') }}">
+    
+    <!-- Page title -->
+    <title>{{nomCandidat}} {{prenomCandidat}} - Programme</title>
+>>>>>>> 4ba443740e8422561d7f115e595d115987551aef
 {% endblock header %}
 
 {% block container %}
-    <!-- CSS dependencies -->
-    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/program.css') }}">
-
     <div class='leprog'>
 
         <div class='premier'>
             <div class="photo">
-            <img class="laphoto" src="static/photos/remi.jpg">
+            <img class="laphoto" src="/static/images/photos/remi.jpg">
             </div>
 
             <div class = 'titre_et_mot'>
@@ -29,9 +34,10 @@
         
         <div class='second'>
             <p>
-                <div class='stats'><img src="static/photos/pika.png" class="photo_stats"></div><div class='sonprog'>{{prog}}</div>
+                <div class='stats'><img src="/static/images/photos/pika.png"></div><div class='sonprog'>{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}</div>
             </p>
         </div>
     </div>
+
     
 {% endblock container %}

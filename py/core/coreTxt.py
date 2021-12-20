@@ -6,7 +6,6 @@
 
 
 # Import needed modules
-from typing import List
 
 
 # Import personal modules

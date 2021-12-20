@@ -6,7 +6,6 @@
 
 
 # Import personal modules
-from typing import List, Tuple
 from .connectDatabase import connectDatabase
 
 
@@ -24,8 +23,13 @@ def checkValue(table: str, field: str, value: str) -> bool:
             - retunBool (bool) : statements of the presence of the value in the table
     """
 
-    query = '''SELECT * FROM ''' + table + ''' WHERE ''' + field + '''=?;'''
-    arg = (value, )
+    if table == "List":
+        query = '''SELECT * FROM List AS l JOIN Candidate AS c ON l.id=c.listId WHERE c.id=?;'''
+        arg = (value, )
+
+    else:
+        query = '''SELECT * FROM ''' + table + ''' WHERE ''' + field + '''=?;'''
+        arg = (value, )
 
     db, cursor = connectDatabase()
 
@@ -35,3 +39,15 @@ def checkValue(table: str, field: str, value: str) -> bool:
     db.close()
 
     return returnBool
+
+
+def getLastListId() -> int:
+    query = '''SELECT MAX(id) FROM List;'''
+
+    db, cursor = connectDatabase()
+
+    cursor.execute(query)
+    result = cursor.fetchall()[0]
+    db.close()
+
+    return result

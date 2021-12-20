@@ -1,0 +1,18 @@
+.picture {
+    float: left;
+    margin-right: 10px;
+}
+
+.picture > img {
+    border-radius: 15px;
+}
+
+.progress {
+    height: 2vh;
+    width: 20vw;
+    margin-top: 1.5vh;
+}
+
+.custom-bar {
+    margin-bottom: 2vh;
+}

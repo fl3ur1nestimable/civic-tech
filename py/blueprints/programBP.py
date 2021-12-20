@@ -1,7 +1,7 @@
 """
-    Author : Cheneviere Thibault
-    Mail : thibault.cheneviere@telecomnancy.eu
-    Date : 27/11/2021
+    Author : Cheneviere Thibault & Hashani Elion
+    Mail : thibault.cheneviere@telecomnancy.eu & elion.hashani@telecomnancy.eu
+    Date : 27/11/2021 & 17/12/2021
 """
 
 # Import neded packages
@@ -14,6 +14,7 @@ from flask.templating import render_template
 from py.database.connectDatabase import connectDatabase
 from py.database.databaseFunctions import checkValue
 from py.core.truncatePrograms import truncatePrograms
+from py.core.programAnalysis import rateDataWords
 
 
 # Definition of the blueprint
@@ -25,35 +26,65 @@ programBP = Blueprint('programBP', __name__)
 def define_program() -> str:
     if request.method == 'GET':
         userData = programBPUserData(session['id'])
+        query='''SELECT lastName, firstName, job FROM Member;'''
+        db,cursor=connectDatabase()
+        cursor.execute(query)
+        data=cursor.fetchall()
+        db.close()
 
-        if checkValue('users', 'id', session['id']):
-            return render_template('referenceProgram.html', userData=userData)
+        if checkValue('Candidate', 'id', session['id']):
+            return render_template('referenceProgram.html', userData=userData,data=data)
         else:
             flash("Une erreur est survenue. Merci de réessayer.", "Red_flash")
             return render_template('home.html')
     
     elif request.method == 'POST':
-        programContent = request.form['programmArea']
-
-        if not checkValue('programs', 'user_id', session['id']):
-            addQuery = '''INSERT INTO programs (user_id, content) VALUES (?, ?);'''
-            args = (session['id'], programContent)
-
-        else:
-            addQuery = '''UPDATE programs SET content=? WHERE user_id=?;'''
-            args = (programContent, session['id'])
-        
-        db, cursor = connectDatabase()
-
-        cursor.execute(addQuery, args)
-        db.commit()
-        cursor.close()
-        db.close()
-
         userData = programBPUserData(session['id'])
+        query='''SELECT lastName, firstName, job FROM Member;'''
+        db,cursor=connectDatabase()
+        cursor.execute(query)
+        data=cursor.fetchall()
+        db.close()
+        if request.form.get('Publier') == "Publier" :
+            programContent = request.form['programmArea']
+        
+            insertProgram(session['id'], programContent)
+        
+            userData = programBPUserData(session['id'])
 
-        return render_template('referenceProgram.html', userData=userData)
-    
+            flash("You have succesfully modified your program.", "Green_flash")
+            return render_template('referenceProgram.html', userData=userData,data=data)
+        else:
+            lastnameMember = request.form.get('lastnameMember')
+            firstnameMember = request.form.get('firstnameMember')
+            jobMember = request.form.get("jobMember")
+            userData = programBPUserData(session['id'])
+
+            if lastnameMember == "" or firstnameMember == "" or not jobMember:
+                
+                flash("Information(s) manquante(s)", "Red_flash")
+                return render_template('referenceProgram.html',userData=userData,data=data)
+
+
+            else:
+                requestQuery='''SELECT listId FROM Candidate WHERE id=?;'''
+                arg = (session['id'], )
+                
+                db, cursor = connectDatabase()
+
+                cursor.execute(requestQuery, arg)
+                listId = cursor.fetchall()[0][0]
+
+                insertQuery = '''INSERT INTO Member (firstName, lastName, listId, job) VALUES (?, ?, ?, ?);'''
+                insertArg = (firstnameMember,lastnameMember,listId,jobMember)
+
+                cursor.execute(insertQuery,insertArg)
+                db.commit()
+                cursor.close()
+                db.close()
+
+                flash("You have succesfully added a new member.", "Green_flash")
+                return render_template('referenceProgram.html',userData=userData,data=data)
     else:
         return render_template('home.html')
 
@@ -61,7 +92,7 @@ def define_program() -> str:
 
 @programBP.route('/programs')
 def programsList() -> str:
-    query = '''SELECT firstName, lastName, content FROM programs AS p JOIN users AS u ON p.user_id = u.id'''
+    query = '''SELECT c.firstName, c.lastName, l.program FROM List AS l JOIN Candidate AS c ON l.id = c.listId'''
     db, cursor = connectDatabase()
 
     cursor.execute(query)
@@ -91,7 +122,7 @@ def programBPUserData(session_id: str) -> dict:
     db, cursor = connectDatabase()
     programContent = ""
 
-    query = '''SELECT firstName, lastName FROM users WHERE id=?;'''
+    query = '''SELECT firstName, lastName FROM Candidate WHERE id=?;'''
     arg = (session_id, )
 
     cursor.execute(query, arg)
@@ -99,7 +130,7 @@ def programBPUserData(session_id: str) -> dict:
         userFirstName = userTuple[0]
         userLastName = userTuple[1]
         
-    query = '''SELECT content FROM programs WHERE user_id=?;'''
+    query = '''SELECT l.program FROM List AS l JOIN Candidate AS c ON l.id = c.listId WHERE c.id=?;'''
     arg = (session_id, )
 
     cursor.execute(query, arg)
@@ -114,3 +145,31 @@ def programBPUserData(session_id: str) -> dict:
     }
 
     return userData
+
+
+
+def insertProgram(session_id: int, program: str) -> None:
+    topicsRate = rateDataWords(program)
+
+    requestQuery = '''SELECT listId FROM Candidate WHERE id=?;'''
+    arg = (session_id, )
+    
+    db, cursor = connectDatabase()
+
+    cursor.execute(requestQuery, arg)
+    listId = cursor.fetchall()[0][0]
+
+    print(listId)
+
+    topicQuery = '''UPDATE ProgramGrade SET environment=?, social=?, economy=? WHERE listId=?;'''
+    topicArgs = (topicsRate[0], topicsRate[1], topicsRate[2], listId)
+
+    insertQuery = '''UPDATE List SET program=? WHERE id=?;'''
+    insertArg = (program, listId)
+
+    cursor.execute(insertQuery, insertArg)
+    cursor.execute(topicQuery, topicArgs)
+
+    db.commit()
+    cursor.close()
+    db.close()

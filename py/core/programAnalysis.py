@@ -69,7 +69,19 @@ def removeAllOccurence(argList: List, pattern: List[str]) -> str:
     return returnList
 
 
-def rateDataWords(dataWords: dict, wordsList: List[str]) -> List[float]:
+def rateDataWords(program: str) -> List[float]:
+    """
+        Function to count the frequency of words in a given text
+
+        Parameters :
+            - program (string) : A given program text
+        
+        Returns :
+            - topicGrades (List[float]) : the rates for each topics of the program
+    """
+    
+    dataWords, _ = countWordFrequency(program)
+
     keyWords = read_json('keyWords')
 
     topics = ["environments", "social", "economic"]

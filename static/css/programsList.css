@@ -26,18 +26,19 @@ body {
 }
 
 .program-content p{
-    height: 290px;
+    height: 150px;
     width: auto;
 }
 
 
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     grid-auto-rows: minmax(100px, auto);
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 6.4vh;
+    margin-bottom: 6.4vh;
+    min-height: 74.5vh;
 }
 
 .lienPg:link{
@@ -58,6 +59,10 @@ body {
 
 .lienPg{
     color:#fff;
+}
+
+footer > .container {
+    display: none;
 }
 
 /* End CSS for programsList.html */

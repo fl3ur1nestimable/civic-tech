@@ -29,7 +29,7 @@ def login() -> str:
 
         userFound = False
 
-        query = '''SELECT id, password FROM users WHERE identifier=?;'''
+        query = '''SELECT id, password FROM Candidate WHERE identifier=?;'''
         arg = (identifier, )
 
         db, cursor = connectDatabase()
@@ -61,5 +61,30 @@ def login() -> str:
 @loginBP.route('/logout')
 def logout() -> str:
     session['id'] = None
-    session['role'] = None
+
     return render_template('home.html')
+
+
+@loginBP.route('/profile/<string:firstName>/<string:lastName>/<int:id>', methods=['GET', 'POST'])
+def profile(firstName: str, lastName: str, id: int) -> str:
+    if request.method == "GET":
+        query = '''SELECT catchphrase, picture, job FROM Candidate WHERE id=?;'''
+        arg = (id, )
+
+        db, cursor = connectDatabase()
+        cursor.execute(query, arg)
+
+        dataList = cursor.fetchall()[0]
+        
+        db.close()
+
+        data = {
+            "catchphrase": dataList[0],
+            "picture": dataList[1],
+            "job": dataList[2],
+            "firstName": firstName,
+            "lastName": lastName,
+            "id": id
+        }
+
+        return render_template('profile.html', data=data)

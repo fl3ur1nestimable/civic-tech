@@ -15,14 +15,14 @@ body {
 }
 
 .height {
-    height: 100vh
+    height: 64vh
 }
 
 .card {
     border: none;
     padding: 20px;
     background-color: #1c1e21;
-    color: #fff
+    color: #fff;
 }
 
 .circle {
@@ -80,6 +80,10 @@ body {
 
 .title {
     text-align: center;
+}
+
+.height {
+    height: 67vh;
 }
 
 /* Start CSS for login.html */

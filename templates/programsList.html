@@ -7,19 +7,20 @@
 {% extends 'layout.html' %}
 
 {% block header %}
+    <!-- CSS dependencies -->
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/programsList.css') }}">
+
+    <!-- Page title -->
     <title>Liste des programmes</title>
 {% endblock header %}
 
 {% block container %}
-    <!-- CSS dependencies -->
-    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/programsList.css') }}">
-    
     <div class="wrapper">
         {% for programs in programsData %}
             <div class="program">
-                <h2><a class ='lienPg' href="/program0?nomCandidat={{programs[1]}}&prenomCandidat={{programs[0]}}">{{ programs[0] + " " + programs[1] }}</a></h2>
+                <h2><a class ='lienPg' href="{{ '/program/' + programs[1] + '/' + programs[2] + '/' + programs[0] }}">{{ programs[1] + " " + programs[2] }}</a></h2>
                 <div class="program-content">
-                    <p>{{ programs[2] }}</p>
+                    <p>{{ programs[3] }}</p>
                 </div>
             </div>
         {% endfor %}
