@@ -7,7 +7,7 @@
 {% extends 'layout.html'%}
 
 {% block header %}
-    <title>{{nomCandidat}} {{prenomCandidat}} - Programme</title>
+    <title>{{prenomCandidat}} {{nomCandidat}} - Programme</title>
 {% endblock header %}
 
 {% block container %}
@@ -22,14 +22,14 @@
             </div>
 
             <div class = 'titre_et_mot'>
-                <h1 class='titre'>{{nomCandidat}} {{prenomCandidat}}</h1>
+                <h1 class='titre'>{{prenomCandidat}} {{nomCandidat}}</h1>
                 <p class='mot'>"Si le MOC tu réussis, l'attestation tu recevras"</p>
             </div>
         </div>
         
         <div class='second'>
             <p>
-                <div class='stats'><img src="static/photos/pika.png"></div><div class='sonprog'>{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}</div>
+                <div class='stats'><img src="static/photos/pika.png" class="photo_stats"></div><div class='sonprog'>{{prog}}</div>
             </p>
         </div>
     </div>
