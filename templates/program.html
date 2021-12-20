@@ -7,37 +7,47 @@
 {% extends 'layout.html'%}
 
 {% block header %}
-<<<<<<< HEAD
-    <title>{{prenomCandidat}} {{nomCandidat}} - Programme</title>
-=======
     <!-- CSS dependencies -->
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/program.css') }}">
     
     <!-- Page title -->
     <title>{{nomCandidat}} {{prenomCandidat}} - Programme</title>
->>>>>>> 4ba443740e8422561d7f115e595d115987551aef
 {% endblock header %}
 
 {% block container %}
-    <div class='leprog'>
 
-        <div class='premier'>
-            <div class="photo">
-            <img class="laphoto" src="/static/images/photos/remi.jpg">
+    <div class="leprog">
+        <div class="card-header">
+            <h5 class="titre">{{ prenomCandidat }} {{ nomCandidat }}</h5>
+            <i class="citation">{{citation}}</i>
+        </div>
+        <div class="PhotoETmembres">
+            <div class="cadrePhoto">
+                <img src="/static/images/photos/remi.jpg" class="photo">
             </div>
-
-            <div class = 'titre_et_mot'>
-                <h1 class='titre'>{{prenomCandidat}} {{nomCandidat}}</h1>
-                <p class='mot'>"Si le MOC tu réussis, l'attestation tu recevras"</p>
+            <div class="membres">
+                <h5 class="TitreMembres">Membres de la liste</h5>
             </div>
         </div>
-        
-        <div class='second'>
-            <p>
-                <div class='stats'><img src="/static/images/photos/pika.png"></div><div class='sonprog'>{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}{{prog}}</div>
-            </p>
+            <div class="statsETprog">
+                <div class="stats">
+                <h5 class="titreStats">Statistiques</h5>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: {{grades[0]}}%;" aria-valuenow="{{grades[0] }}" aria-valuemin="0" aria-valuemax="100">Env : {{grades[0] }}%</div>
+                </div>  
+                
+                <div class="progress">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: {{ grades[1]}}%;" aria-valuenow="{{grades[1] }}" aria-valuemin="0" aria-valuemax="100">Soc : {{grades[1]}}%</div>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{grades[2]}}%;" aria-valuenow="{{grades[2]}}" aria-valuemin="0" aria-valuemax="100">Éco : {{grades[2]}}%</div>
+                </div>
+            </div>
+            <div class="cadreProg">
+                <p class="texteProg">
+                    {{prog}}
+                </p>
+            </div>
         </div>
     </div>
-
-    
 {% endblock container %}

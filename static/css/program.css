@@ -1,70 +1,76 @@
-body {
-    background-color: #fff;
-    font-family: "Poppins", sans-serif;
-    font-weight: 300
-}
-
-.leprog{
-    
-    margin: 10px;
+.card-header{
+    text-align: center;
+    margin-top:10px;
+    margin-bottom: 10px;
 }
 
 .titre{
-    text-align: left;
-    font-size: 113px;
-    overflow-wrap: break-word;
+    font-size: 1cm;
 }
 
+.citation{
+    font-size: 0.8cm;
+}
 
-.sonprog{
-    font-size: 28px;
-    text-align: justify;
-    margin-top: 10px;
-    
+.membres{
+    flex:1;
+    align-self: center;
+    text-align: center;
+}
+
+.cadrePhoto{
+    margin-top:10px;
+    margin-bottom: 10px;
 }
 
 .photo{
-    height:45vh;
-    width: 22vw;
-    margin: 10px;
-    float: left;
+    border-radius: 1%;
 }
 
-.mot{
-    font-style: italic;
-    font-size: 0.80cm;
-    margin: 10px;
-    overflow-wrap: break-word;
+.PhotoETmembres{
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.TitreMembres{
+    font-size: 0.75cm;
+}
+
+.statsETprog{
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.cadreProg{
+    flex: 1;
+    align-self: flex-start;
+    margin-left: 20px;
 }
 
 .stats{
-    height: 70vh;
-    width: 22vw;
-    margin-top: 10px;
-    margin-top: 10px;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-bottom: 0px;
-    float: left;
+    width: 400px;
 }
 
-
-.second{
-    clear: both;
+.titreStats{
+    text-align: center;
+    margin-top: 5px;
 }
 
-.laphoto{
-    border-radius: 2%;
-    width: 100%;
-    height: 100%;
+.texteProg{
+    text-align: justify;
+    line-height: 40px;
+    text-indent: 60px;
+    vertical-align: top;
 }
 
-.photo_stats{
-    width: 100%;
-    height: 100%;
+.progress{
+    height: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-footer > .container {
-    display: none;
+.leprog{
+    margin:10px
 }
-

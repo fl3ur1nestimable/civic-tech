@@ -18,9 +18,9 @@
     <div class="wrapper">
         {% for programs in programsData %}
             <div class="program">
-                <h2><a class ='lienPg' href="{{ '/program/' + programs[1] + '/' + programs[2] + '/' + programs[0] }}">{{ programs[1] + " " + programs[2] }}</a></h2>
+                <h2><a class ='lienPg' href="{{ '/program/' + programs[0] + '/' + programs[1] + '/' + programs[3]|string }}">{{ programs[0] + " " + programs[1] }}</a></h2>
                 <div class="program-content">
-                    <p>{{ programs[3] }}</p>
+                    <p>{{ programs[2] }}</p>
                 </div>
             </div>
         {% endfor %}
