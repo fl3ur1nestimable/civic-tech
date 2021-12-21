@@ -23,10 +23,23 @@
         </div>
         <div class="PhotoETmembres">
             <div class="cadrePhoto">
-                <img src="/static/images/photos/remi.jpg" class="photo">
+                {%if photo%}
+                    <img src="/static/images/photos/{{photo}}" class="photo">
+                {%else%}
+                    <img src="/static/images/photos/remi.jpg" class="photo">
+                {%endif%}
             </div>
             <div class="membres">
-                <h5 class="TitreMembres">Membres de la liste</h5>
+                <h5 class="TitreMembres">Membres de la liste</h5><br>
+                {%if membres%}
+                    <div class="listeM">
+                        {%for membre in membres%}
+                            <div class="membre">
+                                {{membre[0]}} {{membre[1]}}<br>{{membre[2]}}
+                            </div>
+                        {%endfor%}
+                    </div>
+                {%endif%}
             </div>
         </div>
             <div class="statsETprog">

@@ -21,6 +21,8 @@
 .cadrePhoto{
     margin-top:10px;
     margin-bottom: 10px;
+    width: 400px;
+    height: 400px;
 }
 
 .photo{
@@ -73,4 +75,16 @@
 
 .leprog{
     margin:10px
+}
+
+.listeM{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.membre{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }

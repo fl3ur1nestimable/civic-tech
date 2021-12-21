@@ -21,7 +21,7 @@ progFullBP = Blueprint('progFullBP',__name__)
 
 @progFullBP.route('/program/<string:firstName>/<string:lastName>/<int:id>')
 def program(firstName: str, lastName: str, id: int) -> str:
-    query = '''SELECT l.program, c.listId, c.catchphrase FROM Candidate AS c JOIN List AS l ON c.listId=l.id WHERE c.id=?;'''
+    query = '''SELECT l.program, c.listId, c.catchphrase,c.picture FROM Candidate AS c JOIN List AS l ON c.listId=l.id WHERE c.id=?;'''
     arg = (id, )
 
     db, cursor = connectDatabase()
@@ -32,6 +32,7 @@ def program(firstName: str, lastName: str, id: int) -> str:
     prog = data[0][0]
     listId = data[0][1]
     citation=data[0][2]
+    photo=data[0][3]
 
     db.close()
 
@@ -43,5 +44,10 @@ def program(firstName: str, lastName: str, id: int) -> str:
     grades=[data2[0][0],data2[0][1],data2[0][2]]
     db2.close()
 
+    query3='''SELECT m.firstName,m.lastName,m.job FROM Member as m WHERE m.listID =?'''
+    db3, cursor3 =connectDatabase()
+    cursor3.execute(query3,arg2)
+    liste_membres=cursor3.fetchall()
+    db3.close()
 
-    return render_template('program.html',nomCandidat=firstName,prenomCandidat=lastName,prog=prog,grades=grades,citation=citation)
+    return render_template('program.html',nomCandidat=firstName,prenomCandidat=lastName,prog=prog,grades=grades,citation=citation,membres=liste_membres,photo=photo)
