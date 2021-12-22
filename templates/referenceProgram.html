@@ -58,10 +58,12 @@
             {% for items in data %}
                 <tr>
                     <div class="tr">
-                        <td><a>{{ items[0] }}</a></td>
+                        <td><a>{{ items[2] }}</a></td>
                         <td><a>{{ items[1] }}</a></td>
-                        <td>{{ items[2] }}</td>
-                        <td><button class="btn btn-danger">Delete</button></td>
+                        <td>{{ items[4] }}</td>
+                        <form method="post">
+                        <td><button class="btn btn-danger" name="Retirer" value="{{ items[0] }}">Retirer</button></td>
+                        </form>
                     </div>
                 </tr>
             {% endfor %}

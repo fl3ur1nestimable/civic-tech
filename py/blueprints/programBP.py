@@ -26,25 +26,29 @@ programBP = Blueprint('programBP', __name__)
 def define_program() -> str:
     if request.method == 'GET':
         userData = programBPUserData(session['id'])
-        query='''SELECT lastName, firstName, job FROM Member;'''
+        query='''SELECT * FROM Member;'''
         db,cursor=connectDatabase()
         cursor.execute(query)
         data=cursor.fetchall()
         db.close()
+        
 
         if checkValue('Candidate', 'id', session['id']):
             return render_template('referenceProgram.html', userData=userData,data=data)
+        
         else:
             flash("Une erreur est survenue. Merci de réessayer.", "Red_flash")
             return render_template('home.html')
     
     elif request.method == 'POST':
         userData = programBPUserData(session['id'])
-        query='''SELECT lastName, firstName, job FROM Member;'''
+        query='''SELECT * FROM Member;'''
         db,cursor=connectDatabase()
         cursor.execute(query)
         data=cursor.fetchall()
         db.close()
+        print(data)
+
         if request.form.get('Publier') == "Publier" :
             programContent = request.form['programmArea']
         
@@ -54,6 +58,23 @@ def define_program() -> str:
 
             flash("You have succesfully modified your program.", "Green_flash")
             return render_template('referenceProgram.html', userData=userData,data=data)
+        
+        elif request.form.get('Retirer') is int:
+            a=request.form.get('Retirer')
+            print(a)
+            db, cursor = connectDatabase()
+            
+            query = '''DELETE FROM Member WHERE id=?;'''
+            arg = (a,)
+
+            
+            cursor.execute(query, arg)
+            db.commit()
+            db.close()
+            flash("You have successfully deleted a member from your list !", "Green_flash")
+            return render_template('referenceProgram.html', userData=userData,data=data)
+            
+
         else:
             lastnameMember = request.form.get('lastnameMember')
             firstnameMember = request.form.get('firstnameMember')
@@ -65,6 +86,9 @@ def define_program() -> str:
                 flash("Information(s) manquante(s)", "Red_flash")
                 return render_template('referenceProgram.html',userData=userData,data=data)
 
+            elif lastnameMember and firstnameMember and jobMember in db:
+                flash("Membre déjà inclus", "Red_flash")
+                return render_template('referenceProgram.html',userData=userData,data=data)
 
             else:
                 requestQuery='''SELECT listId FROM Candidate WHERE id=?;'''
@@ -83,7 +107,7 @@ def define_program() -> str:
                 cursor.close()
                 db.close()
 
-                flash("You have succesfully added a new member.", "Green_flash")
+                flash("You have successfully added a new member !", "Green_flash")
                 return render_template('referenceProgram.html',userData=userData,data=data)
     else:
         return render_template('home.html')
@@ -148,6 +172,22 @@ def programBPUserData(session_id: str) -> dict:
 
     return userData
 
+def checkMember(session_id: int,firstname:str,lastname:str,job:str)->bool:
+    requestQuery = '''SELECT listId FROM Candidate WHERE id=?;'''
+    arg = (session_id, )
+    
+    db, cursor = connectDatabase()
+
+    cursor.execute(requestQuery, arg)
+    listId = cursor.fetchall()[0][0]
+    db,cursor=connectDatabase()
+    checkQuery='''SELECT * FROM Member WHERE firstName=? AND lastName=? AND listId=? AND job=?;'''
+    checkArg=(firstname,lastname,listId,job)
+    cursor.execute(checkQuery,checkArg)
+    result=cursor.fetchall()
+    db.commit()
+    db.close()
+    return (len(result)==0)
 
 
 def insertProgram(session_id: int, program: str) -> None:
@@ -160,8 +200,6 @@ def insertProgram(session_id: int, program: str) -> None:
 
     cursor.execute(requestQuery, arg)
     listId = cursor.fetchall()[0][0]
-
-    print(listId)
 
     topicQuery = '''UPDATE ProgramGrade SET environment=?, social=?, economy=? WHERE listId=?;'''
     topicArgs = (topicsRate[0], topicsRate[1], topicsRate[2], listId)
