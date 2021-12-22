@@ -102,7 +102,7 @@ def programsList() -> str:
 
 
     for i in range(len(data)):
-        temp = [data[i][0], data[i][1], truncatePrograms(data[i][2]),data[i][3]]
+        temp = [data[i][0], data[i][1], truncatePrograms(data[i][2]), str(data[i][3])]
         data[i] = temp
  
     return render_template('programsList.html', programsData=data)
