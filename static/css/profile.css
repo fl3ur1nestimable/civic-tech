@@ -31,15 +31,22 @@ body {
 }
 
 .profile-container > img {
-    width: 25vw;
-    height: 25vw;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+    width: 27vw;
+    height: 27vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
     float: left;
+    border-radius: 15px;
 }
 
 .profile-container {
     width: 50vw;
+    display: flex;
+    gap: 5vw;
+}
+
+.title-container {
+    align-self: center;
 }
 
 .title-container > *{

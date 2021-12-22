@@ -5,15 +5,16 @@
 """
 
 # Import neded packages
-from flask import Blueprint, request, session
+from flask import Blueprint, request, session, redirect
 from flask.helpers import flash
 from flask.templating import render_template
 from werkzeug.security import check_password_hash
-
+import os
 
 
 # Import personnal modules
 from py.database.connectDatabase import connectDatabase
+from py.core.fileStorage import save_candidate_picture
 
 
 # Definition of the blueprint
@@ -80,7 +81,7 @@ def profile(firstName: str, lastName: str, id: int) -> str:
 
         data = {
             "catchphrase": dataList[0],
-            "picture": dataList[1],
+            "picture": f"/static/images/photos/{dataList[1]}",
             "job": dataList[2],
             "firstName": firstName,
             "lastName": lastName,
@@ -88,3 +89,22 @@ def profile(firstName: str, lastName: str, id: int) -> str:
         }
 
         return render_template('profile.html', data=data)
+    
+    if request.method == "POST":
+        catchphrase = request.form['catchphrase']
+        pictureFile = request.files['picture']
+        pictureName = pictureFile.filename
+
+        if pictureName != "":
+            save_candidate_picture(id, pictureName, "static/images/photos", pictureFile)
+
+
+        query = '''UPDATE Candidate SET catchphrase=? WHERE id=?;'''
+        args = (catchphrase, id)
+
+        db, cursor = connectDatabase()
+        cursor.execute(query, args)
+        db.commit()
+        db.close()
+
+        return redirect(f"/profile/{firstName}/{lastName}/{id}")

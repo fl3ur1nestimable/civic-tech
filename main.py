@@ -32,9 +32,13 @@ def create_app() -> Flask:
     from py.blueprints.programBP import programBP
     app.register_blueprint(programBP)
 
-    # Import one program blueprint
+    ## Import one program blueprint
     from py.blueprints.progFullBP import progFullBP
     app.register_blueprint(progFullBP)
+
+    ## Import redirects blueprint
+    from py.blueprints.redirectsBP import redirectsBP
+    app.register_blueprint(redirectsBP)
 
     return app
 
