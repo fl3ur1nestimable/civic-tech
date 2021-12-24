@@ -18,8 +18,8 @@
     <form action="{{ url_for('loginBP.profile', firstName=data['firstName'], lastName=data['lastName'], id=data['id']) }}" method="POST" enctype="multipart/form-data">
         <div class="card">
             <div class="profile-container">
-                {% if data['picture'] != None %}
-                    <img class="picture" src="{{ data['picture'] }}" alt="Your profile picture">
+                {% if data['picture'] != 'None' %}
+                    <img class="picture" src="/static/images/candidatePictures/{{ data['picture'] }}" alt="Your profile picture">
                 {% else %}
                     <img class="picture" src="/static/images/defaultProfilePicture.png">
                 {% endif %}

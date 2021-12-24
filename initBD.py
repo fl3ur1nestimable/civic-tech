@@ -23,6 +23,7 @@ if __name__ == "__main__":
     DROP TABLE IF EXISTS List;
     DROP TABLE IF EXISTS ProgramGrade;
     DROP TABLE IF EXISTS Member;
+    DROP TABLE IF EXISTS Users_vote;
 
     CREATE TABLE Candidate
     (
@@ -64,6 +65,17 @@ if __name__ == "__main__":
         lastName TEXT,
         listId INTEGER,
         job TEXT,
+        FOREIGN KEY (listId) REFERENCES List(id)
+    );
+
+    CREATE TABLE Users_vote
+    (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        listId INTEGER NOT NULL,
+        userIP TEXT NOT NULL,
+        economyVote INTEGER DEFAULT 0,
+        ecologyVote INTEGER DEFAULT 0,
+        socialVote INTEGER DEFAULT 0,
         FOREIGN KEY (listId) REFERENCES List(id)
     )
     '''

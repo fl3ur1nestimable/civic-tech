@@ -42,6 +42,15 @@ def checkValue(table: str, field: str, value: str) -> bool:
 
 
 def getLastListId() -> int:
+    """
+        Function to get the last id of the List table
+
+        Arguments :
+            None
+        
+        Returns :
+            - result (integer) : the max id in List Table
+    """
     query = '''SELECT MAX(id) FROM List;'''
 
     db, cursor = connectDatabase()
@@ -51,3 +60,26 @@ def getLastListId() -> int:
     db.close()
 
     return result
+
+
+def check_user(userIp: str, listId: int) -> bool:
+    """
+        Functions to return whether or not a user is already in the users_vote database for a specific list
+
+        Arguments :
+            - userIp (string) : user's ip adress
+            - listId (integer) : list's id
+        
+        Returns :
+            - statement (boolean) : the needed statement
+    """
+
+    query = '''SELECT * FROM Users_vote WHERE userIP=? AND listId=?;'''
+    arg = (userIp, listId)
+
+    db, cursor = connectDatabase()
+    cursor.execute(query, arg)
+    data = cursor.fetchall()
+    db.close()
+
+    return len(data) != 0

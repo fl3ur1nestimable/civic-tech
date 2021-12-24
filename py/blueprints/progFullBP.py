@@ -5,14 +5,12 @@
 """
 
 # Import neded packages
-from flask import Blueprint, session, request
-from flask.helpers import flash
-from flask.templating import render_template
+from flask import Blueprint, session, request, flash, render_template, redirect
 
 
 #Import personal modules
 from py.database.connectDatabase import connectDatabase
-from py.database.databaseFunctions import checkValue
+from py.database.databaseFunctions import check_user, checkValue
 from py.core.truncatePrograms import truncatePrograms
 
 #Definition of the blueprint
@@ -35,30 +33,71 @@ def program(firstName: str, lastName: str, id: int) -> str:
         citation=data[0][2]
         photo=data[0][3]
 
-        db.close()
-
         query2='''SELECT g.environment,g.social,g.economy FROM ProgramGrade as g WHERE g.listId=? '''
         arg2=(listId, )
-        db2, cursor2 = connectDatabase()
-        cursor2.execute(query2,arg2)
-        data2=cursor2.fetchall()
+        cursor.execute(query2,arg2)
+        data2=cursor.fetchall()
         grades=[data2[0][0],data2[0][1],data2[0][2]]
-        db2.close()
 
         query3='''SELECT m.firstName,m.lastName,m.job FROM Member as m WHERE m.listID =?'''
-        db3, cursor3 =connectDatabase()
-        cursor3.execute(query3,arg2)
-        liste_membres=cursor3.fetchall()
-        db3.close()
+        cursor.execute(query3,arg2)
+        liste_membres=cursor.fetchall()
+
+        if check_user(request.remote_addr, listId):
+            query4 = '''SELECT economyVote, ecologyVote, socialVote FROM Users_vote WHERE userIp=? AND listId=?;'''
+            args4 = (request.remote_addr, listId)
+            cursor.execute(query4, args4)
+            data4 = cursor.fetchall()[0]
+            print(data4)
+        else:
+            data4 = (0, 0, 0)
+        db.close()
 
         candidateDict = {
+            "id": id,
+            "listId": listId,
             "firstName": firstName,
             "lastName": lastName,
             "program": prog,
             "grades": grades,
             "catchphrase": citation,
             "membres": liste_membres,
-            "picture": photo
+            "picture": f"{photo}"
         }
 
-        return render_template('program.html', data=candidateDict)
+        voteDict = {
+            "ecology": str(data4[1]),
+            "economy": str(data4[0]),
+            "social": str(data4[2])
+        }
+
+        return render_template('program.html', data=candidateDict, voteData=voteDict)
+
+
+@progFullBP.route('/vote/<string:voteTheme>/<string:addSign>/<int:listId>/<string:programRoute>', methods=['GET', 'POST'])
+def voteRoute(voteTheme: str, addSign: str, listId: int, programRoute: str) -> str:
+    if request.method == 'GET':
+        dataRoute = programRoute.split('--')
+        
+        programRoute = ""
+        for i in dataRoute:
+            programRoute += "/" + i
+        
+        voteTheme += "Vote"
+        user_ip = request.remote_addr
+
+        if not check_user(user_ip, listId):
+            query = f"""INSERT INTO Users_vote (listId, userIP, {voteTheme}) VALUES (?, ?, {addSign}1);"""
+            args = (listId, user_ip)
+            
+        else:
+            query = f"""UPDATE Users_vote SET {voteTheme}=? WHERE listId=? AND userIP=?;"""
+            args = (addSign+'1', listId, user_ip)
+        
+        db, cursor = connectDatabase()
+        cursor.execute(query, args)
+        db.commit()
+        db.close()
+
+        flash("You have successfuly voted.", "Green_flash")
+        return redirect(programRoute)

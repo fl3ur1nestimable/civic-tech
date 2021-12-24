@@ -23,7 +23,7 @@
         </div>
         <div class="PhotoETmembres">
             <div class="cadrePhoto">
-                {% if data['picture'] %}
+                {% if data['picture'] != 'None' %}
                     <img src="/static/images/candidatePictures/{{ data['picture'] }}" class="photo">
                 {% else %}
                     <img src="/static/images/photos/remi.jpg" class="photo">
@@ -62,5 +62,39 @@
                 </p>
             </div>
         </div>
+    </div>
+
+    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        {% if voteData['economy'] == '1' or voteData['economy'] == '-1' %}
+            <a href="#" class="btn btn-outline-danger disabled">-1</a>
+            <a href="#" class="btn btn-danger disabled">Economy</a>
+            <a href="#" class="btn btn-outline-danger disabled">+1</a>
+        {% else %}
+            <a href="/vote/economy/-/{{ data['listId'] }}/program--{{ data['firstName'] }}--{{ data['lastName'] }}--{{ data['id'] }}" class="btn btn-outline-danger">-1</a>
+            <a href="#" class="btn btn-danger btn-center disabled">Economy</a>
+            <a href="/vote/economy/+/{{ data['listId'] }}/program--{{ data['firstName'] }}--{{ data['lastName'] }}--{{ data['id'] }}" class="btn btn-outline-danger">+1</a>
+        {% endif %}
+    </div>
+    <div class="btn-group">
+        {% if voteData['ecology'] == '1' or voteData['ecology'] == '-1' %}
+            <a href="#" class="btn btn-outline-success disabled">-1</a>
+            <a href="#" class="btn btn-success disabled">Ecology</a>
+            <a href="#" class="btn btn-outline-success disabled">+1</a>
+        {% else %}
+            <a href="/vote/ecology/-/{{ data['listId'] }}/program--{{ data['firstName'] }}--{{ data['lastName'] }}--{{ data['id'] }}" class="btn btn-outline-success">-1</a>
+            <a href="#" class="btn btn-success btn-center disabled">Ecology</a>
+            <a href="/vote/ecology/+/{{ data['listId'] }}/program--{{ data['firstName'] }}--{{ data['lastName'] }}--{{ data['id'] }}" class="btn btn-outline-success">+1</a>
+        {% endif %}
+    </div>
+    <div class="btn-group">
+        {% if voteData['social'] == '1' or voteData['social'] == '-1' %}
+            <a href="#" class="btn btn-outline-primary disabled">-1</a>
+            <a href="#" class="btn btn-primary disabled">Social</a>
+            <a href="#" class="btn btn-outline-primary disabled">+1</a>
+        {% else %}
+            <a href="/vote/social/-/{{ data['listId'] }}/program--{{ data['firstName'] }}--{{ data['lastName'] }}--{{ data['id'] }}" class="btn btn-outline-primary">-1</a>
+            <a href="#" class="btn btn-primary btn-center disabled">Social</a>
+            <a href="/vote/social/+/{{ data['listId'] }}/program--{{ data['firstName'] }}--{{ data['lastName'] }}--{{ data['id'] }}" class="btn btn-outline-primary">+1</a>
+        {% endif %}
     </div>
 {% endblock container %}

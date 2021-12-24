@@ -81,7 +81,7 @@ def profile(firstName: str, lastName: str, id: int) -> str:
 
         data = {
             "catchphrase": dataList[0],
-            "picture": f"/static/images/candidatePictures/{dataList[1]}",
+            "picture": f"{dataList[1]}",
             "job": dataList[2],
             "firstName": firstName,
             "lastName": lastName,
