@@ -81,7 +81,7 @@ def profile(firstName: str, lastName: str, id: int) -> str:
 
         data = {
             "catchphrase": dataList[0],
-            "picture": f"/static/images/photos/{dataList[1]}",
+            "picture": f"/static/images/candidatePictures/{dataList[1]}",
             "job": dataList[2],
             "firstName": firstName,
             "lastName": lastName,
@@ -96,7 +96,7 @@ def profile(firstName: str, lastName: str, id: int) -> str:
         pictureName = pictureFile.filename
 
         if pictureName != "":
-            save_candidate_picture(id, pictureName, "static/images/photos", pictureFile)
+            save_candidate_picture(id, pictureName, "static/images/candidatePictures", pictureFile)
 
 
         query = '''UPDATE Candidate SET catchphrase=? WHERE id=?;'''
