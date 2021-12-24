@@ -7,13 +7,13 @@
 {% extends 'layout.html' %}
 
 {% block header %}
+    <!-- CSS dependencies -->
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/referenceProgram.css') }}">
+
     <title>Referencer son programme</title>
 {% endblock header %}
 
 {% block container %}
-    <!-- CSS dependencies -->
-    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/referenceProgram.css') }}">
-    
     <div class='home-banner'>
         <h2>Bienvenue {{ userData['name'] }}</h2>
     </div>
@@ -61,7 +61,7 @@
                         <td><a>{{ items[0] }}</a></td>
                         <td><a>{{ items[1] }}</a></td>
                         <td>{{ items[2] }}</td>
-                        <td><button class="btn btn-danger">Delete</button></td>
+                        <td><a class="btn btn-primary btn-delete" href="/delete/Member/{{ items[3] }}/defineProgram">Delete</a></td>
                     </div>
                 </tr>
             {% endfor %}

@@ -40,6 +40,10 @@ def create_app() -> Flask:
     from py.blueprints.redirectsBP import redirectsBP
     app.register_blueprint(redirectsBP)
 
+    ## Import delete blueprint
+    from py.blueprints.deleteBP import deleteBP
+    app.register_blueprint(deleteBP)
+
     return app
 
 

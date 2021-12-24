@@ -88,4 +88,13 @@ footer > .container {
     display: none;
 }
 
+.btn-delete {
+    background-color: red;
+    border: none;
+}
+
+.btn-delete:hover {
+    background-color: rgb(200, 0, 0);
+}
+
 /* End CSS for referenceProgram.html */

@@ -5,9 +5,7 @@
 """
 
 # Import neded packages
-from flask import Blueprint, session, request
-from flask.helpers import flash
-from flask.templating import render_template
+from flask import Blueprint, session, request, redirect, flash, render_template
 
 
 # Import personal modules
@@ -26,7 +24,7 @@ programBP = Blueprint('programBP', __name__)
 def define_program() -> str:
     if request.method == 'GET':
         userData = programBPUserData(session['id'])
-        query='''SELECT lastName, firstName, job FROM Member;'''
+        query='''SELECT lastName, firstName, job, id FROM Member;'''
         db,cursor=connectDatabase()
         cursor.execute(query)
         data=cursor.fetchall()
@@ -40,7 +38,7 @@ def define_program() -> str:
     
     elif request.method == 'POST':
         userData = programBPUserData(session['id'])
-        query='''SELECT lastName, firstName, job FROM Member;'''
+        query='''SELECT lastName, firstName, job, id FROM Member;'''
         db,cursor=connectDatabase()
         cursor.execute(query)
         data=cursor.fetchall()
@@ -63,7 +61,7 @@ def define_program() -> str:
             if lastnameMember == "" or firstnameMember == "" or not jobMember:
                 
                 flash("Information(s) manquante(s)", "Red_flash")
-                return render_template('referenceProgram.html',userData=userData,data=data)
+                return render_template('referenceProgram.html', userData=userData, data=data)
 
 
             else:
@@ -84,7 +82,7 @@ def define_program() -> str:
                 db.close()
 
                 flash("You have succesfully added a new member.", "Green_flash")
-                return render_template('referenceProgram.html',userData=userData,data=data)
+                return redirect('/defineProgram')
     else:
         return render_template('home.html')
 
