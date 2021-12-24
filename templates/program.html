@@ -11,54 +11,54 @@
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/program.css') }}">
     
     <!-- Page title -->
-    <title>{{nomCandidat}} {{prenomCandidat}} - Programme</title>
+    <title>{{ data['lastName'] }} {{ data['lastName'] }} - Programme</title>
 {% endblock header %}
 
 {% block container %}
 
     <div class="leprog">
         <div class="card-header">
-            <h5 class="titre">{{ prenomCandidat }} {{ nomCandidat }}</h5>
-            <i class="citation">{{citation}}</i>
+            <h5 class="titre">{{ data['lastName'] }} {{ data['lastName'] }}</h5>
+            <i class="citation">{{ data['catchphrase'] }}</i>
         </div>
         <div class="PhotoETmembres">
             <div class="cadrePhoto">
-                {%if photo%}
-                    <img src="/static/images/photos/{{photo}}" class="photo">
-                {%else%}
+                {% if data['picture'] %}
+                    <img src="/static/images/photos/{{ data['picture'] }}" class="photo">
+                {% else %}
                     <img src="/static/images/photos/remi.jpg" class="photo">
-                {%endif%}
+                {% endif %}
             </div>
             <div class="membres">
                 <h5 class="TitreMembres">Membres de la liste</h5><br>
-                {%if membres%}
+                {% if data['membres'] %}
                     <div class="listeM">
-                        {%for membre in membres%}
+                        {% for membre in data['members'] %}
                             <div class="membre">
                                 {{membre[0]}} {{membre[1]}}<br>{{membre[2]}}
                             </div>
-                        {%endfor%}
+                        {% endfor %}
                     </div>
-                {%endif%}
+                {% endif %}
             </div>
         </div>
             <div class="statsETprog">
                 <div class="stats">
                 <h5 class="titreStats">Statistiques</h5>
                 <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: {{grades[0]}}%;" aria-valuenow="{{grades[0] }}" aria-valuemin="0" aria-valuemax="100">Env : {{grades[0] }}%</div>
+                    <div class="progress-bar bg-success" role="progressbar" style="width: {{ data['grades'][0] }}%;" aria-valuenow="{{ data['grades'][0] }}" aria-valuemin="0" aria-valuemax="100">Env : {{ data['grades'][0] }}%</div>
                 </div>  
                 
                 <div class="progress">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: {{ grades[1]}}%;" aria-valuenow="{{grades[1] }}" aria-valuemin="0" aria-valuemax="100">Soc : {{grades[1]}}%</div>
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: {{ data['grades'][1]}}%;" aria-valuenow="{{ data['grades'][1] }}" aria-valuemin="0" aria-valuemax="100">Soc : {{ data['grades'][1] }}%</div>
                 </div>
                 <div class="progress">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{grades[2]}}%;" aria-valuenow="{{grades[2]}}" aria-valuemin="0" aria-valuemax="100">Éco : {{grades[2]}}%</div>
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{ data['grades'][2] }}%;" aria-valuenow="{{ data['grades'][2] }}" aria-valuemin="0" aria-valuemax="100">Éco : {{ data['grades'][2] }}%</div>
                 </div>
             </div>
             <div class="cadreProg">
                 <p class="texteProg">
-                    {{prog}}
+                    {{ data['program'] }}
                 </p>
             </div>
         </div>
