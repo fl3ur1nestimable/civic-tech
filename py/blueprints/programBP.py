@@ -7,6 +7,7 @@
 # Import neded packages
 from flask import Blueprint, session, request
 from flask.helpers import flash
+from flask.scaffold import F
 from flask.templating import render_template
 
 
@@ -24,13 +25,22 @@ programBP = Blueprint('programBP', __name__)
 # Definition the program route
 @programBP.route('/defineProgram', methods=['GET', 'POST'])
 def define_program() -> str:
+    requestQuery='''SELECT listId FROM Candidate WHERE id=?;'''
+    arg = (session['id'], )
+                
+    db, cursor = connectDatabase()
+
+    cursor.execute(requestQuery, arg)
+    listId = cursor.fetchall()[0][0]
+    print(listId)
+    userData = programBPUserData(session['id'])
+    query='''SELECT lastName, firstName, job FROM Member WHERE listId=?;'''
+    arg=(listId,)
+    cursor.execute(query,arg)
+    data=cursor.fetchall()
+    print(data)
+    db.close()
     if request.method == 'GET':
-        userData = programBPUserData(session['id'])
-        query='''SELECT lastName, firstName, job FROM Member;'''
-        db,cursor=connectDatabase()
-        cursor.execute(query)
-        data=cursor.fetchall()
-        db.close()
 
         if checkValue('Candidate', 'id', session['id']):
             return render_template('referenceProgram.html', userData=userData,data=data)
@@ -39,12 +49,6 @@ def define_program() -> str:
             return render_template('home.html')
     
     elif request.method == 'POST':
-        userData = programBPUserData(session['id'])
-        query='''SELECT lastName, firstName, job FROM Member;'''
-        db,cursor=connectDatabase()
-        cursor.execute(query)
-        data=cursor.fetchall()
-        db.close()
         if request.form.get('Publier') == "Publier" :
             programContent = request.form['programmArea']
         
@@ -65,15 +69,12 @@ def define_program() -> str:
                 flash("Information(s) manquante(s)", "Red_flash")
                 return render_template('referenceProgram.html',userData=userData,data=data)
 
+            elif not CheckMember(firstnameMember,lastnameMember,listId,jobMember):
+                flash("Membre déjà présent", "Red_flash")
+                print('oui')
+                return render_template('referenceProgram.html',userData=userData,data=data)
 
             else:
-                requestQuery='''SELECT listId FROM Candidate WHERE id=?;'''
-                arg = (session['id'], )
-                
-                db, cursor = connectDatabase()
-
-                cursor.execute(requestQuery, arg)
-                listId = cursor.fetchall()[0][0]
 
                 insertQuery = '''INSERT INTO Member (firstName, lastName, listId, job) VALUES (?, ?, ?, ?);'''
                 insertArg = (firstnameMember,lastnameMember,listId,jobMember)
@@ -148,7 +149,15 @@ def programBPUserData(session_id: str) -> dict:
 
     return userData
 
-
+def CheckMember(fname: str, lname: str, listid: int, job: str) -> bool:
+    checkQuery='''SELECT * FROM Member WHERE firstName=? AND lastName=? AND listId=? AND job=?'''
+    checkArg=(fname,lname,listid,job)
+    db,cursor=connectDatabase()
+    cursor.execute(checkQuery,checkArg)
+    result=cursor.fetchall()
+    db.close()
+    
+    return (len(result) == 0)
 
 def insertProgram(session_id: int, program: str) -> None:
     topicsRate = rateDataWords(program)
