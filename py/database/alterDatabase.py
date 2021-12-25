@@ -92,3 +92,26 @@ Password : {password}\n")
         print(f"A candidate with the first and last name entered already exist in table. Please enter another candidate")
     
     db.close()
+
+
+def addVote_office(lat: int, lon: int, name: str) -> None:
+    """
+        Function to add a Vote_office in the vote_office table of the database.db file.
+
+        Parameters :
+            - lat (integer) : latitude of the vote office
+            - lon (integer) : longitude of the vote office
+            - name (string) : name of  the vote office
+
+        Returns :
+            None
+     
+    """
+    
+    query = '''INSERT INTO Vote_office (lat, lon, name) VALUES (?, ?, ?);'''
+    args = (lat, lon, name)
+    
+    db, cursor = connectDatabase()
+    cursor.execute(query, args)
+    db.commit()
+    db.close()

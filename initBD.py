@@ -7,7 +7,7 @@
 # Import personal modules
 from py.database.connectDatabase import connectDatabase
 from py.core.coreJson import write_json
-from py.database.alterDatabase import addUser
+from py.database.alterDatabase import addUser, addVote_office
 
 
 if __name__ == "__main__":
@@ -24,6 +24,7 @@ if __name__ == "__main__":
     DROP TABLE IF EXISTS ProgramGrade;
     DROP TABLE IF EXISTS Member;
     DROP TABLE IF EXISTS Users_vote;
+    DROP TABLE IF EXISTS Vote_office;
 
     CREATE TABLE Candidate
     (
@@ -77,6 +78,14 @@ if __name__ == "__main__":
         ecologyVote INTEGER DEFAULT 0,
         socialVote INTEGER DEFAULT 0,
         FOREIGN KEY (listId) REFERENCES List(id)
+    );
+
+    CREATE TABLE Vote_office
+    (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        lat INTEGER NOT NULL,
+        lon INTEGER NOT NULL,
+        name TEXT NOT NULL
     )
     '''
 
@@ -86,3 +95,7 @@ if __name__ == "__main__":
 
     addUser('Thibault', 'Cheneviere', 'thibault.cheneviere@telecomnancy.eu')
     addUser('Elion', 'Hashani', 'elion.hashani@telecomnancy.eu')
+
+    addVote_office(6.183229945195551, 48.69386731328774, "Place Stanislas")
+    addVote_office(6.176367075585757, 48.690021148491276, "Fnac Nancy")
+    addVote_office(6.171844361204282, 48.68661195429168, "Le Chat Noir")

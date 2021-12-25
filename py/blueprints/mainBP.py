@@ -11,6 +11,7 @@ from flask.templating import render_template
 #Import personal modules
 from py.database.connectDatabase import connectDatabase
 from py.core.sortbyPoliticalEdge import sortbyPoliticalEdge
+from py.core.coreLocalisation import get_map_src
 
 # Definition of the blueprint
 mainBP = Blueprint('mainBP', __name__)
@@ -37,4 +38,9 @@ def home() -> str:
 
 @mainBP.route('/card')
 def card():
-    return render_template('card.html', value=75)
+    data = {'lat': 6.185197596754502, 'lon': 48.69196558832937, 'name': 'Le Chat Noir'}
+    data_src = {
+        "src": get_map_src(data['lat'], data['lon']),
+        "name": data['name']
+    }
+    return render_template('card.html', data=data_src)

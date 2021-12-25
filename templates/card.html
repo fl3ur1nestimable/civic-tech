@@ -26,40 +26,7 @@
 
     </head>
     <body>
-        <div class='custom-card'>
-            <div class="picture">
-                <img src="/static/images/photos/remi.jpg">
-            </div>
-
-            <div class = 'information'>
-                <h1 class='titre'>Nom Prénom</h1>
-                <p class='mot'>"Si le MOC tu réussis, l'attestation tu recevras"</p>
-            </div>
-            <div class="bar-container">
-                <br><div class="custom-bar">
-                        <div class="bar-title">
-                            Economy : {{ value }}%
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: {{ value }}%;" aria-valuenow="{{value}}" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                <br><div class="custom-bar">
-                        <div class="bar-title">
-                            Social : {{ value }}%
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{ value }}%;" aria-valuenow="{{value}}" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                <br><div class="custom-bar">
-                        <div class="bar-title">
-                            Ecology : {{ value }}%
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ value }}%;" aria-valuenow="{{value}}" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-            </div>
+        <h1>{{ data['name'] }}</h1>
+        <img src="{{ data['src'] }}" alt="">
     </body>
 </html>

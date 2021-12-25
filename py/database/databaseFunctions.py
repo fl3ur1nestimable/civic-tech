@@ -4,6 +4,9 @@
     Date : 26/11/2021
 """
 
+# Import needed modules
+from typing import List
+
 
 # Import personal modules
 from .connectDatabase import connectDatabase
@@ -83,3 +86,23 @@ def check_user(userIp: str, listId: int) -> bool:
     db.close()
 
     return len(data) != 0
+
+
+def get_vote_office_to_json() -> List[dict]:
+    query = '''SELECT lat, lon, name FROM Vote_office'''
+
+    db, cursor = connectDatabase()
+    cursor.execute(query)
+    data = cursor.fetchall()
+    db.close()
+
+    my_list = []
+    
+    for elem in data:
+        my_json = {}
+        my_json['lat'] = elem[0]
+        my_json['lon'] = elem[1]
+        my_json['name'] = elem[2]
+        my_list.append(my_json)
+
+    return my_list
