@@ -32,14 +32,11 @@ def define_program() -> str:
 
     cursor.execute(requestQuery, arg)
     listId = cursor.fetchall()[0][0]
-    print(listId)
     userData = programBPUserData(session['id'])
     query='''SELECT lastName, firstName, job FROM Member WHERE listId=?;'''
     arg=(listId,)
     cursor.execute(query,arg)
     data=cursor.fetchall()
-    print(data)
-    db.close()
     if request.method == 'GET':
 
         if checkValue('Candidate', 'id', session['id']):
@@ -56,6 +53,8 @@ def define_program() -> str:
         
             userData = programBPUserData(session['id'])
 
+            db.close()
+
             flash("You have succesfully modified your program.", "Green_flash")
             return render_template('referenceProgram.html', userData=userData,data=data)
         else:
@@ -65,11 +64,13 @@ def define_program() -> str:
             userData = programBPUserData(session['id'])
 
             if lastnameMember == "" or firstnameMember == "" or not jobMember:
+                db.close()
                 
                 flash("Information(s) manquante(s)", "Red_flash")
                 return render_template('referenceProgram.html',userData=userData,data=data)
 
             elif not CheckMember(firstnameMember,lastnameMember,listId,jobMember):
+                db.close()
                 flash("Membre déjà présent", "Red_flash")
                 print('oui')
                 return render_template('referenceProgram.html',userData=userData,data=data)
@@ -81,6 +82,16 @@ def define_program() -> str:
 
                 cursor.execute(insertQuery,insertArg)
                 db.commit()
+                requestQuery='''SELECT listId FROM Candidate WHERE id=?;'''
+                arg = (session['id'], )
+
+                cursor.execute(requestQuery, arg)
+                listId = cursor.fetchall()[0][0]
+                userData = programBPUserData(session['id'])
+                query='''SELECT lastName, firstName, job FROM Member WHERE listId=?;'''
+                arg=(listId,)
+                cursor.execute(query,arg)
+                data=cursor.fetchall()
                 cursor.close()
                 db.close()
 
