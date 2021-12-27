@@ -5,7 +5,7 @@
 """
 
 # Import neded packages
-from flask import Blueprint, session, request
+from flask import Blueprint, session, request, redirect
 from flask.helpers import flash
 from flask.scaffold import F
 from flask.templating import render_template
