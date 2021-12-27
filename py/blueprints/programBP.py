@@ -33,7 +33,7 @@ def define_program() -> str:
     cursor.execute(requestQuery, arg)
     listId = cursor.fetchall()[0][0]
     userData = programBPUserData(session['id'])
-    query='''SELECT lastName, firstName, job FROM Member WHERE listId=?;'''
+    query='''SELECT * FROM Member WHERE listId=?;'''
     arg=(listId,)
     cursor.execute(query,arg)
     data=cursor.fetchall()
