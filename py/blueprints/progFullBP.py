@@ -50,4 +50,4 @@ def program(firstName: str, lastName: str, id: int) -> str:
     liste_membres=cursor3.fetchall()
     db3.close()
 
-    return render_template('program.html',nomCandidat=firstName,prenomCandidat=lastName,prog=prog,grades=grades,citation=citation,membres=liste_membres,photo=photo)
+    return render_template('program.html',nomCandidat=lastName,prenomCandidat=firstName,prog=prog,grades=grades,citation=citation,membres=liste_membres,photo=photo)

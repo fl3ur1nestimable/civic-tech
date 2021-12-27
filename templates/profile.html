@@ -11,7 +11,7 @@
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/profile.css') }}">
     
     <!-- Page title -->
-    <title>Profile de {{ data['firstName'] + " " + data['lastName'] }}</title>
+    <title>Profil de {{ data['firstName'] + " " + data['lastName'] }}</title>
 {% endblock header %}
 
 {% block container %}
@@ -25,10 +25,10 @@
                 {% endif %}
                 <div class="title-container">
                     <div class="title">
-                        Profile de {{ data['firstName'] + ' ' + data['lastName']}}
+                        Profil de {{ data['firstName'] + ' ' + data['lastName']}}
                     </div>
                     <div class="catchphrase">
-                        <label for="catchphraseID">Catchphrase : </label>
+                        <label class="catchphrase" for="catchphraseID">Catchphrase : </label>
                         {% if data['catchphrase'] != None %}
                             <input class="form-input" name="catchphrase" id="catchphraseID" type="text" value="{{ data['catchphrase'] }}">
                         {% else %}
@@ -36,10 +36,11 @@
                         {% endif %}
                     </div>
                     <div class="input-picture">
+                        <label class="picInput" for="picInputId">Photo de Profil : </label>
                         <input class="form-input" name="picture" type="file" accept="image/*" placeholder="Choisissez votre photo de profile">
                     </div>
                     <div class="submit-button">
-                        <button class="btn btn-primary">Enregister les modifications</button>
+                        <button class="btn btn-primary bg-danger">Enregister les modifications</button>
                     </div>
                 </div>
             </div>

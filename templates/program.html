@@ -11,7 +11,7 @@
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/program.css') }}">
     
     <!-- Page title -->
-    <title>{{nomCandidat}} {{prenomCandidat}} - Programme</title>
+    <title>{{prenomCandidat}} {{nomCandidat}} - Programme</title>
 {% endblock header %}
 
 {% block container %}
@@ -26,7 +26,7 @@
                 {%if photo%}
                     <img src="/static/images/photos/{{photo}}" class="photo">
                 {%else%}
-                    <img src="/static/images/photos/remi.jpg" class="photo">
+                    <img src="/static/images/defaultProfilePicture.png" class="photo">
                 {%endif%}
             </div>
             <div class="membres">
