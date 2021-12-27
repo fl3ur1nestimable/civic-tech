@@ -30,14 +30,14 @@
             <h2 class="text-center">Comment ça marche ?</h2>
         </div>
         <div>
-            <p id="entete">
+            <h6 id="entete">
                 Avant de naviguer sur le site, il est important de comprendre le fonctionnement de celui-ci.
                 Les candidats des élections procédent à leur inscription sur le site par le biais d'un modérateur.
                 Les informations renseignées sont ensuite affichées sous forme de <strong>cartes</strong> dont vous pouvez voir un exemple
                 en côté de page. Chaque carte correspond donc à un candidat et sa liste électorale. 
                 Les parties suivantes vous permettront d'avoir une compréhension plus étendue sur l'intérêt des cartes.
-            </p>
-            <div class="d-flex justify-content-center align-items-center">
+            </h6>
+            <div class="d-flex justify-content-center align-items-center content">
                 <div class="p-1 col-8">
                     <div class="row align-items-center g-2">
                         <div class="col-6">
@@ -181,6 +181,7 @@
         <div class="border border-4 border-danger">
             <h2 class="text-center">Liste des candidats</h2>
         </div>
+        <br/>
         <div class="text-center">
             {% for edge in edges %}
                 {% if edge|length == 2 %}
@@ -198,6 +199,7 @@
                             </div>
                         </div>
                     </div>
+                    <br/>
                 {% else %}
                     <div class="accordion" id="accordionPanelsStayOpenExample">
                         <div class="accordion-item">
@@ -253,6 +255,7 @@
                             </div>
                         </div>
                     </div>
+                    <br/>
                 {% endif %}
             {% endfor %}
         </div>
