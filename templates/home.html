@@ -1,7 +1,7 @@
 <!--
     Authors : Thibault Cheneviere, Thom Guillot
     Mail : thibault.cheneviere@telecomnancy.eu, thom.guillot@telecomnancy.eu
-    Date : 19/12/2021
+    Date : 24/12/2021
 -->
 
 {% extends 'layout.html' %}
@@ -37,9 +37,9 @@
                 en côté de page. Chaque carte correspond donc à un candidat et sa liste électorale. 
                 Les parties suivantes vous permettront d'avoir une compréhension plus étendue sur l'intérêt des cartes.
             </p>
-            <div class="d-flex align-items-center">
-                <div class="p-2 bd-highlight col-8">
-                    <div class="row">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="p-1 bd-highlight col-8">
+                    <div class="row align-items-center g-2">
                         <div class="col-6">
                             <h3 class="text-center">Les Cartes</h3>
                             <p class="description">
@@ -54,7 +54,7 @@
                                 L'image, le nom et la citation du candidat permettent d'identifier le candidat que vous avez pu voir dans des interviews, etc.
                                 <br/>
                                 Les statistiques du candidat montrent le pourcentage d'intérêt porté au thème en question dans le programme du candidat. Trois 
-                                thèmes sont représentés : l'écologie, l'économie et le social.
+                                thèmes sont représentés : l'environnement, l'économie et le social.
                                 <br/>
                                 La description générale du candidat rapporte son parti politique, les membres importants de sa liste électorale, son travail
                                 et celui des membres de sa liste.
@@ -66,18 +66,22 @@
                         <div class="col-6">
                             <h3 class="text-center">Les Statistiques</h3>
                             <p class="description">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum et nihil animi dicta vero quis, esse corrupti sunt blanditiis tenetur, iste eos dolor odio minima ipsa eligendi incidunt, in at!
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur optio saepe porro magni? Mollitia quas possimus aspernatur quae harum? Incidunt vel recusandae, nihil voluptatum doloribus quidem non minus et odio.
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia officiis numquam mollitia, quam quaerat nesciunt ipsa iste consectetur eum id, aliquid perspiciatis, soluta ducimus voluptas reiciendis. Dolorum similique commodi tempora.
+                                Les thèmes pris en compte ici sont donc l'environnement, l'économie et le social.
+                                <br/>
+                                Par l'analyse du programme du candidat via mots-clés, on détermine le pourcentage de ces mots-clés qui correspondent à chacun des thèmes.
+                                On associe alors ces pourcentages à des barres de progression avec en <span class="text-success">vert</span> l'environnement, en 
+                                <span class="text-primary">bleu</span> le social et en <span class="text-danger">rouge</span> l'économie.
+                                <br/>
+                                Placés ensuite sur le côté des cartes, ils permettent de vous donner un bref résumé des termes abordés par le candidat afin de savoir s'il 
+                                est pertinent pour vous de lire le programme complet du candidat.
                             </p>
-                        </div>
-                    </div>
-                    <br/>
-                    <div class="row">
-                        <div>
+                            <br/>
                             <h3 class="text-center">Évaluer les candidats</h3>
                             <p class="description">
-                                Description
+                                Chaque candidat possède des statistiques attribuées à l'enregistrement de son programme qui sont ensuite modifiables par vous, les visiteurs.
+                                Une fois une statistique modifiée jusqu'à plus ou moins 5%, elle sera figée et ne sera plus du tout affectable.
+                                <br/>
+                                Cette fonctionnalité permet donc de valider par l'opinion publique la véracité de l'ancrage du programme dans les thèmes proposés.
                             </p>
                         </div>
                     </div>
@@ -114,7 +118,7 @@
                                             </div>
                                             <div class="card-body text-start">
                                                 <p class="card-text">
-                                                    With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore, porro? Sapiente perferendis laudantium commodi obcaecati iste autem consequuntur magni quod provident nostrum, voluptatum quis impedit non incidunt quaerat omnis soluta!
+                                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore, porro? Sapiente perferendis laudantium commodi obcaecati iste autem consequuntur magni quod provident nostrum, voluptatum quis impedit non incidunt quaerat omnis soluta!
                                                 </p>
                                             </div>
                                             <div class="card-footer">
@@ -155,7 +159,7 @@
                                             </div>
                                             <div class="card-body text-start">
                                                 <p class="card-text">
-                                                    With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore, porro? Sapiente perferendis laudantium commodi obcaecati iste autem consequuntur magni quod provident nostrum, voluptatum quis impedit non incidunt quaerat omnis soluta!
+                                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore, porro? Sapiente perferendis laudantium commodi obcaecati iste autem consequuntur magni quod provident nostrum, voluptatum quis impedit non incidunt quaerat omnis soluta!
                                                 </p>
                                             </div>
                                             <div class="card-footer">
