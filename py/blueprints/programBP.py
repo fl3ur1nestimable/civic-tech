@@ -16,6 +16,7 @@ from py.database.connectDatabase import connectDatabase
 from py.database.databaseFunctions import checkValue
 from py.core.truncatePrograms import truncatePrograms
 from py.core.programAnalysis import rateDataWords
+from py.core.memberAnalysis import rateList
 
 
 # Definition of the blueprint
@@ -38,14 +39,14 @@ def define_program() -> str:
     cursor.execute(query,arg)
     data=cursor.fetchall()
     if request.method == 'GET':
-
+        rateList(listId)
         if checkValue('Candidate', 'id', session['id']):
             return render_template('referenceProgram.html', userData=userData,data=data)
         
         else:
             flash("Une erreur est survenue. Merci de réessayer.", "Red_flash")
             return render_template('home.html')
-    
+
     elif request.method == 'POST':
         if request.form.get('Publier') == "Publier" :
             programContent = request.form['programmArea']
@@ -58,23 +59,7 @@ def define_program() -> str:
 
             flash("You have succesfully modified your program.", "Green_flash")
             return render_template('referenceProgram.html', userData=userData,data=data)
-        
-        elif request.form.get('Retirer') is int:
-            a=request.form.get('Retirer')
-            print(a)
-            db, cursor = connectDatabase()
             
-            query = '''DELETE FROM Member WHERE id=?;'''
-            arg = (a,)
-
-            
-            cursor.execute(query, arg)
-            db.commit()
-            db.close()
-            flash("You have successfully deleted a member from your list !", "Green_flash")
-            return render_template('referenceProgram.html', userData=userData,data=data)
-            
-
         else:
             lastnameMember = request.form.get('lastnameMember')
             firstnameMember = request.form.get('firstnameMember')
@@ -110,6 +95,9 @@ def define_program() -> str:
                 arg=(listId,)
                 cursor.execute(query,arg)
                 data=cursor.fetchall()
+
+                rateList(listId)
+
                 cursor.close()
                 db.close()
 
@@ -211,3 +199,4 @@ def insertProgram(session_id: int, program: str) -> None:
     db.commit()
     cursor.close()
     db.close()
+
