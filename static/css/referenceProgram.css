@@ -41,7 +41,8 @@ h3 {
     padding: 20px;
     background-color: #1c1e21;
     color: #fff;
-    height: 25rem;
+    min-height: 25rem;
+    overflow: hidden;
 }
 
 .form-input {
@@ -72,7 +73,7 @@ textarea {
 
 .btn {
     width: 30%;
-    margin-left: 35%;
+    margin-left: 35%
 }
 
 .form-group {
@@ -80,7 +81,9 @@ textarea {
 }
 
 .form-group-12 {
-    height: 50%;
+    min-height: 50%;
+    overflow: hidden;
+    margin-bottom: 2%;
 }
 
 
