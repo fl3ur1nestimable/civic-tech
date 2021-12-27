@@ -60,7 +60,7 @@ def rateList(session_id: int)->None:
     L=[]
     for k in range(len(totMembers)):
         L.append(jobAbrev[totMembers[k][1]])
-        jobGrades[jobAbrev[totMembers[k][1]]]=totMembers[k][0]/totalMembers
+        jobGrades[jobAbrev[totMembers[k][1]]]=totMembers[k][0]/totalMembers*100
     
     job0=list(set(jobList)-set(L))
     for i in range(len(job0)):
