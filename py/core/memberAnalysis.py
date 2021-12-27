@@ -75,4 +75,3 @@ def rateList(session_id: int)->None:
     cursor.close()
     db.close()
 
-rateList(1)
