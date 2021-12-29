@@ -10,8 +10,8 @@ from flask import Blueprint, session, request, flash, render_template, redirect
 
 #Import personal modules
 from py.database.connectDatabase import connectDatabase
-from py.database.databaseFunctions import check_user, checkValue
-from py.core.truncatePrograms import truncatePrograms
+from py.database.databaseFunctions import check_user, count_vote, modify_program_grade, not_modified_program_grades
+
 
 #Definition of the blueprint
 progFullBP = Blueprint('progFullBP',__name__)
@@ -86,15 +86,22 @@ def voteRoute(voteTheme: str, addSign: str, listId: int, programRoute: str) -> s
         voteTheme += "Vote"
         user_ip = request.remote_addr
 
+        db, cursor = connectDatabase()
+
         if not check_user(user_ip, listId):
             query = f"""INSERT INTO Users_vote (listId, userIP, {voteTheme}) VALUES (?, ?, {addSign}1);"""
             args = (listId, user_ip)
-            
+
+            voteCount = count_vote(voteTheme, listId)
+
+            if voteCount == 300 and not_modified_program_grades(listId):
+                modify_program_grade(listId, voteTheme, "+")
+            elif voteCount == -300 and not_modified_program_grades(listId):
+                modify_program_grade(listId, voteTheme, "-")
         else:
             query = f"""UPDATE Users_vote SET {voteTheme}=? WHERE listId=? AND userIP=?;"""
             args = (addSign+'1', listId, user_ip)
         
-        db, cursor = connectDatabase()
         cursor.execute(query, args)
         db.commit()
         db.close()

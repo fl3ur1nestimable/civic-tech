@@ -38,6 +38,7 @@ def define_program() -> str:
     arg=(listId,)
     cursor.execute(query,arg)
     data=cursor.fetchall()
+    print(data)
     if request.method == 'GET':
         rateList(listId)
         if checkValue('Candidate', 'id', session['id']):
