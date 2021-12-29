@@ -8,8 +8,10 @@
 from typing import List
 
 
+
 # Import personal modules
 from .connectDatabase import connectDatabase
+from python.core.programAnalysis import rateDataWords
 
 
 
@@ -106,3 +108,61 @@ def get_vote_office_to_json() -> List[dict]:
         my_list.append(my_json)
 
     return my_list
+
+
+def count_vote(category: str, listId: int) -> int:
+    query = f"""SELECT SUM({category}) FROM Users_vote WHERE listId=?;"""
+    arg = (listId, )
+
+    db, cursor = connectDatabase()
+    cursor.execute(query, arg)
+    data = cursor.fetchall()
+    db.close()
+
+    return data[0][0]
+
+
+def not_modified_program_grades(listId: int) -> bool:
+    query = '''SELECT environment, social, economy FROM ProgramGrade WHERE listId=?;'''
+    arg = (listId, )
+
+    db, cursor = connectDatabase()
+    cursor.execute(query, arg)
+    data = cursor.fetchall()[0]
+    
+
+    query = '''SELECT program FROM List WHERE id=?;'''
+    cursor.execute(query, arg)
+    program = cursor.fetchall()[0][0]
+    db.close()
+
+    programGrades = rateDataWords(program)
+
+    data = list(data)
+    
+    return data == programGrades
+
+
+def modify_program_grade(listId: int, voteTheme: str, modifySign= str) -> None:
+    programGradesDict = {
+        "economyVote": "economy",
+        "socialVote": "social",
+        "ecologyVote": "environment"
+    }
+
+    query = f"""SELECT {programGradesDict[voteTheme]} FROM ProgramGrade WHERE listId=?;"""
+    arg = (listId, )
+
+    modifyQuery = f"""UPDATE ProgramGrade SET {programGradesDict[voteTheme]}=? WHERE listId=?;"""
+
+    db, cursor = connectDatabase()
+    cursor.execute(query, arg)
+    data = cursor.fetchall()[0][0]
+
+    modifyNumber = round(data + int(f"{modifySign}5"), 2)
+
+    args = (modifyNumber, listId)
+
+    cursor.execute(modifyQuery, args)
+    db.commit()
+    db.close()

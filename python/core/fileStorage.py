@@ -10,7 +10,7 @@ import random
 import os
 
 # Import personal modules
-from py.database.connectDatabase import connectDatabase
+from python.database.connectDatabase import connectDatabase
 
 
 def file_extension(fileName: str) -> str:

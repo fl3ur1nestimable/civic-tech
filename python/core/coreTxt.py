@@ -9,7 +9,7 @@
 
 
 # Import personal modules
-from py.core.coreJson import get_path
+from python.core.coreJson import get_path
 
 
 def open_txt(filename: str) -> str:

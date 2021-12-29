@@ -5,7 +5,7 @@
 """
 
 # Import neded packages
-from flask import Flask
+from flask import Flask, redirect, flash
 
 
 # Import personal modules
@@ -21,28 +21,34 @@ def create_app() -> Flask:
 
     # Import blueprints
     ## Import main blueprint
-    from py.blueprints.mainBP import mainBP
+    from python.blueprints.mainBP import mainBP
     app.register_blueprint(mainBP)
 
     ## Import login blueprint
-    from py.blueprints.loginBP import loginBP
+    from python.blueprints.loginBP import loginBP
     app.register_blueprint(loginBP)
 
     ## Import programm blueprint
-    from py.blueprints.programBP import programBP
+    from python.blueprints.programBP import programBP
     app.register_blueprint(programBP)
 
     ## Import one program blueprint
-    from py.blueprints.progFullBP import progFullBP
+    from python.blueprints.progFullBP import progFullBP
     app.register_blueprint(progFullBP)
 
     ## Import redirects blueprint
-    from py.blueprints.redirectsBP import redirectsBP
+    from python.blueprints.redirectsBP import redirectsBP
     app.register_blueprint(redirectsBP)
 
     ## Import delete blueprint
-    from py.blueprints.deleteBP import deleteBP
+    from python.blueprints.deleteBP import deleteBP
     app.register_blueprint(deleteBP)
+
+    # Error 404 handler
+    @app.errorhandler(404)
+    def pageNotFound(error):
+        flash("HTTP 404 Not Found", "Red_flash")
+        return redirect('/')
 
     return app
 

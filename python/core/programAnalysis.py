@@ -11,8 +11,8 @@ import unidecode
 
 
 # Import personal modules
-from py.core.coreJson import read_json
-from py.core.coreTxt import open_txt
+from python.core.coreJson import read_json
+from python.core.coreTxt import open_txt
 
 
 
@@ -25,6 +25,7 @@ def countWordFrequency(program: str) -> Tuple[dict, List[str]]:
         
         Returns :
             - dataWords (dict) : the sorted frequency of words in the text
+            - wordsList (list) : the list of all words in the program
     """
     # Change program's word to lowered words
     program = program.lower()
@@ -100,7 +101,8 @@ def rateDataWords(program: str) -> List[float]:
         topicIndex += 1
     
     totalGrade = topicGrades[0] + topicGrades[1] + topicGrades[2]
-    topicGrades[0], topicGrades[1], topicGrades[2] = round((topicGrades[0] / totalGrade) * 100, 2), round((topicGrades[1] / totalGrade) * 100, 2), round((topicGrades[2] / totalGrade) * 100, 2)
+    if totalGrade != 0:
+        topicGrades[0], topicGrades[1], topicGrades[2] = round((topicGrades[0] / totalGrade) * 100, 2), round((topicGrades[1] / totalGrade) * 100, 2), round((topicGrades[2] / totalGrade) * 100, 2)
 
     return topicGrades
 
@@ -118,7 +120,7 @@ def lastOccurencyIndex(reversedList: List[str], word: str) -> int:
     """
 
     listLen = len(reversedList)
-    return (listLen - reversedList.index(word) + 1)
+    return (listLen - reversedList.index(word) - 1)
 
 
 # Starts the script with : python3 -m py.core.programAnalysis / python3 -i -m py.core.programAnalysis

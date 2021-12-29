@@ -9,9 +9,9 @@ from flask import Blueprint
 from flask.templating import render_template
 
 #Import personal modules
-from py.database.connectDatabase import connectDatabase
-from py.core.sortbyPoliticalEdge import sortbyPoliticalEdge
-from py.core.coreLocalisation import get_map_src
+from python.database.connectDatabase import connectDatabase
+from python.core.sortbyPoliticalEdge import sortbyPoliticalEdge
+from python.core.coreLocalisation import get_map_src
 
 # Definition of the blueprint
 mainBP = Blueprint('mainBP', __name__)

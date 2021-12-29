@@ -12,8 +12,7 @@ from pathlib import Path
 
 def get_path(i: int) -> str:
     """
-        Function which send back the path of the first parents
-        from the current forlder.
+        Function which send back the path of the i parent from the current forlder.
 
         Parameters :
             - i (integer) : index of the parent's path

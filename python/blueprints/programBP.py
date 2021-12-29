@@ -12,11 +12,11 @@ from flask.templating import render_template
 
 
 # Import personal modules
-from py.database.connectDatabase import connectDatabase
-from py.database.databaseFunctions import checkValue
-from py.core.truncatePrograms import truncatePrograms
-from py.core.programAnalysis import rateDataWords
-from py.core.memberAnalysis import rateList
+from python.database.connectDatabase import connectDatabase
+from python.database.databaseFunctions import checkValue
+from python.core.truncatePrograms import truncatePrograms
+from python.core.programAnalysis import rateDataWords
+from python.core.memberAnalysis import rateList
 
 
 # Definition of the blueprint
@@ -38,6 +38,7 @@ def define_program() -> str:
     arg=(listId,)
     cursor.execute(query,arg)
     data=cursor.fetchall()
+    print(data)
     if request.method == 'GET':
         rateList(listId)
         if checkValue('Candidate', 'id', session['id']):

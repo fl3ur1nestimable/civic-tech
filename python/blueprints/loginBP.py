@@ -13,8 +13,8 @@ import os
 
 
 # Import personnal modules
-from py.database.connectDatabase import connectDatabase
-from py.core.fileStorage import save_candidate_picture
+from python.database.connectDatabase import connectDatabase
+from python.core.fileStorage import save_candidate_picture
 
 
 # Definition of the blueprint
