@@ -65,10 +65,16 @@ def addUser(firstName: str, lastName: str, email: str) -> None:
         programQuery = '''INSERT INTO ProgramGrade (listId, environment, social, economy) VALUES (?, ?, ?, ?);'''
         programArgs = (listId, 0, 0, 0)
 
+        memberQuery = '''INSERT INTO jobMemberGrade (listId, agriexp, artcomchef, cadreprofintsup, profintermed, employe, ouvrier, retraite, sansactprof) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'''
+        memberArgs = (listId, 0, 0, 0, 0, 0, 0, 0, 0)
+
+
         try:
             cursor.execute(addQuery, addArgs)
             cursor.execute(listQuery, listArg)
             cursor.execute(programQuery, programArgs)
+            cursor.execute(memberQuery,memberArgs)
 
             db.commit()
         except IntegrityError:
