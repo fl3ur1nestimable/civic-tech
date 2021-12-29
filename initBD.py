@@ -5,9 +5,9 @@
 """
 
 # Import personal modules
-from py.database.connectDatabase import connectDatabase
-from py.core.coreJson import write_json
-from py.database.alterDatabase import addUser, addVote_office
+from python.database.connectDatabase import connectDatabase
+from python.core.coreJson import write_json
+from python.database.alterDatabase import addUser, addVote_office
 
 
 if __name__ == "__main__":

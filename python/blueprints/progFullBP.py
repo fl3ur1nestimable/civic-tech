@@ -9,8 +9,8 @@ from flask import Blueprint, session, request, flash, render_template, redirect
 
 
 #Import personal modules
-from py.database.connectDatabase import connectDatabase
-from py.database.databaseFunctions import check_user, count_vote, modify_program_grade, not_modified_program_grades
+from python.database.connectDatabase import connectDatabase
+from python.database.databaseFunctions import check_user, count_vote, modify_program_grade, not_modified_program_grades
 
 
 #Definition of the blueprint

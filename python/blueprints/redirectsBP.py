@@ -9,7 +9,7 @@ from flask import Blueprint, redirect
 
 
 # Import personnal modules
-from py.database.connectDatabase import connectDatabase
+from python.database.connectDatabase import connectDatabase
 
 
 # Definition of the blueprint

@@ -11,7 +11,7 @@ from typing import List
 
 # Import personal modules
 from .connectDatabase import connectDatabase
-from py.core.programAnalysis import rateDataWords
+from python.core.programAnalysis import rateDataWords
 
 
 
