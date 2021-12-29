@@ -46,6 +46,21 @@ body {
     margin-bottom: 2%;
 }
 
+.card-text {
+    text-align: justify;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+}
+
+.content {
+    margin: 0.5%;
+    background-color: rgb(255, 240, 240);
+    border-radius: 1.5% / 17%;
+}
+
 /* ids (#) */
 
 #entete {
