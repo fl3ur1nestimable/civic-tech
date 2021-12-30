@@ -1,0 +1,32 @@
+<!--
+    Author : Thibault Cheneviere
+    Mail : thibault.cheneviere@telecomnancy.eu
+    Date : 14/12/2021
+-->
+
+{% extends 'layout.html' %}
+
+{% block header %}
+    <title>Carte</title>
+
+
+    <!-- Mapbox Script dependancies -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+
+    <!-- CSS dependancies -->
+    <link rel="stylesheet" href="/static/css/map.css">
+{% endblock header %}
+
+{% block container %}
+    <div id="start" style="display: none;">{{ data['start']['lat'] }}, {{ data['start']['lon'] }}</div>
+    <div id="end" style="display: none;">{{ data['end']['lat'] }}, {{ data['end']['lon'] }}</div>
+   
+    <div class="custom-card">    
+        <div id='map'></div>
+        <div id="instructions"></div>
+    </div>
+    
+    <!-- Script dependancies -->
+    <script src="/static/js/map.js"></script>
+{% endblock container %}

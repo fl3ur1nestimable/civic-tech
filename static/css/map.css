@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    position: absolute;
+    margin-top: 15vh;
+    margin-left: 10vw;
+    width: 80vw;
+    height: 70vh;
+}
+
+#instructions {
+    position: absolute;
+    float: left;
+    margin-left: 10vw;
+    width: 25vw;
+    height: 70vh;
+    margin-top: 15vh;
+    background-color: #fff;
+    overflow-y: scroll;
+    font-family: sans-serif;
+}
+
+#start {
+    display: none;
+}
+
+.footer-custom {
+    display: none;
+}

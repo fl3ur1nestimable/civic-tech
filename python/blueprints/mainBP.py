@@ -38,9 +38,17 @@ def home() -> str:
 
 @mainBP.route('/card')
 def card():
-    data = {'lat': 6.185197596754502, 'lon': 48.69196558832937, 'name': 'Le Chat Noir'}
-    data_src = {
-        "src": get_map_src(data['lat'], data['lon']),
-        "name": data['name']
+    data = {
+        "start": {
+            "lat": 6.168813538550233,
+            "lon": 48.685992319231566,
+            "name": "Boulangerie de la commanderie"
+        },
+        "end": {
+            "lat": 6.171844361204282,
+            "lon": 48.68661195429168,
+            "name": "Le chat noir"
+        }
     }
-    return render_template('card.html', data=data_src)
+    
+    return render_template('map.html', data=data)
