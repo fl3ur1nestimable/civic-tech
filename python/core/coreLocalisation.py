@@ -11,6 +11,10 @@ from math import cos, asin, sqrt, pi
 from urllib.parse import urlencode
 
 
+# Import personnal modules
+from python.database.connectDatabase import connectDatabase
+
+
 
 def get_location(ipAdress: str) -> dict:
     """
@@ -29,7 +33,12 @@ def get_location(ipAdress: str) -> dict:
     data = response.content.decode('utf8')
     my_json = json.loads(data)
 
-    return my_json
+    returnJson = {
+        'lat': my_json['latitude'],
+        'lon': my_json['longitude']
+    }
+
+    return returnJson
 
 
 def distance(lat1: int, lon1: int, lat2: int, lon2: int) -> int:
@@ -89,7 +98,7 @@ def best_duration(lat1: int, lon1: int, lat2: int, lon2: int) -> int:
         "overview": "simplified",
     }
 
-    coordinate_url = f"{lat1}%2C{lon1}%3B{lat2}%2C{lon2}?"
+    coordinate_url = f"{lon1}%2C{lat1}%3B{lon2}%2C{lat2}?"
     params_url = urlencode(params)
 
     complete_url = main_url + coordinate_url + params_url
@@ -108,7 +117,7 @@ def best_duration(lat1: int, lon1: int, lat2: int, lon2: int) -> int:
     return best_duration
 
 
-def closest_time(data: dict, v: dict) -> dict:
+def shortest_time(data: dict, v: dict) -> dict:
     """
         Function to calculate the closest point in travel time from a dictionnary to a given point
 
@@ -119,24 +128,47 @@ def closest_time(data: dict, v: dict) -> dict:
         Returns :
             - closestPoint (dict) -> the closest point found
     """
-    return min(data, key=lambda p: best_duration(v['lat'],v['lon'],p['lat'],p['lon']))
-
-
-def get_map_src(lat: int, lon: int) -> str:
-
-    apiKey = "pk.eyJ1IjoidGhpYmF1bHQtMjMiLCJhIjoiY2t4bG0xNHV1MWRobTJxcGVseWx1dGhoNSJ9.s7HzfDQrQPWrY8d5A4oivA"
-    main_url = "https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/"
-
-    params = {
-        "access_token": apiKey
+    
+    shortestTime = 0
+    closestPoint = {
+        "name": "",
+        "lat": 0,
+        "lon": 0
     }
 
-    params_url = urlencode(params)
-    coordinate_url = f"{lat},{lon},15/500x300@2x?"
+    for items in data:
+        tempTime = best_duration(data[items]['lat'], data[items]['lon'], v['lat'], v['lon'])
+        
+        if shortestTime == 0:
+            shortestTime = tempTime
+            closestPoint['name'] = items
+            closestPoint['lat'] = data[items]['lat']
+            closestPoint['lon'] = data[items]['lon']
+        
+        elif tempTime < shortestTime:
+            shortestTime = tempTime
+            closestPoint['name'] = items
+            closestPoint['lat'] = data[items]['lat']
+            closestPoint['lon'] = data[items]['lon']
+    
+    return closestPoint
 
-    complete_url = main_url + coordinate_url + params_url
 
-    response = requests.get(complete_url)
-    print(response)
+def find_closest_vote_office(coordinate: dict) -> dict:
+    dataDict = {}
 
-    return complete_url
+    query = '''SELECT * FROM Vote_office'''
+
+    db, cursor = connectDatabase()
+    cursor.execute(query)
+    data = cursor.fetchall()
+    db.close()
+
+    for voteOffice in data:
+        dataDict[voteOffice[3]] = {}
+        dataDict[voteOffice[3]]['lat'] = voteOffice[1]
+        dataDict[voteOffice[3]]['lon'] = voteOffice[2]
+
+    closestVoteOffice = shortest_time(dataDict, coordinate)
+
+    return closestVoteOffice

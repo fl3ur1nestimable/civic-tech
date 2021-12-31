@@ -44,6 +44,10 @@ def create_app() -> Flask:
     from python.blueprints.deleteBP import deleteBP
     app.register_blueprint(deleteBP)
 
+    ## Import map blueprint
+    from python.blueprints.mapBP import mapBP
+    app.register_blueprint(mapBP)
+
     # Error 404 handler
     @app.errorhandler(404)
     def pageNotFound(error):

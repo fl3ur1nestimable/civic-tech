@@ -72,63 +72,63 @@ async function getRoute(start, end) {
     }
     instructions.innerHTML = `<p><strong>Temps de trajet: ${Math.floor(
     data.duration / 60
-    )} min 🚴 </strong></p><ol>${tripInstructions}</ol>`;
+    )} min 🚶 </strong></p><ol>${tripInstructions}</ol>`;
 }
   
 map.on('load', () => {
-// make an initial directions request that
-// starts and ends at the same location
+    // Create the route between start and end point
     getRoute(startCoordinate, endCoordinate);
-  
+
+
     // Add starting point to the map
     map.addLayer({
-      id: 'startPoint',
-      type: 'circle',
-      source: {
-        type: 'geojson',
-        data: {
-          type: 'FeatureCollection',
-          features: [
-            {
-              type: 'Feature',
-              properties: {},
-              geometry: {
-                type: 'Point',
-                coordinates: startCoordinate
-              }
-            }
-          ]
-        }
-      },
-      paint: {
-        'circle-radius': 5,
-        'circle-color': '#3887be'
-      }
-    });
-
-    // Add ending point to the map
-    map.addLayer({
-        id: 'endPoint',
-        type: 'circle',
-        source: {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: [
+        'id': 'startPoint',
+        'type': 'circle',
+        'source': {
+          'type': 'geojson',
+          'data': {
+            'type': 'FeatureCollection',
+            'features': [
               {
-                type: 'Feature',
-                properties: {},
-                geometry: {
-                  type: 'Point',
-                  coordinates: endCoordinate
+                'type': 'Feature',
+                'properties': {},
+                'geometry': {
+                  'type': 'Point',
+                  'coordinates': startCoordinate
                 }
               }
             ]
           }
         },
-        paint: {
+        'paint': {
           'circle-radius': 5,
-          'circle-color': '#3887be'
+          'circle-color': '#1D3FBF'
         }
-    });
+      });
+
+    // Add ending point to the map
+    map.addLayer({
+        'id': 'endPoint',
+        'type': 'circle',
+        'source': {
+          'type': 'geojson',
+          'data': {
+            'type': 'FeatureCollection',
+            'features': [
+              {
+                'type': 'Feature',
+                'properties': {},
+                'geometry': {
+                  'type': 'Point',
+                  'coordinates': endCoordinate
+                }
+              }
+            ]
+          }
+        },
+        'paint': {
+          'circle-radius': 5,
+          'circle-color': '#C73643'
+        }
+      });
 });

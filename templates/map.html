@@ -19,14 +19,14 @@
 {% endblock header %}
 
 {% block container %}
-    <div id="start" style="display: none;">{{ data['start']['lat'] }}, {{ data['start']['lon'] }}</div>
-    <div id="end" style="display: none;">{{ data['end']['lat'] }}, {{ data['end']['lon'] }}</div>
+    <div id="start" style="display: none;">{{ data['start']['lon'] }}, {{ data['start']['lat'] }}</div>
+    <div id="end" style="display: none;">{{ data['end']['lon'] }}, {{ data['end']['lat'] }}</div>
    
     <div class="custom-card">    
         <div id='map'></div>
         <div id="instructions"></div>
     </div>
-    
+
     <!-- Script dependancies -->
     <script src="/static/js/map.js"></script>
 {% endblock container %}

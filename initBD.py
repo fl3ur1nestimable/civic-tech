@@ -96,6 +96,6 @@ if __name__ == "__main__":
     addUser('Thibault', 'Cheneviere', 'thibault.cheneviere@telecomnancy.eu')
     addUser('Elion', 'Hashani', 'elion.hashani@telecomnancy.eu')
 
-    addVote_office(6.183229945195551, 48.69386731328774, "Place Stanislas")
-    addVote_office(6.176367075585757, 48.690021148491276, "Fnac Nancy")
-    addVote_office(6.171844361204282, 48.68661195429168, "Le Chat Noir")
+    addVote_office(48.693853844446295, 6.183311422401857, "Place Stanislas")
+    addVote_office(48.690021148491276, 6.176367075585757, "Fnac Nancy")
+    addVote_office(48.68621583435226, 6.171759792647458, "Le Chat Noir")
