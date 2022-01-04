@@ -18,6 +18,7 @@ mainBP = Blueprint('mainBP', __name__)
 
 # Definition of the main route
 @mainBP.route('/')
+@mainBP.route('/home')
 def home() -> str:
     db, cursor = connectDatabase()
 
