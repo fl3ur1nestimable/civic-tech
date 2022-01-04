@@ -6,6 +6,9 @@ const startCoordinate = startString.split(",").map(Number);
 const endString = document.getElementById('end').innerHTML;
 const endCoordinate = endString.split(",").map(Number);
 
+const travelType = document.getElementById('travelType').innerHTML;
+const emoji = document.getElementById('emoji').innerHTML;
+
 
 const map = new mapboxgl.Map({
   container: 'map',
@@ -23,7 +26,7 @@ async function getRoute(start, end) {
     // an arbitrary start will always be the same
     // only the end or destination will change
     const query = await fetch(
-      `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}&language=fr`,
+      `https://api.mapbox.com/directions/v5/mapbox/${travelType}/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}&language=fr`,
       { method: 'GET' }
     );
     const json = await query.json();
@@ -72,7 +75,7 @@ async function getRoute(start, end) {
     }
     instructions.innerHTML = `<p><strong>Temps de trajet: ${Math.floor(
     data.duration / 60
-    )} min 🚶 </strong></p><ol>${tripInstructions}</ol>`;
+    )} min ${emoji} </strong></p><ol>${tripInstructions}</ol>`;
 }
   
 map.on('load', () => {

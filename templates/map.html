@@ -21,7 +21,44 @@
 {% block container %}
     <div id="start" style="display: none;">{{ data['start']['lon'] }}, {{ data['start']['lat'] }}</div>
     <div id="end" style="display: none;">{{ data['end']['lon'] }}, {{ data['end']['lat'] }}</div>
-   
+    <div id="travelType" style="display: none;">{{ travelType }}</div>
+    <div id="emoji" style="display: none;">{{ emoji }}</div>
+
+    {% if travelType == 'walking' %}
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+            <a href="/map/cycling" class="btn btn-outline-primary">Vélo</a>
+        
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+            <a href="/map/driving" class="btn btn-outline-primary">Voiture</a>
+        
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked>
+            <a href="/map/walking" class="btn btn-outline-primary">Marche</a>
+        </div>
+    {% elif travelType == 'cycling' %}
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+            <a href="/map/cycling" class="btn btn-outline-primary">Vélo</a>
+        
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+            <a href="/map/driving" class="btn btn-outline-primary">Voiture</a>
+        
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+            <a href="/map/walking" class="btn btn-outline-primary">Marche</a>
+        </div>
+    {% else %}
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+            <a href="/map/cycling" class="btn btn-outline-primary">Vélo</a>
+        
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked>
+            <a href="/map/driving" class="btn btn-outline-primary">Voiture</a>
+        
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+            <a href="/map/walking" class="btn btn-outline-primary">Marche</a>
+        </div>
+    {% endif %}
+
     <div class="custom-card">    
         <div id='map'></div>
         <div id="instructions"></div>

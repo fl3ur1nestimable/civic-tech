@@ -9,7 +9,7 @@ from typing import List
 import sqlite3
 
 jobAbrev={'Agriculteur exploitant' : "agriexp" ,
-    'Artisan, Commerçant, Chef d''entreprise' : "artcomchef",
+    "Artisan, Commerçant, Chef d'entreprise" : "artcomchef",
     'Cadre, Profession intellectuelle supérieure' : "cadreprofintsup",
     'Profession intermédiaire' : "profintermed",
     'Employé' : "employe",
