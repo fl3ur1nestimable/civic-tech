@@ -58,6 +58,8 @@ def test_countWordFrequency():
     list2 = ["lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "nulla", "ullamcorper", "facilisis", "orci", "ac", "dictum", "felis", "imperdiet", "at", "quisque", "eget", "est", "quisque", "eget", "est"]
     result2 = (dict2, list2)
 
+    assert type(countWordFrequency(test1)) is tuple
+
     assert countWordFrequency(test1) == result1
     assert countWordFrequency(test2) == result2
 
@@ -70,6 +72,8 @@ def test_removeAllOccurence():
     test2 = ["test", "te", "ben", "louis", "thib", "", "1", "jean", "", "ben", "jean", "", "thib"]
     pattern2 = ["", "jean"]
     result2 = ["test", "te", "ben", "louis", "thib", "1", "ben", "thib"]
+
+    assert type(removeAllOccurence(test1, pattern1)) is list
 
     assert removeAllOccurence(test1, pattern1) == result1
     assert removeAllOccurence(test2, pattern2) == result2
@@ -84,6 +88,8 @@ def test_lastOccurencyIndex():
     word2 = "ben"
     result2 = 7
 
+    assert type(lastOccurencyIndex(test1, word1)) is int
+
     assert lastOccurencyIndex(test1, word1) == result1
     assert lastOccurencyIndex(test2, word2) == result2
 
@@ -94,6 +100,8 @@ def test_rateDataWords():
 
     test2 = "Une entreprise commerciale et sociale."
     result2 = [0, round(4/14*100, 2), round(10/14*100, 2)]
+
+    assert type(rateDataWords(test1)) is list
 
     assert rateDataWords(test1) == result1
     assert rateDataWords(test2) == result2

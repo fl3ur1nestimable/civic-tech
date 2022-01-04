@@ -37,8 +37,8 @@ def define_program() -> str:
     query='''SELECT * FROM Member WHERE listId=?;'''
     arg=(listId,)
     cursor.execute(query,arg)
-    data=cursor.fetchall()
-    print(data)
+    data = cursor.fetchall()
+    
     if request.method == 'GET':
         rateList(listId)
         if checkValue('Candidate', 'id', session['id']):
@@ -59,7 +59,7 @@ def define_program() -> str:
             db.close()
 
             flash("You have succesfully modified your program.", "Green_flash")
-            return render_template('referenceProgram.html', userData=userData,data=data)
+            return render_template('referenceProgram.html', userData=userData, data=data)
             
         else:
             lastnameMember = request.form.get('lastnameMember')

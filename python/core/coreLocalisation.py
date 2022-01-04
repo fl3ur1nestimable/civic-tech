@@ -41,38 +41,6 @@ def get_location(ipAdress: str) -> dict:
     return returnJson
 
 
-def distance(lat1: int, lon1: int, lat2: int, lon2: int) -> int:
-    """
-        Functions to calculate the distance between two points of the globe using the Haversine formula
-
-        Arguments:
-            - lat1 (integer) : first latitude coordinate
-            - lon1 (integer) : first longitude coordinate
-            - lat2 (integer) : second latitude coordinate
-            - lon2 (integer) : second longitude coordinate
-        
-        Returns :
-            - d (integer) : distance between two given points
-    """
-    p = pi/180
-    hav = 0.5 - cos((lat2-lat1)*p)/2 + cos(lat1*p)*cos(lat2*p) * (1-cos((lon2-lon1)*p)) / 2
-    return 12742 * asin(sqrt(hav))
-
-
-def closest(data: dict, v: dict) -> dict:
-    """
-        Function to calculate the closest point in distance from a dictionnary to a given point
-
-        Arguments :
-            - data (dict) : a dictionnary of coordinate
-            - v (dict) : the coordinate to find the closest point
-        
-        Returns :
-            - closestPoint (dict) -> the closest point found
-    """
-    return min(data, key=lambda p: distance(v['lat'],v['lon'],p['lat'],p['lon']))
-
-
 def best_duration(lat1: int, lon1: int, lat2: int, lon2: int) -> int:
     """
         Function to calculate the best travel time between two points
