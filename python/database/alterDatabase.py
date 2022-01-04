@@ -11,14 +11,14 @@ from sqlite3 import IntegrityError
 
 # Import personal modules
 from ..database.connectDatabase import connectDatabase
-from ..core.generateConectionLogs import generatePassword, generateIdentifier
+from ..core.generateConnectionLogs import generatePassword, generateIdentifier
 from ..core.coreJson import read_json, write_json
 from ..database.databaseFunctions import getLastListId
 
 
 
 # Starts the script with : python3 -i -m py.database.alterDatabase
-def addUser(firstName: str, lastName: str, email: str) -> None:
+def addUser(firstName: str, lastName: str, email: str, job: str, politicalEdge: str) -> None:
     """
         Function to add a User in the users table of the database.db file. It also saves the loggins (identifier 
         and password in a json file : savedLoggin.json)
@@ -27,6 +27,8 @@ def addUser(firstName: str, lastName: str, email: str) -> None:
             - firstName (string) : first name of the candidate
             - lastName (string) : last name of the candidate
             - email (string) : email of the user
+            - job (string) : job of the user
+            - politicalEdge (string) : political edge of the list of the user
 
         Returns :
             None
@@ -39,6 +41,15 @@ def addUser(firstName: str, lastName: str, email: str) -> None:
             - password (string) : 20-characters password of the user
      
     """
+    # Preconditions
+    assert type(firstName) is str
+    assert type(lastName) is str
+    assert type(email) is str
+    assert type(job) is str
+    assert type(politicalEdge) is str
+    assert job in ["agriexp" ,"artcomchef" ,"cadreprofintsup" ,"profintermed" ,"employe" ,"ouvrier" ,"retraite" ,"sansactprof"]
+    assert politicalEdge in ["Extreme-Gauche", "Gauche", "Centre", "Droite", "Extreme-Droite"]
+
     db, cursor = connectDatabase()
 
     researchQuery = '''SELECT * FROM Candidate WHERE firstName = ? and lastName = ?;'''
@@ -49,8 +60,8 @@ def addUser(firstName: str, lastName: str, email: str) -> None:
         identifier = generateIdentifier(6)
         password = generatePassword(20)
 
-        listQuery = '''INSERT INTO List (program) values (?);'''
-        listArg = ("", )
+        listQuery = '''INSERT INTO List (program, politicalEdge) values (?, ?);'''
+        listArg = ("", politicalEdge)
 
         listId = getLastListId()[0]
 
@@ -59,8 +70,8 @@ def addUser(firstName: str, lastName: str, email: str) -> None:
         else:
             listId += 1
 
-        addQuery = '''INSERT INTO Candidate (firstName, lastName, email, listId, identifier, password) VALUES (?, ?, ?, ?, ?, ?);'''
-        addArgs = (firstName, lastName, email, listId, identifier, generate_password_hash(password, "sha256"))
+        addQuery = '''INSERT INTO Candidate (firstName, lastName, email, job, listId, identifier, password) VALUES (?, ?, ?, ?, ?, ?, ?);'''
+        addArgs = (firstName, lastName, email, job, listId, identifier, generate_password_hash(password, "sha256"))
 
         programQuery = '''INSERT INTO ProgramGrade (listId, environment, social, economy) VALUES (?, ?, ?, ?);'''
         programArgs = (listId, 0, 0, 0)

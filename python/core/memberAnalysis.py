@@ -5,7 +5,6 @@
 """
 
 # Import neded packages
-from typing import List
 import sqlite3
 
 jobAbrev={'Agriculteur exploitant' : "agriexp" ,

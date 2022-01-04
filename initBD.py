@@ -93,8 +93,8 @@ if __name__ == "__main__":
     db.commit()
     db.close()
 
-    addUser('Thibault', 'Cheneviere', 'thibault.cheneviere@telecomnancy.eu')
-    addUser('Elion', 'Hashani', 'elion.hashani@telecomnancy.eu')
+    addUser('Thibault', 'Cheneviere', 'thibault.cheneviere@telecomnancy.eu', 'cadreprofintsup', 'Droite')
+    addUser('Elion', 'Hashani', 'elion.hashani@telecomnancy.eu', 'artcomchef', 'Extreme-Gauche')
 
     addVote_office(48.693853844446295, 6.183311422401857, "Place Stanislas")
     addVote_office(48.690021148491276, 6.176367075585757, "Fnac Nancy")
