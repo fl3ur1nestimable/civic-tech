@@ -11,14 +11,14 @@
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/program.css') }}">
     
     <!-- Page title -->
-    <title>{{ data['lastName'] }} {{ data['firstName'] }} - Programme</title>
+    <title>{{ data['firstName'] }} {{ data['lastName'] }} - Programme</title>
 {% endblock header %}
 
 {% block container %}
 
     <div class="leprog">
         <div class="card-header">
-            <h5 class="titre">{{ data['lastName'] }} {{ data['firstName'] }}</h5>
+            <h5 class="titre">{{ data['firstName'] }} {{ data['lastName'] }}</h5>
             <i class="citation">{{ data['catchphrase'] }}</i>
         </div>
         <div class="PhotoETmembres">
@@ -26,7 +26,7 @@
                 {% if data['picture'] != 'None' %}
                     <img src="/static/images/candidatePictures/{{ data['picture'] }}" class="photo">
                 {% else %}
-                    <img src="/static/images/photos/remi.jpg" class="photo">
+                    <img src="/static/images/defaultProfilePicture.png" class="photo">
                 {% endif %}
             </div>
             <div class="membres">

@@ -228,11 +228,17 @@
                                                             <br/>
                                                             <small class="text-muted">{{ jobAbrev[candidate.7] }}</small>
                                                         </h5>
-                                                        <i>"{{ candidate.4 }}"</i>
+                                                        {% if candidate.4 != None %}
+                                                            <i>"{{ candidate.4 }}"</i>
+                                                        {% endif %}
                                                     </div>
                                                     <div class="row g-0 align-items-center" id="cardtop">
                                                         <div class="col-md-4">
-                                                            <img src="/static/images/candidatePictures/{{ candidate.3 }}" class="card-img-top">
+                                                            {% if candidate.3 == None %}
+                                                                <img src="/static/images/defaultProfilePicture.png" class="card-img-top">
+                                                            {% else %}
+                                                                <img src="/static/images/candidatePictures/{{ candidate.3 }}" class="card-img-top">
+                                                            {% endif %}
                                                         </div>
                                                         <div class="col-md-8">
                                                             <h5 class="card-title">Statistiques</h5>
