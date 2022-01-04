@@ -15,11 +15,21 @@
 {% endblock header %}
 
 {% block container %}
-    <div class='home-banner bg-danger bg-gradient'>
+    <div class="home-banner bg-danger bg-gradient">
         <h2>Bienvenue</h2>
     </div>
-    <div>
-        <h1 class="text-center">Hémicycle</h1>
+    <div class="image text-center" id="home-img">
+        <div class="row align-items-center">
+            <div class="col">
+                <img src="/static/images/zd.jpg" class="img-fluid">
+            </div>
+            <div class="col">
+                <img src="/static/images/home-img.jpg">
+            </div>
+            <div class="col">
+                <img src="/static/images/zd.jpg" class="img-fluid">
+            </div>
+        </div>
     </div>
     <div class="buttons">
         <button type="button" id="helpbut" class="btn btn-outline-danger btn-lg" disabled aria-disabled="true">Comment ça marche ?</button>
