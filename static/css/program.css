@@ -104,3 +104,35 @@
     opacity: 1;
     pointer-events: none;
 }
+
+.bg-blue {
+    background-color: blue;
+}
+
+.bg-red {
+    background-color: red;
+}
+
+.bg-purple {
+    background-color: purple;
+}
+
+.bg-pink {
+    background-color: pink;
+}
+
+.bg-grey {
+    background-color: grey;
+}
+
+.bg-cyan {
+    background-color: powderblue;
+}
+
+.bg-green {
+    background-color: green;
+}
+
+.bg-orange {
+    background-color: orange;
+}
