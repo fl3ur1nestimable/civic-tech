@@ -66,7 +66,7 @@ def rateList(session_id: int)->None:
         jobGrades[job0[i]]=0
 
     updateQuery='''UPDATE jobMemberGrade SET agriexp=?,artcomchef=?,cadreprofintsup=?,profintermed=?,employe=?,ouvrier=?,retraite=?,sansactprof=? WHERE listId=?'''
-    updateArg=(jobGrades["agriexp"],jobGrades["artcomchef"],jobGrades["cadreprofintsup"],jobGrades["profintermed"],jobGrades["employe"],jobGrades["ouvrier"],jobGrades["retraite"],jobGrades["sansactprof"],listId)
+    updateArg=(round(jobGrades["agriexp"],2),round(jobGrades["artcomchef"],2),round(jobGrades["cadreprofintsup"],2),round(jobGrades["profintermed"],2),round(jobGrades["employe"],2),round(jobGrades["ouvrier"],2),round(jobGrades["retraite"],2),round(jobGrades["sansactprof"],2),listId)
 
     cursor.execute(updateQuery,updateArg)
 
