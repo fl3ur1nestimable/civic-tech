@@ -1,7 +1,7 @@
 <!--
-    Author : Thibault Cheneviere
-    Mail : thibault.cheneviere@telecomnancy.eu
-    Date : 14/12/2021
+    Authors : Thibault Cheneviere, Thom Guillot
+    Mail : thibault.cheneviere@telecomnancy.eu, thom.guillot@telecomnancy.eu
+    Date : 5/01/2022
 -->
 
 {% extends 'layout.html' %}
@@ -26,48 +26,48 @@
 
     <div>
         <div class="border border-4 border-danger">
-            <h2 class="text-center">Carte des bureaux de vote en fonction du moyen de tranport</h2>
+            <h2 class="text-center">Chemin vers le bureau de vote le plus proche de chez vous</h2>
         </div>
-    </div>
-
-    {% if travelType == 'walking' %}
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-            <a href="/map/cycling" class="btn btn-outline-danger">Vélo</a>
-        
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-            <a href="/map/driving" class="btn btn-outline-danger">Voiture</a>
-        
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked>
-            <a href="/map/walking" class="btn btn-outline-danger">Marche</a>
+        <div class="text-center" id="transport">
+            {% if travelType == 'walking' %}
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+                    <a href="/map/cycling" class="btn btn-outline-danger btn-lg">Vélo</a>
+                
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                    <a href="/map/driving" class="btn btn-outline-danger btn-lg">Voiture</a>
+                
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked>
+                    <a href="/map/walking" class="btn btn-outline-danger btn-lg">Marche</a>
+                </div>
+            {% elif travelType == 'cycling' %}
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                    <a href="/map/cycling" class="btn btn-outline-danger btn-lg">Vélo</a>
+                
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                    <a href="/map/driving" class="btn btn-outline-danger btn-lg">Voiture</a>
+                
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                    <a href="/map/walking" class="btn btn-outline-danger btn-lg">Marche</a>
+                </div>
+            {% else %}
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+                    <a href="/map/cycling" class="btn btn-outline-danger btn-lg">Vélo</a>
+                
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked>
+                    <a href="/map/driving" class="btn btn-outline-danger btn-lg">Voiture</a>
+                
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                    <a href="/map/walking" class="btn btn-outline-danger btn-lg">Marche</a>
+                </div>
+            {% endif %}
         </div>
-    {% elif travelType == 'cycling' %}
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-            <a href="/map/cycling" class="btn btn-outline-danger">Vélo</a>
-        
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-            <a href="/map/driving" class="btn btn-outline-danger">Voiture</a>
-        
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-            <a href="/map/walking" class="btn btn-outline-danger">Marche</a>
+        <div class="custom-card">    
+            <div id='map'></div>
+            <div id="instructions"></div>
         </div>
-    {% else %}
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-            <a href="/map/cycling" class="btn btn-outline-danger">Vélo</a>
-        
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked>
-            <a href="/map/driving" class="btn btn-outline-danger">Voiture</a>
-        
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-            <a href="/map/walking" class="btn btn-outline-danger">Marche</a>
-        </div>
-    {% endif %}
-
-    <div class="custom-card">    
-        <div id='map'></div>
-        <div id="instructions"></div>
     </div>
 
     <!-- Script dependancies -->
