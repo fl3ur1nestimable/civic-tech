@@ -1,15 +1,15 @@
 /*
-    Author : Thibault Cheneviere
-    Mail : thibault.cheneviere@telecomnancy.eu
-    Date : 28/09/2021
+    Author : Thibault Cheneviere, Thom Guillot
+    Mail : thibault.cheneviere@telecomnancy.eu, thom.guillot@telecomnancy.eu
+    Date : 5/01/2022
 */
+
 /* Start CSS for login.html */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 
 
 body {
-    background-color: #535fe6;
     font-family: "Poppins", sans-serif;
     font-weight: 300
 }
@@ -21,8 +21,8 @@ body {
 .card {
     border: none;
     padding: 20px;
-    background-color: #1c1e21;
-    color: #fff;
+    background-color: rgb(255, 220, 220);
+    border-radius: 1.5% / 17%;
 }
 
 .circle {
@@ -31,7 +31,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #5855e7;
+    background-color: #e75555;
     color: #fff;
     font-size: 10px;
     border-radius: 50%
@@ -52,20 +52,15 @@ body {
 
 .form-control {
     height: 50px;
-    background-color: #1c1e21;
+    background-color: rgb(255, 240, 240);
     text-indent: 24px;
     font-size: 15px
 }
 
-.form-control {
-    color: #fff
-}
-
 .form-control:focus {
-    background-color: #25272a;
+    background-color: rgb(255, 245, 245);
     box-shadow: none;
-    color: #fff;
-    border-color: #4f63e7
+    border-color: #e74f4f
 }
 
 .form-check-label {
@@ -84,6 +79,15 @@ body {
 
 .height {
     height: 67vh;
+}
+
+.border * {
+    margin: 1%;
+}
+
+.border {
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 /* Start CSS for login.html */

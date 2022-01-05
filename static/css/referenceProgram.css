@@ -1,48 +1,34 @@
 /*
-    Author : Thibault Cheneviere
-    Mail : thibault.cheneviere@telecomnancy.eu
-    Date : 27/11/2021
+    Authors : Thibault Cheneviere, Elion Hashani, Thom Guillot
+    Mail : thibault.cheneviere@telecomnancy.eu, elion.hashani@telecomnancy.eu, thom.guillot@telecomnancy.eu
+    Date : 5/01/2022
 */
 /* Start CSS for referenceProgram.html */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 
 body {
-    background-color: #535fe6;
     font-family: "Poppins", sans-serif;
     font-weight: 300
-}
-
-
-h2 {
-    color: #fff;
-    text-align: center;
-    margin-top: 3%;
-    margin-bottom: 40px;
-}
-
-h3 {
-    color: #fff;
-    text-align: center;
-    margin-top: 1%;
-    margin-bottom: 50px;
 }
 
 .card {
     border: none;
     padding: 20px;
-    background-color: #1c1e21;
-    color: #fff;
+    background-color: rgb(255, 220, 220);
     height: 37rem;
+    margin: 0.5%;
+    border-radius: 1.5% / 17%;
 }
 
 .card-1 {
     border: none;
     padding: 20px;
-    background-color: #1c1e21;
-    color: #fff;
+    background-color: rgb(255, 220, 220);
     min-height: 25rem;
     overflow: hidden;
+    margin: 0.5%;
+    border-radius: 1.5% / 17%;
 }
 
 .form-input {
@@ -58,22 +44,15 @@ textarea {
 
 .form-control {
     height: 100%;
-    background-color: #1c1e21;
+    background-color: rgb(255, 240, 240);
     text-indent: 24px;
     font-size: 15px;
-    color: #fff
 }
 
 .form-control:focus {
-    background-color: #25272a;
+    background-color: rgb(255, 245, 245);
     box-shadow: none;
-    color: #fff;
-    border-color: #4f63e7
-}
-
-.btn {
-    width: 30%;
-    margin-left: 35%
+    border-color: #e74f4f
 }
 
 .form-group {
@@ -86,11 +65,6 @@ textarea {
     margin-bottom: 2%;
 }
 
-
-footer > .container {
-    display: none;
-}
-
 .btn-delete {
     background-color: red;
     border: none;
@@ -98,6 +72,21 @@ footer > .container {
 
 .btn-delete:hover {
     background-color: rgb(200, 0, 0);
+}
+
+.home-banner h2 {
+    color: #fff;
+    text-align: center;
+    font-size: 7rem;
+}
+
+.border * {
+    margin: 1%;
+}
+
+.border {
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 /* End CSS for referenceProgram.html */

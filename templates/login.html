@@ -1,7 +1,7 @@
 <!--
-    Author : Thibault Cheneviere
-    Mail : thibault.cheneviere@telecomnancy.eu
-    Date : 28/09/2021
+    Authors : Thibault Cheneviere, Thom Guillot
+    Mail : thibault.cheneviere@telecomnancy.eu, thom.guillot@telecomnancy.eu
+    Date : 5/01/2022
 -->
 
 {% extends 'layout.html' %}
@@ -18,7 +18,7 @@
     <form action="{{ url_for('loginBP.login') }}" method="POST">
         <div class="container mt-5 mb-5 height">
             <div class="row d-flex align-items-center justify-content-center">
-                <div class="col-md-6">
+                <div class="col-6">
                     <div class="card px-5 py-5">
                         <div class="title">
                             <h1>Connexion</h1>
@@ -32,10 +32,23 @@
                             <input type="password" class="form-control" placeholder="Mot de passe" name="password" id="pwdInput" required>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="remember" checked>
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="remember">
                             <label class="form-check-label" for="flexCheckChecked">Se souvenir de moi</label>
                         </div>
-                        <button class="btn btn-primary mt-4 signup">Connexion</button>
+                        <button class="btn btn-danger mt-4 signup">Connexion</button>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="border border-4 border-danger">
+                        <h2 class="text-center">Informations de connexion</h2>
+                    </div>
+                    <div class="text-center">
+                        <h6>
+                            Seuls les candidats peuvent se connecter grâce à des <strong>identifiants</strong> qu'ils reçoivent après avoir contacté 
+                            le site au préalable. Inutile donc d'essayer de se connecter si vous n'êtes pas un candidat.
+                            <br/>
+                            Nous vous invitons donc à regagner la page d'accueil.
+                        </h6>
                     </div>
                 </div>
             </div>

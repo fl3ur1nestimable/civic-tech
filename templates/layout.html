@@ -48,7 +48,10 @@
                         <a href="/map/walking" class="nav-item nav-link">Carte des bureaux de vote</a>
                     </div>
                     <div class="navbar-nav ms-auto">
-                        <a href="/r/profile/{{ session['id'] }}" class="nav-item nav-link">Profil</a>
+                        <a href="/r/profile/{{ session['id'] }}" class="nav-item nav-link">
+                            <img src="/static/images/defaultProfilePicture.png" width="24" height="24" class="d-inline-block align-text-top">
+                            Profil
+                        </a>
                         <a href="/logout" class="nav-item nav-link">Déconnexion</a>
                     </div>
                 </div>
