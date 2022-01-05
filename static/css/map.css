@@ -5,17 +5,17 @@ body {
 
 #map {
     position: absolute;
-    margin-left: 10vw;
-    width: 80vw;
-    height: 70vh;
+    margin-left: 15vw;
+    width: 70vw;
+    height: 60vh;
 }
 
 #instructions {
     position: absolute;
     float: left;
-    margin-left: 10vw;
+    margin-left: 15vw;
     width: 25vw;
-    height: 70vh;
+    height: 60vh;
     background-color: rgb(250,240,240);
     overflow-y: scroll;
     font-family: sans-serif;
