@@ -61,8 +61,24 @@ body {
     border-radius: 1.5% / 17%;
 }
 
-.image {
-    display: block;
+.center-img {
+    width: 100%;
+    height: auto;
+}
+
+.surround {
+    width: 45%;
+    height: auto;
+}
+
+.surround.border-end-0 {
+    border-top-left-radius: 5%;
+    border-bottom-left-radius: 5%;
+}
+
+.surround.border-start-0 {
+    border-top-right-radius: 5%;
+    border-bottom-right-radius: 5%;
 }
 
 /* ids (#) */
