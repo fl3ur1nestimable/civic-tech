@@ -10,7 +10,7 @@ from flask import Blueprint, session, request, flash, render_template, redirect
 
 #Import personal modules
 from python.database.connectDatabase import connectDatabase
-from python.database.databaseFunctions import check_user, count_vote, modify_program_grade, not_modified_program_grades
+from python.database.databaseFunctions import check_user, count_vote, modify_program_grade, not_modified_program_grades, getJobMemberGrade
 
 
 #Definition of the blueprint
@@ -71,7 +71,9 @@ def program(firstName: str, lastName: str, id: int) -> str:
             "social": str(data4[2])
         }
 
-        return render_template('program.html', data=candidateDict, voteData=voteDict)
+        jobMemberGrade = getJobMemberGrade(listId)
+
+        return render_template('program.html', data=candidateDict, voteData=voteDict, jobMemberGrade=jobMemberGrade)
 
 
 @progFullBP.route('/vote/<string:voteTheme>/<string:addSign>/<int:listId>/<string:programRoute>', methods=['GET', 'POST'])

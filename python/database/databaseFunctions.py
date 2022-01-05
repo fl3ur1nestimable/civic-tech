@@ -166,3 +166,20 @@ def modify_program_grade(listId: int, voteTheme: str, modifySign= str) -> None:
     cursor.execute(modifyQuery, args)
     db.commit()
     db.close()
+
+
+def getJobMemberGrade(listId: int) -> list:
+    query = '''SELECT * FROM jobMemberGrade WHERE listId=?;'''
+    arg = (listId, )
+
+    db, cursor = connectDatabase()
+    cursor.execute(query, arg)
+    data = cursor.fetchall()[0]
+
+    jobList = ['Agriculteur exploitant', "Artisan, Commerçant, Chef d'entreprise", 'Cadre, Profession intellectuelle supérieure', 'Profession intermédiaire', 'Employé', 'Ouvrier', 'Retraité', 'Sans activité professionnelle']
+    returnList = []
+
+    for i in range(len(jobList)):
+        returnList.append((data[i+2], jobList[i]))
+    
+    return returnList
