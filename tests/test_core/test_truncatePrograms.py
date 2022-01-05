@@ -5,7 +5,7 @@
 """
 
 # Import needed modules
-import pathlib, sys, os
+import pathlib, sys, os, pytest
 
 # Add parent dir to the path
 cwd = pathlib.Path(__file__).parents[2]
@@ -33,3 +33,13 @@ def test_truncatePrograms():
     result3 = " "
 
     assert truncatePrograms(program3) == result3
+
+    program4 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus at leo suscipit elementum. Duis quis sem efficitur, ultrices ex eget, cursus tellus. Donec ut enim massa. Nunc ullamcorper dignissim magna, quis lobortis justo mollis ut. Suspendisse quis orci at."
+    ## len(program4) = 40 ##
+    result4 = program4 + " "
+
+    assert truncatePrograms(program4) == result4
+
+    with pytest.raises(AttributeError): ## AttributeError: 'list' object has no attribute 'split' ##
+        program5 = ["oui","non"]
+        truncatePrograms(program5)
