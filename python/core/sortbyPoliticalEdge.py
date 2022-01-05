@@ -33,7 +33,7 @@ def sortbyPoliticalEdge(L: list) -> List[list]:
             C.append(L[k])
         elif L[k][13] == "Droite":
             D.append(L[k])
-        else:
+        elif L[k][13] == "Extreme-Droite":
             ED.append(L[k])
     
     Edges = [EG] + [G] + [C] + [D] + [ED]

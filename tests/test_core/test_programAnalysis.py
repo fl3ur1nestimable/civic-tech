@@ -17,8 +17,6 @@ sys.path.append(parentdir)
 # Import personal modules
 from python.core.programAnalysis import countWordFrequency, lastOccurencyIndex, rateDataWords, removeAllOccurence
 
-
-
 def test_countWordFrequency():
     test1 = "Lorem ipsum dolor sit amet."
 
@@ -113,9 +111,6 @@ def test_removeAllOccurence():
         result5 = ["oui"]
 
         assert removeAllOccurence(test5,pattern5) == result5
-
-
-
 
 
 def test_lastOccurencyIndex():

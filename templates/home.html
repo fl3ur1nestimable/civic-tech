@@ -15,11 +15,21 @@
 {% endblock header %}
 
 {% block container %}
-    <div class='home-banner bg-danger bg-gradient'>
+    <div class="home-banner bg-danger bg-gradient">
         <h2>Bienvenue</h2>
     </div>
-    <div>
-        <h1 class="text-center">Hémicycle</h1>
+    <div class="image text-center" id="home-img">
+        <div class="row align-items-center">
+            <div class="col">
+                <img src="/static/images/zd.jpg" class="img-fluid">
+            </div>
+            <div class="col">
+                <img src="/static/images/home-img.jpg">
+            </div>
+            <div class="col">
+                <img src="/static/images/zd.jpg" class="img-fluid">
+            </div>
+        </div>
     </div>
     <div class="buttons">
         <button type="button" id="helpbut" class="btn btn-outline-danger btn-lg" disabled aria-disabled="true">Comment ça marche ?</button>
@@ -51,7 +61,7 @@
                                 </ul>
                             </p>
                             <p class="description">
-                                La présentation du candidat décrit son nom, sa photo, son parti politique, les membres importants de sa liste électorale et son travail.
+                                La présentation du candidat décrit son nom, sa photo, et son travail.
                                 <br/>
                                 Les statistiques du candidat montrent le pourcentage d'intérêt porté au thème en question dans le programme du candidat. Trois 
                                 thèmes sont représentés : l'environnement, l'économie et le social.
@@ -94,7 +104,11 @@
                                     <div class="col">
                                         <div class="card h-100 border-danger">
                                             <div class="card-header text-center">
-                                                <h5 class="card-title">Nom du Candidat</h5>
+                                                <h5 class="card-title">
+                                                    Nom du Candidat
+                                                    <br/>
+                                                    <small class="text-muted">Travail du candidat</small>
+                                                </h5>
                                                 <i>"Citation"</i>
                                             </div>
                                             <div class="row g-0 align-items-center" id="cardtop">
@@ -123,7 +137,7 @@
                                             </div>
                                             <div class="card-footer">
                                                 <div class="d-grid">
-                                                    <a href="#" class="btn btn-outline-danger">Page du candidat</a>
+                                                    <a href="#!" class="btn btn-outline-danger">Page du candidat</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,7 +149,11 @@
                                     <div class="col">
                                         <div class="card h-100 border-danger">
                                             <div class="card-header text-center">
-                                                <h5 class="card-title">Nom du Candidat</h5>
+                                                <h5 class="card-title">
+                                                    Nom du Candidat
+                                                    <br/>
+                                                    <small class="text-muted">Travail du candidat</small>
+                                                </h5>
                                                 <i>"Citation"</i>
                                             </div>
                                             <div class="row g-0 align-items-center" id="cardtop">
@@ -164,7 +182,7 @@
                                             </div>
                                             <div class="card-footer">
                                                 <div class="d-grid">
-                                                    <a href="#" class="btn btn-outline-danger">Page du candidat</a>
+                                                    <a href="#!" class="btn btn-outline-danger">Page du candidat</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -215,12 +233,22 @@
                                             <div class="col">
                                                 <div class="card h-100 border-danger">
                                                     <div class="card-header text-center">
-                                                        <h5 class="card-title">{{ candidate.1 }} {{ candidate.2 }}</h5>
-                                                        <i>"{{ candidate.4 }}"</i>
+                                                        <h5 class="card-title">
+                                                            {{ candidate.1 }} {{ candidate.2 }}
+                                                            <br/>
+                                                            <small class="text-muted">{{ jobAbrev[candidate.7] }}</small>
+                                                        </h5>
+                                                        {% if candidate.4 != None %}
+                                                            <i>"{{ candidate.4 }}"</i>
+                                                        {% endif %}
                                                     </div>
                                                     <div class="row g-0 align-items-center" id="cardtop">
                                                         <div class="col-md-4">
-                                                            <img src="/static/images/candidatePictures/{{ candidate.3 }}" class="card-img-top">
+                                                            {% if candidate.3 == None %}
+                                                                <img src="/static/images/defaultProfilePicture.png" class="card-img-top">
+                                                            {% else %}
+                                                                <img src="/static/images/candidatePictures/{{ candidate.3 }}" class="card-img-top">
+                                                            {% endif %}
                                                         </div>
                                                         <div class="col-md-8">
                                                             <h5 class="card-title">Statistiques</h5>

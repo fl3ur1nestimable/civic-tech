@@ -33,4 +33,16 @@ def home() -> str:
     db.close()
 
     edges = sortbyPoliticalEdge(data)
-    return render_template('home.html', edges=edges)
+    
+    jobAbrev={
+        "agriexp": 'Agriculteur exploitant',
+        "artcomchef": "Artisan, Commerçant, Chef d'entreprise",
+        "cadreprofintsup": 'Cadre, Profession intellectuelle supérieure',
+        "profintermed": 'Profession intermédiaire',
+        "employe": 'Employé',
+        "ouvrier": 'Ouvrier',
+        "retraite": 'Retraité',
+        "sansactprof": 'Sans activité professionnelle'
+    }
+
+    return render_template('home.html', edges=edges, jobAbrev=jobAbrev)

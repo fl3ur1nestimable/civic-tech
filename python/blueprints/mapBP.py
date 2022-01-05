@@ -17,8 +17,8 @@ mapBP = Blueprint('mapBP', __name__)
 
 
 # Definition of the map route
-@mapBP.route('/map')
-def card():
+@mapBP.route('/map/<string:travelType>')
+def card(travelType= str) -> str:
     if request.method == 'GET':
         userIp = request.remote_addr
 
@@ -38,5 +38,11 @@ def card():
                 "name": "Le chat noir"
             }
         }
+
+        emojiData = {
+            "walking": "🚶",
+            "cycling": "🚲",
+            "driving": "🚗"
+        }
         
-        return render_template('map.html', data=data)
+        return render_template('map.html', data=data, travelType=travelType, emoji=emojiData[travelType])
