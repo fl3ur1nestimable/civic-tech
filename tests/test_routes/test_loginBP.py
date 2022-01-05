@@ -6,10 +6,8 @@
 
 # Import needed modules
 import pathlib, sys
-from types import MethodType
 from flask import session
 
-from werkzeug.wrappers import response
 
 # Add parent dir to the path
 cwd = pathlib.Path(__file__).parents[2]
@@ -74,11 +72,6 @@ def test_profileRoute():
             <div class="profile-container">"""
     getTest3 = """<div class="border border-4 border-danger">
                         <h2 class="text-center">Profil de Thibault Cheneviere</h2>
-                    </div>"""
-    
-    postTest = """<div class="catchphrase">
-                        <label class="catchphrase" for="catchphraseID">Citation : </label>
-                            <input class="form-input" name="catchphrase" id="catchphraseID" type="text" value="Salut à tous !">
                     </div>"""
 
     getTest = [getTest1, getTest2, getTest3]
