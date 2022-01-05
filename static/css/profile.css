@@ -21,12 +21,6 @@ body {
     margin-left: 15vw;
 }
 
-.title {
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-    font-size: 25px;
-}
-
 .profile-container > img {
     width: 27vw;
     height: 27vw;
@@ -56,5 +50,8 @@ body {
     align-self: baseline;
 }
 
+.border * {
+    margin: 1%;
+}
 
 /* Start CSS for profile.html */
