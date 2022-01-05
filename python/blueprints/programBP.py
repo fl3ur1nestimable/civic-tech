@@ -109,25 +109,6 @@ def define_program() -> str:
 
 
 
-@programBP.route('/programs')
-def programsList() -> str:
-    query = '''SELECT c.firstName, c.lastName, l.program ,c.id FROM List AS l JOIN Candidate AS c ON l.id = c.listId'''
-    db, cursor = connectDatabase()
-
-    cursor.execute(query)
-    data = cursor.fetchall()
-    db.close()
-
-
-
-    for i in range(len(data)):
-        temp = [data[i][0], data[i][1], truncatePrograms(data[i][2]), str(data[i][3])]
-        data[i] = temp
- 
-    return render_template('programsList.html', programsData=data)
-
-
-
 # Definition of usefull functions for this BluePrint only
 
 def programBPUserData(session_id: str) -> dict:
