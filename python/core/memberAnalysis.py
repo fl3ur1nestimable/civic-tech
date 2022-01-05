@@ -36,7 +36,7 @@ jobList=["agriexp"
         ,"retraite"
         ,"sansactprof"]
 
-def rateList(session_id: int)->None:
+def rateList(session_id: int) -> None:
     requestQuery='''SELECT listId FROM Candidate WHERE id=?;'''
     arg = (session_id, )
                 
