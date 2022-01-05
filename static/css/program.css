@@ -70,6 +70,7 @@
 }
 
 .progress{
+    margin-left: 20px;
     height: 50px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -106,7 +107,7 @@
 }
 
 .bg-blue {
-    background-color: blue;
+    background-color: #ADD8E6;
 }
 
 .bg-red {
@@ -122,15 +123,15 @@
 }
 
 .bg-grey {
-    background-color: grey;
+    background-color: #DEB887;
 }
 
 .bg-cyan {
-    background-color: powderblue;
+    background-color: #F08080;
 }
 
 .bg-green {
-    background-color: green;
+    background-color: #5F9EA0;
 }
 
 .bg-orange {
