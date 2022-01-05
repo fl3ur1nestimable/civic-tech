@@ -22,10 +22,10 @@ from app import create_app
 def test_mainRoute():
     flask_app = create_app()
 
-    test1 = b"Bienvenue"
-    test2 = b"Les Cartes"
-    test3 = b"Les Statistiques"
-    test4 = b"Nom du Candidat"
+    test1 = "Bienvenue"
+    test2 = "Les Cartes"
+    test3 = "Les Statistiques"
+    test4 = "Nom du Candidat"
 
     tests = [test1, test2, test3, test4]
 
@@ -33,8 +33,7 @@ def test_mainRoute():
     with flask_app.test_client() as test_client:
         response = test_client.get('/home')
 
-
         assert response.status_code == 200
 
         for test in tests:
-            assert test in response.data
+            assert test in response.data.decode('utf-8')

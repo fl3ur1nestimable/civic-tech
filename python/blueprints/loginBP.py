@@ -9,7 +9,6 @@ from flask import Blueprint, request, session, redirect
 from flask.helpers import flash
 from flask.templating import render_template
 from werkzeug.security import check_password_hash
-import os
 
 
 # Import personnal modules
