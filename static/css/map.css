@@ -5,7 +5,6 @@ body {
 
 #map {
     position: absolute;
-    margin-top: 15vh;
     margin-left: 10vw;
     width: 80vw;
     height: 70vh;
@@ -17,8 +16,7 @@ body {
     margin-left: 10vw;
     width: 25vw;
     height: 70vh;
-    margin-top: 15vh;
-    background-color: #fff;
+    background-color: rgb(250,240,240);
     overflow-y: scroll;
     font-family: sans-serif;
 }
@@ -28,5 +26,9 @@ body {
 }
 
 .border * {
+    margin: 1%;
+}
+
+#transport {
     margin: 1%;
 }
