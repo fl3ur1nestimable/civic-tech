@@ -38,6 +38,7 @@ def read_json(filename: str) -> dict:
     """
 
     cwd = get_path(2)
+    
     with open(cwd+'/data/json/'+filename+'.json', 'r') as file:
         data = json.load(file)
     return data
@@ -57,5 +58,5 @@ def write_json(data: dict, filename: str) -> None:
 
     cwd = get_path(2)
 
-    with open(cwd+'/json/'+filename+'.json', 'w') as file:
+    with open(cwd+'/data/json/'+filename+'.json', 'w') as file:
         json.dump(data, file, indent=4)

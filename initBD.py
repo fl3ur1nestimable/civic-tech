@@ -25,6 +25,7 @@ if __name__ == "__main__":
     DROP TABLE IF EXISTS Member;
     DROP TABLE IF EXISTS Users_vote;
     DROP TABLE IF EXISTS Vote_office;
+    DROP TABLE IF EXISTS jobMemberGrade;
 
     CREATE TABLE Candidate
     (
@@ -72,7 +73,7 @@ if __name__ == "__main__":
     CREATE TABLE Users_vote
     (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        listId INTEGER NOT NULL,
+        listId INTEGER,
         userIP TEXT NOT NULL,
         economyVote INTEGER DEFAULT 0,
         ecologyVote INTEGER DEFAULT 0,
@@ -83,9 +84,24 @@ if __name__ == "__main__":
     CREATE TABLE Vote_office
     (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        lat INTEGER NOT NULL,
-        lon INTEGER NOT NULL,
+        lat FLOAT NOT NULL,
+        lon FLOAT NOT NULL,
         name TEXT NOT NULL
+    );
+
+    CREATE TABLE jobMemberGrade
+    (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        listId INTEGER NOT NULL,
+        agriexp INTEGER DEFAULT 0,
+        artcomchef INTEGER DEFAULT 0,
+        cadreprofintsup INTEGER DEFAULT 0,
+        profintermed INTEGER DEFAULT 0,
+        employe INTEGER DEFAULT 0,
+        ouvrier INTEGER DEFAULT 0,
+        retraite INTEGER DEFAULT 0,
+        sansactprof INTEGER DEFAULT 0,
+        FOREIGN KEY (listId) REFERENCES List(id)
     )
     '''
 
