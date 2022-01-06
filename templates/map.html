@@ -19,6 +19,7 @@
 {% endblock header %}
 
 {% block container %}
+  <div class="mapp">
     <div id="start" style="display: none;">{{ data['start']['lon'] }}, {{ data['start']['lat'] }}</div>
     <div id="end" style="display: none;">{{ data['end']['lon'] }}, {{ data['end']['lat'] }}</div>
     <div id="travelType" style="display: none;">{{ travelType }}</div>
@@ -69,9 +70,10 @@
             <div id="instructions"></div>
         </div>
     </div>
-    <div class="">
+  </div>
+    <div class="adresse">
       <form action="/map/{{ travelType }}" method="POST">
-        <div class="card-1 px-5 py-1">
+        <div class="card-1">
           <div class="form-input">
             <i class="fa fa-user"></i> 
             <input type="text" class="form-control" placeholder="Adresse complete" name="adress" id="adressInput" required>
