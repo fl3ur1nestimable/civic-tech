@@ -1,16 +1,30 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{geometry}
+\usepackage{tabularx}
 \usepackage{setspace}
+\usepackage{blindtext}
+\usepackage{pdfpages}
+\usepackage{appendix}
+\usepackage[none]{hyphenat}
+\usepackage{xcolor}
 
 \title{Rapport PPII : Démocratie Participative}
-\author{Elion Hashani }
+\author{Elion Hashani & Thibault Chenevière & Antoine Yebouet & Thom Guillot}
 \date{December 2021}
 
 \geometry{legalpaper, margin=1.5in}
+\renewcommand*\contentsname{Table des matières}
 
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Démocratie Participative}
+\lhead{PPII}
+\rfoot{Page \thepage}
 
 \begin{document}
 
@@ -19,34 +33,43 @@
 \tableofcontents
 
 
-
+\newpage
 %Debut chapitre 1 : Introduction au sujet
-\chapter{Introduction au sujet}
-\input{chapitre_1}
+\section{Introduction au sujet}
+\input{chap1_intro}
 %Fin chapitre 1
 
+\newpage
 %Debut chapitre 2 : Etat de l'art
-\chapter{Etat de l'art}
-\input{chapitre_2}
+\section{État de l'art}
+\input{chap2_EdA}
 %Fin chapitre 2
 
-
+\newpage
 %Debut chapitre 3 : Conception et implementation de l'application
-\chapter{Conception et implementation de l'application}
-\input{chapitre_3}
+\section{Conception et implémentation de l'application}
+\input{chap3_C-IdApp}
 %Fin chapitre 3
 
-
+\newpage
 %Debut chapitre 4 : Tests et performances
-\chapter{Tests et performances}
-\input{chapitre_4}
+\section{Tests et performances}
+\input{chap4_Test-Perf}
 %Fin chapitre 4
 
-
+\newpage
 %Debut chapitre 5 : Gestion de projet
-\chapter{Gestion de projet}
-\input{chapitre_5}
+\section{Gestion de projet}
+\input{chap5_GdP}
 %Fin chapitre 5
 
+\newpage
+%Debut chapitre 6 : Bilan du projet
+\section{Bilan du projet}
+\input{chap6_Bilan}
+%Fin chapitre 6
 
+\appendix
+
+\includepdf[pages=-, pagecommand=\textbf{\huge Annexe}]{Charte Projet.pdf}
 \end{document}
