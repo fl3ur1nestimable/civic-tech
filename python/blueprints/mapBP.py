@@ -5,24 +5,25 @@
 """
 
 # Import neded packages
-from flask import Blueprint, request
+from flask import Blueprint, request, session, redirect
 from flask.templating import render_template
 
 #Import personal modules
-from python.database.connectDatabase import connectDatabase
-from python.core.coreLocalisation import find_closest_vote_office, get_location
+from python.core.coreLocalisation import find_closest_vote_office, get_localisation_by_adress, get_location
 
 # Definition of the blueprint
 mapBP = Blueprint('mapBP', __name__)
 
 
 # Definition of the map route
-@mapBP.route('/map/<string:travelType>')
-def card(travelType= str) -> str:
+@mapBP.route('/map/<string:travelType>', methods=['GET', 'POST'])
+def card(travelType: str) -> str:
     if request.method == 'GET':
-        userIp = request.remote_addr
-
-        userCoordinate = get_location(userIp)
+        try:
+            userCoordinate = session['userCoordinate']
+        except KeyError:
+            userIp = request.remote_addr
+            userCoordinate = get_location(userIp)
 
         closestVoteOffice = find_closest_vote_office(userCoordinate)
 
@@ -46,3 +47,13 @@ def card(travelType= str) -> str:
         }
         
         return render_template('map.html', data=data, travelType=travelType, emoji=emojiData[travelType])
+
+    elif request.method == 'POST':
+        adress = request.form['adress']
+        postalCode = request.form['postalCode']
+
+        session['userCoordinate'] = get_localisation_by_adress(adress, postalCode)
+
+        currentRoute = request.path
+
+        return redirect(currentRoute)

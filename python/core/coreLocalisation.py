@@ -140,3 +140,29 @@ def find_closest_vote_office(coordinate: dict) -> dict:
     closestVoteOffice = shortest_time(dataDict, coordinate)
 
     return closestVoteOffice
+
+
+def get_localisation_by_adress(adress: str, postalCode: int) -> dict:
+    main_url = "https://api-adresse.data.gouv.fr/search/?"
+
+    adress = adress.split(" ")
+    qParam = f"{adress[0]}"
+
+    for elem in adress[1:]:
+        qParam += "+" + elem
+
+    params_url = f"q={qParam}&postcode={postalCode}&limit=1"
+
+    complete_url =  main_url + params_url
+
+    response = requests.get(complete_url)
+
+    data = response.content.decode('utf8')
+    my_json = json.loads(data)
+
+    returnDict = {
+        "lat": my_json['features'][0]['geometry']['coordinates'][1],
+        "lon": my_json['features'][0]['geometry']['coordinates'][0]
+    }
+
+    return returnDict
