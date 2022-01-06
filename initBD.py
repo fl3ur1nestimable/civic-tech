@@ -7,7 +7,7 @@
 # Import personal modules
 from python.database.connectDatabase import connectDatabase
 from python.core.coreJson import write_json
-from python.database.alterDatabase import addUser, addVote, addVote_office
+from python.database.alterDatabase import addMinusVote, addUser, addVote, addVote_office
 
 
 if __name__ == "__main__":
@@ -124,3 +124,4 @@ if __name__ == "__main__":
     addVote_office(48.679933462057534, 6.16284048347884, "Gymnase Chopin")
 
     addVote(1, "107.61.67.119")
+    addMinusVote(2, "20.96.249.185")
