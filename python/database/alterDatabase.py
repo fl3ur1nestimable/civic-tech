@@ -132,3 +132,24 @@ def addVote_office(lat: int, lon: int, name: str) -> None:
     cursor.execute(query, args)
     db.commit()
     db.close()
+
+
+def addVote(listId: int, userIp: str) -> None:
+    """
+        Function to add 299 votes in every topics of a list. 
+
+        Parameters :
+            - listId (integer) : the id of the list to alter vote
+
+        Returns :
+            None
+     
+    """
+
+    query = '''INSERT INTO Users_vote (listId, userIP, economyVote, ecologyVote, socialVote) VALUES (?, ?, 299, 299, 299);'''
+    args = (listId, userIp)
+
+    db, cursor = connectDatabase()
+    cursor.execute(query, args)
+    db.commit()
+    db.close()

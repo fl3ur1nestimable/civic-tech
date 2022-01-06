@@ -7,7 +7,7 @@
 # Import personal modules
 from python.database.connectDatabase import connectDatabase
 from python.core.coreJson import write_json
-from python.database.alterDatabase import addUser, addVote_office
+from python.database.alterDatabase import addUser, addVote, addVote_office
 
 
 if __name__ == "__main__":
@@ -112,6 +112,15 @@ if __name__ == "__main__":
     addUser('Thibault', 'Cheneviere', 'thibault.cheneviere@telecomnancy.eu', 'cadreprofintsup', 'Droite')
     addUser('Elion', 'Hashani', 'elion.hashani@telecomnancy.eu', 'artcomchef', 'Extreme-Gauche')
 
-    addVote_office(48.693853844446295, 6.183311422401857, "Place Stanislas")
-    addVote_office(48.690021148491276, 6.176367075585757, "Fnac Nancy")
-    addVote_office(48.68621583435226, 6.171759792647458, "Le Chat Noir")
+    addVote_office(48.69309516830485, 6.183608649043081, "Hotel de ville")
+    addVote_office(48.691447643686786, 6.178480537706399, "Lycée Henri-Poincaré")
+    addVote_office(48.7004406746501, 6.185580801981988, "Gymnase Maurice Jacquet")
+    addVote_office(48.700734872665045, 6.171515037772073, "Ecole maternelle Alfred Mézières")
+    addVote_office(48.70053125310194, 6.176203051861037, "Gymnase Charles V")
+    addVote_office(48.69005103062423, 6.196344188137936, "Gymnase Martiny")
+    addVote_office(48.68885275314536, 6.160189933906852, "Centre Santifontaine")
+    addVote_office(48.69280778716376, 6.148765676274994, "Ecole maternelle Buthegnemont")
+    addVote_office(48.70178677444582, 6.153946434086223, "Gymnase Buffon")
+    addVote_office(48.679933462057534, 6.16284048347884, "Gymnase Chopin")
+
+    addVote(1, "107.61.67.119")
